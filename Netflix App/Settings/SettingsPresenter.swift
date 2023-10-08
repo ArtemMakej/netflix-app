@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol ISettingsPresenter {
+    func viewDidLoad()
+}
+
+final class SettingsPresenter: ISettingsPresenter {
+    
+    weak var view: ISettingsView?
+    
+    func viewDidLoad() {
+    }
+}

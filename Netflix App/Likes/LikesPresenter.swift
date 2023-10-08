@@ -6,3 +6,16 @@
 //
 
 import Foundation
+
+protocol ILikesPresenter {
+    func viewDidLoad()
+}
+
+final class LikesPresenter: ILikesPresenter {
+   
+    weak var view: ILikesView?
+    
+    
+    func viewDidLoad() {
+    }
+}
