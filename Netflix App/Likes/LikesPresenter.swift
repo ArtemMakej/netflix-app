@@ -12,9 +12,8 @@ protocol ILikesPresenter {
 }
 
 final class LikesPresenter: ILikesPresenter {
-   
-    weak var view: ILikesView?
     
+    weak var view: ILikesView?
     
     func viewDidLoad() {
     }

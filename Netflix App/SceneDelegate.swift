@@ -8,10 +8,10 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
@@ -30,7 +30,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = tabBarController
         let mainTabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
         mainViewController.tabBarItem = mainTabBarItem
-       
+        
         guard let _ = (scene as? UIWindowScene) else { return }
         let likesTabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
         likesViewController.tabBarItem = likesTabBarItem
@@ -40,18 +40,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBarController.viewControllers = [mainViewController, likesViewController, settingsViewController]
     }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-    func sceneDidEnterBackground(_ scene: UIScene) {
-    }
-
-
 }
 

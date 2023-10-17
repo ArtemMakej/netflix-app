@@ -13,8 +13,8 @@ protocol IMainAssembly {
 
 final class MainAssembly: IMainAssembly {
     func assemble() -> UIViewController {
-      let presenter = MainPresenter()
-      let viewcontroller = MainViewController(presenter:presenter)
+        let presenter = MainPresenter()
+        let viewcontroller = MainViewController(presenter:presenter)
         presenter.view = viewcontroller
         return viewcontroller
     }

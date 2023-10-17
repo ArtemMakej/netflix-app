@@ -11,8 +11,7 @@ protocol ILikesAssembly {
     func assemble() -> UIViewController
 }
 
-
-class LikesAssembly {
+final class LikesAssembly: ILikesAssembly {
     func assemble() -> UIViewController {
         let presenter = LikesPresenter()
         let viewcontroller = LikesViewController(presenter: presenter)
@@ -21,6 +20,3 @@ class LikesAssembly {
     }
 }
 
-
-extension LikesAssembly: ILikesAssembly {
-}
