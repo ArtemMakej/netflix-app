@@ -28,14 +28,31 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
         window?.rootViewController = tabBarController
-        let mainTabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 0)
-        mainViewController.tabBarItem = mainTabBarItem
-       
+        let tabBarControllers = UITabBarController()
+        
         guard let _ = (scene as? UIWindowScene) else { return }
-        let likesTabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 0)
+        
+        let mainTabBarItem = UITabBarItem(title: "Главная", image: nil, tag: 1)
+        let mainAttribites: [NSAttributedString.Key:Any] =
+        [.font:UIFont.boldSystemFont(ofSize: 17),
+         .foregroundColor:UIColor.black
+        ]
+        mainTabBarItem.setTitleTextAttributes(mainAttribites, for: .normal)
+        mainViewController.tabBarItem = mainTabBarItem
+        
+        let likesTabBarItem = UITabBarItem(title: "Любимое", image: nil, tag: 1)
+        let likesAttributes: [NSAttributedString.Key:Any] =
+        [.font: UIFont.boldSystemFont(ofSize: 17),
+         .foregroundColor:UIColor.black
+        ]
+        likesTabBarItem.setTitleTextAttributes(
+            likesAttributes,
+            for: .normal)
         likesViewController.tabBarItem = likesTabBarItem
         
-        let settingsTabBarItem = UITabBarItem(tabBarSystemItem: .downloads, tag: 0)
+        let settingsTabBarItem = UITabBarItem(title: "Настройки", image: nil, tag: 1)
+        let settingsAttibutes: [NSAttributedString.Key:Any] = [.font:UIFont.boldSystemFont(ofSize: 17), .foregroundColor:UIColor.black]
+        settingsTabBarItem.setTitleTextAttributes(settingsAttibutes, for: .normal)
         settingsViewController.tabBarItem = settingsTabBarItem
         
         tabBarController.viewControllers = [mainViewController, likesViewController, settingsViewController]
