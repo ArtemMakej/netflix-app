@@ -20,6 +20,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         presenter.viewDidLoad()
+        setuoNavigation()
         setupViews()
     }
     
@@ -33,32 +34,35 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setuoNavigation() {
+        let navigationTitleColor = UIColor(
+            red: 255/255,
+            green: 69/255,
+            blue: 58/255,
+            alpha: 1
+        )
+        
+        let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: navigationTitleColor,
+            .font: titleFont
+        ]
+        navigationItem.title = "NETFLIX"
+    }
+    
     func setupViews() {
-        
-        let labelTitle = UILabel()
-        view.addSubview(labelTitle)
-        labelTitle.text = "NETFLIX"
-        labelTitle.font = UIFont.boldSystemFont(ofSize: 20)
-        labelTitle.textColor = UIColor(red: 181/255, green: 69/255, blue: 60/255, alpha: 1)
-        labelTitle.textAlignment = .center
-        labelTitle.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(50)
-            make.right.equalToSuperview().inset(50)
-            make.top.equalToSuperview().inset(50)
-            make.height.equalTo(100)
-        }
-        
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
         collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
         //настройка коллекции
-        collectionView.backgroundColor = UIColor(red: 36/255, green: 38/255, blue: 45/255, alpha: 1)
+        collectionView.backgroundColor = nil
+        view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
-            maker.left.equalToSuperview().inset(50)
-            maker.right.equalToSuperview().inset(50)
-            maker.top.equalTo(labelTitle).inset(100)
-            maker.height.equalTo(200)
+            maker.left.right.equalToSuperview()
+            maker.top.equalTo(view.snp.topMargin)
+            maker.bottom.equalTo(view.snp.bottomMargin)
         }
     }
 }

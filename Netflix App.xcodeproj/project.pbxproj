@@ -12,7 +12,7 @@
 		9A1A9E708EA59125B722E19F /* Pods_Netflix_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195D4919C23F8A76C4B20236 /* Pods_Netflix_App.framework */; };
 		AC4FE4C62AD71B7800010085 /* MainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FE4C52AD71B7800010085 /* MainModels.swift */; };
 		AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FE4C72AD73BC500010085 /* NetflixCell.swift */; };
-		ACBB56992AD964C50040660E /* UIColour.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB56982AD964C50040660E /* UIColour.swift */; };
+		ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB56982AD964C50040660E /* UIColor+Ext.swift */; };
 		ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */; };
 		ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */; };
 		ACC8FB392ACC5F00008E34F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACC8FB372ACC5F00008E34F0 /* Main.storyboard */; };
@@ -30,6 +30,7 @@
 		ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */; };
 		ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */; };
 		ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */; };
+		ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,7 +61,7 @@
 		ABF4BABEFDBDDD3467AB2B12 /* Pods-Netflix AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netflix AppTests.release.xcconfig"; path = "Target Support Files/Pods-Netflix AppTests/Pods-Netflix AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC4FE4C52AD71B7800010085 /* MainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModels.swift; sourceTree = "<group>"; };
 		AC4FE4C72AD73BC500010085 /* NetflixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixCell.swift; sourceTree = "<group>"; };
-		ACBB56982AD964C50040660E /* UIColour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColour.swift; sourceTree = "<group>"; };
+		ACBB56982AD964C50040660E /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		ACC8FB2E2ACC5F00008E34F0 /* Netflix App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -82,6 +83,7 @@
 		ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesAssembly.swift; sourceTree = "<group>"; };
 		ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesPresenter.swift; sourceTree = "<group>"; };
+		ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App_Netflix_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -136,12 +138,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ACBB56972AD964010040660E /* extensions */ = {
+		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				ACBB56982AD964C50040660E /* UIColour.swift */,
+				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
+				ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */,
 			);
-			path = extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		ACC8FB252ACC5F00008E34F0 = {
@@ -174,7 +177,7 @@
 				ACC8FB612ACC6B16008E34F0 /* Main */,
 				ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */,
 				ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */,
-				ACBB56972AD964010040660E /* extensions */,
+				ACBB56972AD964010040660E /* Extensions */,
 				ACC8FB372ACC5F00008E34F0 /* Main.storyboard */,
 				ACC8FB3A2ACC5F00008E34F0 /* Assets.xcassets */,
 				ACC8FB3C2ACC5F00008E34F0 /* LaunchScreen.storyboard */,
@@ -481,6 +484,7 @@
 			files = (
 				ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */,
 				ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */,
+				ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */,
 				AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */,
 				ACC8FB682ACDA4C7008E34F0 /* MainAssembly.swift in Sources */,
 				ACC8FB6E2ACDA66B008E34F0 /* SettingsViewController.swift in Sources */,
@@ -488,7 +492,7 @@
 				ACC8FB632ACC6B7D008E34F0 /* MainPresenter.swift in Sources */,
 				ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */,
 				ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */,
-				ACBB56992AD964C50040660E /* UIColour.swift in Sources */,
+				ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */,
 				AC4FE4C62AD71B7800010085 /* MainModels.swift in Sources */,
 				ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */,
 				ACC8FB6C2ACDA606008E34F0 /* SettingsAssembly.swift in Sources */,

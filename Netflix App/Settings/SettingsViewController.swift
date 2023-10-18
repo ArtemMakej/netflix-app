@@ -15,7 +15,7 @@ class SettingsViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
     }
     
     private let presenter: ISettingsPresenter

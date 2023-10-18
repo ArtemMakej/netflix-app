@@ -23,7 +23,11 @@ extension UIColor {
 
         // MARK: - Static
 
-        static let basic = Self(light: .black, dark: .white)
+        static let basic = Dynamic(light: .black, dark: .white)
+        static let appBackground = Dynamic(
+            light: .white,
+            dark: UIColor(red: 24/255, green: 29/255, blue: 37/255, alpha: 1)
+        )
     }
 }
 
