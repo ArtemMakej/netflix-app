@@ -9,7 +9,6 @@ import Foundation
 
 protocol IMainPresenter {
     func viewDidLoad()
-    
 }
 
 final class MainPresenter: IMainPresenter {
