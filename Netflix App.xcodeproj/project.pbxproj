@@ -31,6 +31,8 @@
 		ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */; };
 		ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */; };
 		ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */; };
+		ACCE919D2AE1BE2D00ED44B5 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */; };
+		ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE919E2AE1C15C00ED44B5 /* Font.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +86,8 @@
 		ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesPresenter.swift; sourceTree = "<group>"; };
 		ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
+		ACCE919E2AE1C15C00ED44B5 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App_Netflix_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,6 +176,7 @@
 		ACC8FB302ACC5F00008E34F0 /* Netflix App */ = {
 			isa = PBXGroup;
 			children = (
+				ACCE919A2AE1BDBE00ED44B5 /* Resources */,
 				ACC8FB6A2ACDA5E4008E34F0 /* Likes */,
 				ACC8FB692ACDA5CE008E34F0 /* Settings */,
 				ACC8FB612ACC6B16008E34F0 /* Main */,
@@ -241,6 +246,23 @@
 				ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */,
 			);
 			path = Likes;
+			sourceTree = "<group>";
+		};
+		ACCE919A2AE1BDBE00ED44B5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACCE919B2AE1BDF300ED44B5 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		ACCE919B2AE1BDF300ED44B5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */,
+				ACCE919E2AE1C15C00ED44B5 /* Font.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCE919D2AE1BE2D00ED44B5 /* Avenir Next.ttc in Resources */,
 				ACC8FB3E2ACC5F00008E34F0 /* LaunchScreen.storyboard in Resources */,
 				ACC8FB3B2ACC5F00008E34F0 /* Assets.xcassets in Resources */,
 				ACC8FB392ACC5F00008E34F0 /* Main.storyboard in Resources */,
@@ -494,6 +517,7 @@
 				ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */,
 				ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */,
 				AC4FE4C62AD71B7800010085 /* MainModels.swift in Sources */,
+				ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */,
 				ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */,
 				ACC8FB6C2ACDA606008E34F0 /* SettingsAssembly.swift in Sources */,
 				ACC8FB652ACC6C16008E34F0 /* MainViewController.swift in Sources */,
