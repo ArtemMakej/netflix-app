@@ -27,8 +27,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabBarController = UITabBarController()
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = tabBarController
-        
+        window?.rootViewController = tabBarController        
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let mainTabBarItem = UITabBarItem(title: "Главная", image: UIImage(named: "home"), tag: 1)
