@@ -36,9 +36,9 @@ class MainViewController: UIViewController {
     
     private func setuoNavigation() {
         let navigationTitleColor = UIColor(
-            red: 255/255,
-            green: 69/255,
-            blue: 58/255,
+            red: 52/255,
+            green: 120/255,
+            blue: 246/255,
             alpha: 1
         )
         
@@ -49,11 +49,13 @@ class MainViewController: UIViewController {
             .font: titleFont
         ]
         navigationItem.title = "NETFLIX"
+
     }
     
     func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
         view.addSubview(collectionView)
         collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
         //настройка коллекции

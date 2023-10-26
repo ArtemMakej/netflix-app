@@ -23,7 +23,11 @@ final class MainPresenter: IMainPresenter {
     }
     
     func fillCells() {
-        cells = [.tvShow(model: TvShowModel(name: "Lost"))]
+        cells = [
+            .tvShow(model: TvShowModel(name: "Новая планета")),
+            .tvShow(model: TvShowModel(name: "Новая планета")),
+            .tvShow(model: TvShowModel(name: "Новая планета")),
+        ]
     }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
@@ -33,4 +37,6 @@ final class MainPresenter: IMainPresenter {
     func numberOfCells() -> Int {
         return cells.count
     }
+    
+    // приватная функция для доступа к интернету
 }
