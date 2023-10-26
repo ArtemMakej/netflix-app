@@ -40,7 +40,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .font: UIFont.systemFont(ofSize: 10, weight: .medium)
         ]
         appearance.setTitleTextAttributes(attributes, for: .normal)
-        tabBarController.tabBar.tintColor = .red
+        tabBarController.tabBar.tintColor = UIColor(
+            red: 52/255,
+            green: 120/255,
+            blue: 246/255,
+            alpha: 1)
         
         let likesTabBarItem = UITabBarItem(title: "Любимое", image: UIImage(named: "likes"), tag: 1)
         likesViewController.tabBarItem = likesTabBarItem
