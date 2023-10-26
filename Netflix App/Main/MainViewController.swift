@@ -13,7 +13,9 @@ protocol IMainView: AnyObject {
 
 class MainViewController: UIViewController {
     
-    let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    let collectionView: UICollectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: UICollectionViewFlowLayout())
     let presenter: IMainPresenter
     
     override func viewDidLoad() {
@@ -39,17 +41,13 @@ class MainViewController: UIViewController {
             red: 52/255,
             green: 120/255,
             blue: 246/255,
-            alpha: 1
-        )
-        
+            alpha: 1)
         let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
             .font: titleFont
         ]
         navigationItem.title = "NETFLIX"
-
     }
     
     func setupViews() {
@@ -57,8 +55,10 @@ class MainViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.isScrollEnabled = true
         view.addSubview(collectionView)
-        collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
-        //настройка коллекции
+        collectionView.register(
+            NetflixCell.self,
+            forCellWithReuseIdentifier: NetflixCell.id)
+        ///настройка коллекции
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -70,26 +70,35 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: IMainView, UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfCells()
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellItem = presenter.cell(for: indexPath)
-        switch cellItem {
-        case let .tvShow(model):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NetflixCell.id, for: indexPath) as? NetflixCell else { fatalError("no such cell") }
-            cell.configure(model: model)
-            return cell
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+            return presenter.numberOfCells()
         }
-    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cellItem = presenter.cell(for: indexPath)
+            switch cellItem {
+            case let .tvShow(model):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: NetflixCell.id,
+                    for: indexPath) as? NetflixCell else { fatalError("no such cell") }
+                cell.configure(model: model)
+                return cell
+            }
+        }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 232)
-    }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 232)
+        }
 }
 
 

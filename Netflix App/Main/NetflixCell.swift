@@ -53,7 +53,8 @@ final class NetflixCell: UICollectionViewCell {
             UIColor(red: 201/255,
                     green: 245/255,
                     blue: 183/255,
-                    alpha: 1).cgColor]
+                    alpha: 1).cgColor
+        ]
         gradientLayer.locations = [0.0, 0.5, 0.8, 1.0]
         gradientLayer.frame = baseView.bounds
         baseView.layer.insertSublayer(gradientLayer, at: 0)
@@ -89,6 +90,7 @@ final class NetflixCell: UICollectionViewCell {
             maker.height.equalTo(22)
             maker.width.equalTo(22)
         }
+        
         seriesGenreImageView.clipsToBounds = true
         seriesGenreImageView.image = UIImage(named: "SeriesGenre")
         seriesGenreImageView.snp.makeConstraints { maker in
@@ -118,8 +120,9 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameLabel.font = .boldSystemFont(ofSize: 15)
         seriesNameLabel.textColor = .black
         seriesNameLabel.text = "Наша планета"
-        seriesNameLabel.font = UIFontMetrics.default.scaledFont(
-            for: Font.avenir(weight: .bold,size: 12)
+        seriesNameLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
+            weight: .bold,
+            size: 12)
         )
         seriesNameLabel.adjustsFontForContentSizeCategory = true
         seriesNameLabel.snp.makeConstraints { maker in
@@ -131,8 +134,10 @@ final class NetflixCell: UICollectionViewCell {
         baseView.addSubview(seriesDateLabel)
         clipsToBounds = true
         seriesDateLabel.textAlignment = .left
-        seriesDateLabel.font = UIFontMetrics.default.scaledFont(
-            for: Font.avenir(weight: .medium, size: 10))
+        seriesDateLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
+            weight: .medium,
+            size: 10)
+        )
         seriesDateLabel.textColor = .black
         seriesDateLabel.text = "2019-2023"
         seriesDateLabel.snp.makeConstraints { maker in
@@ -143,8 +148,10 @@ final class NetflixCell: UICollectionViewCell {
         
         clipsToBounds = true
         seriesGenreLabel.textAlignment = .left
-        seriesGenreLabel.font = UIFontMetrics.default.scaledFont(
-            for: Font.avenir(weight: .regular, size: 10))
+        seriesGenreLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
+            weight: .regular,
+            size: 10)
+        )
         seriesGenreLabel.textColor = .black
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping

@@ -9,6 +9,7 @@ import UIKit
 
 struct TvShowModel {
     let name: String
+    
 }
 
 enum MainScreenCell {
@@ -17,5 +18,4 @@ enum MainScreenCell {
 
 enum MainScreenSection {
     case shows(cells: [MainScreenCell])
-
 }

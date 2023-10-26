@@ -37,6 +37,5 @@ final class MainPresenter: IMainPresenter {
     func numberOfCells() -> Int {
         return cells.count
     }
-    
-    // приватная функция для доступа к интернету
+    /// приватная функция для доступа к интернету
 }
