@@ -20,8 +20,8 @@ final class NetflixCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupViews() {
-        //настройка ячейки
+    private func setupViews() {
+        /// настройка ячейки
     }
     
     func configure(model: TvShowModel) {

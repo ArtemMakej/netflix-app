@@ -11,16 +11,17 @@ import UIKit
 protocol IMainView: AnyObject {
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
-    let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    let presenter: IMainPresenter
+    private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private var appBackground: UIColor = .white
+    private let presenter: IMainPresenter
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = appBackground
         presenter.viewDidLoad()
-        setuoNavigation()
+        setupNavigationItem()
         setupViews()
     }
     
@@ -34,7 +35,7 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setuoNavigation() {
+    private func setupNavigationItem() {
         let navigationTitleColor = UIColor(
             red: 255/255,
             green: 69/255,
@@ -51,12 +52,11 @@ class MainViewController: UIViewController {
         navigationItem.title = "NETFLIX"
     }
     
-    func setupViews() {
+    private func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
         view.addSubview(collectionView)
         collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
-        //настройка коллекции
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -82,4 +82,3 @@ extension MainViewController: IMainView, UICollectionViewDelegate, UICollectionV
         }
     }
 }
-

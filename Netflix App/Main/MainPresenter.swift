@@ -15,14 +15,12 @@ protocol IMainPresenter {
 
 final class MainPresenter: IMainPresenter {
     
-    private var cells: [MainScreenCell] = []
     weak var view: IMainView?
-    
     func viewDidLoad() {
         fillCells()
     }
-    
-    func fillCells() {
+    private var cells: [MainScreenCell] = []
+    private func fillCells() {
         cells = [.tvShow(model: TvShowModel(name: "Lost"))]
     }
     
