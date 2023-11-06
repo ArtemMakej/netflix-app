@@ -9,6 +9,7 @@ import SnapKit
 import UIKit
 
 protocol IMainView: AnyObject {
+    func reloadData()
 }
 
 class MainViewController: UIViewController {
@@ -69,7 +70,13 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: IMainView, UICollectionViewDelegate, UICollectionViewDataSource {
+extension MainViewController: IMainView {
+    func reloadData() {
+        collectionView.reloadData()
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {

@@ -28,8 +28,39 @@ final class NetflixCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    func configure(model: NetflixShortModel) {
+        seriesNameLabel.text = model.title
+        let more = model.more
+        
+//        // 1 способ разбить строку more
+//        var didFindStopAnchor = false
+//        var date = ""
+//        var info = ""
+//
+//        for char in more {
+//            if char == "," {
+//                didFindStopAnchor = true
+//                continue
+//            }
+//
+//            if !didFindStopAnchor {
+//                date += String(char)
+//            } else {
+//                info += String(char)
+//            }
+//        }
+//        
+        // 2 способ разбить строку more
+        let separetedMore = more.components(separatedBy: [","])
+        let newDate = separetedMore[0]
+        let newInfo = separetedMore[1...]
+        
+        // заполняем
+        seriesDateLabel.text = newDate
+        seriesGenreLabel.text = Array(newInfo).joined(separator: ",")
     }
+    //    func configure() {
+    //    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -119,7 +150,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameLabel.textAlignment = .left
         seriesNameLabel.font = .boldSystemFont(ofSize: 15)
         seriesNameLabel.textColor = .black
-        seriesNameLabel.text = "Наша планета"
+        // seriesNameLabel.text = "Наша планета"
         seriesNameLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
             weight: .bold,
             size: 12)
@@ -139,7 +170,7 @@ final class NetflixCell: UICollectionViewCell {
             size: 10)
         )
         seriesDateLabel.textColor = .black
-        seriesDateLabel.text = "2019-2023"
+        //seriesDateLabel.text = "2019-2023"
         seriesDateLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
@@ -155,7 +186,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesGenreLabel.textColor = .black
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping
-        seriesGenreLabel.text = "Великобритания, Документальные"
+        //seriesGenreLabel.text = "Великобритания, Документальные"
         seriesGenreLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
@@ -163,6 +194,4 @@ final class NetflixCell: UICollectionViewCell {
         }
     }
     
-    func configure(model: TvShowModel) {
-    }
 }

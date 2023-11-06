@@ -33,6 +33,7 @@
 		ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */; };
 		ACCE919D2AE1BE2D00ED44B5 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */; };
 		ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE919E2AE1C15C00ED44B5 /* Font.swift */; };
+		ACE0F5A42AF54D9900BEE9F7 /*  NetflixShort.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,7 @@
 		ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		ACCE919E2AE1C15C00ED44B5 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " NetflixShort.swift"; sourceTree = "<group>"; };
 		DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App_Netflix_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -215,6 +217,7 @@
 				ACC8FB642ACC6C16008E34F0 /* MainViewController.swift */,
 				ACC8FB622ACC6B7D008E34F0 /* MainPresenter.swift */,
 				AC4FE4C52AD71B7800010085 /* MainModels.swift */,
+				ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */,
 				AC4FE4C72AD73BC500010085 /* NetflixCell.swift */,
 			);
 			path = Main;
@@ -511,6 +514,7 @@
 				AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */,
 				ACC8FB682ACDA4C7008E34F0 /* MainAssembly.swift in Sources */,
 				ACC8FB6E2ACDA66B008E34F0 /* SettingsViewController.swift in Sources */,
+				ACE0F5A42AF54D9900BEE9F7 /*  NetflixShort.swift in Sources */,
 				ACC8FB702ACDA693008E34F0 /* SettingsPresenter.swift in Sources */,
 				ACC8FB632ACC6B7D008E34F0 /* MainPresenter.swift in Sources */,
 				ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */,
