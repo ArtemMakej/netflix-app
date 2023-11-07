@@ -32,35 +32,32 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameLabel.text = model.title
         let more = model.more
         
-//        // 1 способ разбить строку more
-//        var didFindStopAnchor = false
-//        var date = ""
-//        var info = ""
-//
-//        for char in more {
-//            if char == "," {
-//                didFindStopAnchor = true
-//                continue
-//            }
-//
-//            if !didFindStopAnchor {
-//                date += String(char)
-//            } else {
-//                info += String(char)
-//            }
-//        }
-//        
-        // 2 способ разбить строку more
+        //        /// 1 способ разбить строку more
+        //        var didFindStopAnchor = false
+        //        var date = ""
+        //        var info = ""
+        //
+        //        for char in more {
+        //            if char == "," {
+        //                didFindStopAnchor = true
+        //                continue
+        //            }
+        //
+        //            if !didFindStopAnchor {
+        //                date += String(char)
+        //            } else {
+        //                info += String(char)
+        //            }
+        //        }
+        
+        /// 2 способ разбить строку more
         let separetedMore = more.components(separatedBy: [","])
         let newDate = separetedMore[0]
         let newInfo = separetedMore[1...]
-        
-        // заполняем
+        /// заполняем
         seriesDateLabel.text = newDate
         seriesGenreLabel.text = Array(newInfo).joined(separator: ",")
     }
-    //    func configure() {
-    //    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -108,7 +105,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameImageView.image = UIImage(named: "nameSeries")
         seriesNameImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
-            maker.top.equalTo(seriesImageView).offset(60)
+            maker.top.equalTo(seriesImageView).offset(42)
             maker.height.equalTo(22)
             maker.width.equalTo(22)
         }
@@ -143,23 +140,23 @@ final class NetflixCell: UICollectionViewCell {
         seriesImageView.snp.makeConstraints { maker in
             maker.left.top.equalTo(baseView)
             maker.height.equalToSuperview()
-            maker.width.equalTo(166)
+            maker.width.equalTo(160)
         }
         
         clipsToBounds = true
         seriesNameLabel.textAlignment = .left
         seriesNameLabel.font = .boldSystemFont(ofSize: 15)
         seriesNameLabel.textColor = .black
-        // seriesNameLabel.text = "Наша планета"
         seriesNameLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
             weight: .bold,
             size: 12)
         )
         seriesNameLabel.adjustsFontForContentSizeCategory = true
+        seriesNameLabel.numberOfLines = 3
         seriesNameLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
-            maker.top.equalTo(seriesNameImageView)
+            maker.bottom.equalTo(seriesNameImageView)
         }
         
         baseView.addSubview(seriesDateLabel)
@@ -167,10 +164,9 @@ final class NetflixCell: UICollectionViewCell {
         seriesDateLabel.textAlignment = .left
         seriesDateLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
             weight: .medium,
-            size: 10)
+            size: 12)
         )
         seriesDateLabel.textColor = .black
-        //seriesDateLabel.text = "2019-2023"
         seriesDateLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
@@ -181,17 +177,15 @@ final class NetflixCell: UICollectionViewCell {
         seriesGenreLabel.textAlignment = .left
         seriesGenreLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
             weight: .regular,
-            size: 10)
+            size: 12)
         )
         seriesGenreLabel.textColor = .black
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping
-        //seriesGenreLabel.text = "Великобритания, Документальные"
         seriesGenreLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
             maker.top.equalTo(seriesGenreImageView).offset(5)
         }
     }
-    
 }

@@ -21,4 +21,3 @@ struct ImageData: Decodable {
     let url: String
     let alt_text: String?
 }
-

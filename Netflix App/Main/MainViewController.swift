@@ -59,7 +59,6 @@ class MainViewController: UIViewController {
         collectionView.register(
             NetflixCell.self,
             forCellWithReuseIdentifier: NetflixCell.id)
-        ///настройка коллекции
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -107,5 +106,3 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.width, height: 232)
         }
 }
-
-

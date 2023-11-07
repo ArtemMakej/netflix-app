@@ -19,17 +19,8 @@ final class MainPresenter: IMainPresenter {
     weak var view: IMainView?
     
     func viewDidLoad() {
-        //fillCells()
         loadingNetflixList()
     }
-    
-//    func fillCells() {
-//        cells = [
-//            .tvShow(model: TvShowModel(name: "Новая планета")),
-//            .tvShow(model: TvShowModel(name: "Новая планета")),
-//            .tvShow(model: TvShowModel(name: "Новая планета")),
-//        ]
-//    }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
         return cells[indexPath.item]
@@ -57,6 +48,6 @@ final class MainPresenter: IMainPresenter {
                 print("Error serialization json", error)
             }
         }.resume()
-
+        
     }
 }
