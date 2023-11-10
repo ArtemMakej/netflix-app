@@ -14,12 +14,11 @@ protocol IMainView: AnyObject {
 final class MainViewController: UIViewController {
     
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    private var appBackground: UIColor = .white
     private let presenter: IMainPresenter
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = appBackground
+        view.backgroundColor = .dynamicColor(dynamic: .appBackground)
         presenter.viewDidLoad()
         setupNavigationItem()
         setupViews()
@@ -27,7 +26,6 @@ final class MainViewController: UIViewController {
     
     init(presenter: IMainPresenter) {
         self.presenter = presenter
-        
         super.init(nibName: nil, bundle: nil)
     }
     

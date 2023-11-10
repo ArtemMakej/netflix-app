@@ -16,12 +16,10 @@ protocol IMainPresenter {
 final class MainPresenter: IMainPresenter {
     
     weak var view: IMainView?
+    private var cells: [MainScreenCell] = []
+    
     func viewDidLoad() {
         fillCells()
-    }
-    private var cells: [MainScreenCell] = []
-    private func fillCells() {
-        cells = [.tvShow(model: TvShowModel(name: "Lost"))]
     }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
@@ -30,5 +28,9 @@ final class MainPresenter: IMainPresenter {
     
     func numberOfCells() -> Int {
         return cells.count
+    }
+    
+    private func fillCells() {
+        cells = [.tvShow(model: TvShowModel(name: "Lost"))]
     }
 }
