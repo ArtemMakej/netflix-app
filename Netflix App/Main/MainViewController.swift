@@ -9,12 +9,15 @@ import SnapKit
 import UIKit
 
 protocol IMainView: AnyObject {
+    func reloadData()
+    func stopRefreshControl()
 }
 
 final class MainViewController: UIViewController {
     
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,14 +38,11 @@ final class MainViewController: UIViewController {
     
     private func setupNavigationItem() {
         let navigationTitleColor = UIColor(
-            red: 255/255,
-            green: 69/255,
-            blue: 58/255,
-            alpha: 1
-        )
-        
+            red: 52/255,
+            green: 120/255,
+            blue: 246/255,
+            alpha: 1)
         let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
             .font: titleFont
@@ -50,11 +50,22 @@ final class MainViewController: UIViewController {
         navigationItem.title = "NETFLIX"
     }
     
+    @objc private func refreshData() {
+        
+        guard refreshControl.isRefreshing else { return }
+        presenter.refreshControlDidStart()
+    }
+    
     private func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
         view.addSubview(collectionView)
-        collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
+        collectionView.register(
+            NetflixCell.self,
+            forCellWithReuseIdentifier: NetflixCell.id)
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -65,18 +76,44 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: IMainView, UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfCells()
+extension MainViewController: IMainView {
+    func reloadData() {
+        collectionView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellItem = presenter.cell(for: indexPath)
-        switch cellItem {
-        case let .tvShow(model):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NetflixCell.id, for: indexPath) as? NetflixCell else { fatalError("no such cell") }
-            cell.configure(model: model)
-            return cell
-        }
+    func stopRefreshControl() {
+        refreshControl.endRefreshing()
     }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+            return presenter.numberOfCells()
+        }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cellItem = presenter.cell(for: indexPath)
+            switch cellItem {
+            case let .tvShow(model):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: NetflixCell.id,
+                    for: indexPath) as? NetflixCell else { fatalError("no such cell") }
+                cell.configure(model: model)
+                return cell
+            }
+        }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 232)
+        }
 }

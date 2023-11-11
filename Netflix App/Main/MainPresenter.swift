@@ -11,6 +11,7 @@ protocol IMainPresenter {
     func viewDidLoad()
     func numberOfCells() -> Int
     func cell(for indexPath: IndexPath) -> MainScreenCell
+    func refreshControlDidStart()
 }
 
 final class MainPresenter: IMainPresenter {
@@ -19,7 +20,7 @@ final class MainPresenter: IMainPresenter {
     private var cells: [MainScreenCell] = []
     
     func viewDidLoad() {
-        fillCells()
+        loadingNetflixList()
     }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
@@ -30,7 +31,34 @@ final class MainPresenter: IMainPresenter {
         return cells.count
     }
     
-    private func fillCells() {
-        cells = [.tvShow(model: TvShowModel(name: "Lost"))]
+    func refreshControlDidStart() {
+        cells = []
+        view?.reloadData()
+        loadingNetflixList { [weak self] isOk in
+            self?.view?.stopRefreshControl()
+        }
+    }
+    
+    private func loadingNetflixList(completion: ((Bool) -> Void)? = nil) {
+        let urlRequst = "https://netflix-list-rust.fly.dev/netflix/shows?page=1"
+        guard let url = URL(string: urlRequst) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data
+            else { return }
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                let result = try decoder.decode([NetflixShortModel].self, from: data)
+                self.cells = result.map { .tvShow(model: $0) }
+                DispatchQueue.main.async {
+                    self.view?.reloadData()
+                    completion?(true)
+                }
+            } catch let error {
+                print("Error serialization json", error)
+                completion?(false)
+            }
+        }.resume()
+        
     }
 }
