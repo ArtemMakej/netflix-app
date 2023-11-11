@@ -16,7 +16,7 @@ final class LikesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .dynamicColor(dynamic: .appBackground)
     }
     
     init(presenter: ILikesPresenter) {
