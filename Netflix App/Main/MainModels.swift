@@ -17,5 +17,4 @@ enum MainScreenCell {
 
 enum MainScreenSection {
     case shows(cells: [MainScreenCell])
-
 }
