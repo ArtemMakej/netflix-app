@@ -66,7 +66,7 @@ final class NetflixCell: UICollectionViewCell {
         setupGradientBackground()
     }
     
-    func setupGradientBackground() {
+    private func setupGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
             UIColor(
@@ -88,7 +88,7 @@ final class NetflixCell: UICollectionViewCell {
         baseView.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    func setupViews() {
+    private func setupViews() {
         contentView.addSubview(baseView)
         baseView.addSubview(seriesNameLabel)
         baseView.addSubview(seriesImageView)

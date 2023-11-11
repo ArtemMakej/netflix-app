@@ -13,25 +13,22 @@ protocol IMainView: AnyObject {
     func stopRefreshControl()
 }
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
-    let collectionView: UICollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: UICollectionViewFlowLayout())
-    let presenter: IMainPresenter
+    private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .dynamicColor(dynamic: .appBackground)
         presenter.viewDidLoad()
-        setuoNavigation()
+        setupNavigationItem()
         setupViews()
     }
     
     init(presenter: IMainPresenter) {
         self.presenter = presenter
-        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,7 +36,7 @@ class MainViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setuoNavigation() {
+    private func setupNavigationItem() {
         let navigationTitleColor = UIColor(
             red: 52/255,
             green: 120/255,

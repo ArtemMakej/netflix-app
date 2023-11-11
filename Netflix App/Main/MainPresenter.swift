@@ -16,8 +16,8 @@ protocol IMainPresenter {
 
 final class MainPresenter: IMainPresenter {
     
-    private var cells: [MainScreenCell] = []
     weak var view: IMainView?
+    private var cells: [MainScreenCell] = []
     
     func viewDidLoad() {
         loadingNetflixList()

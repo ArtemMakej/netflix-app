@@ -11,7 +11,7 @@ protocol ISettingsView: AnyObject {
     
 }
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
