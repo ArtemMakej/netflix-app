@@ -10,6 +10,7 @@ import UIKit
 
 protocol IMainView: AnyObject {
     func reloadData()
+    func stopRefreshControl()
 }
 
 class MainViewController: UIViewController {
@@ -18,6 +19,7 @@ class MainViewController: UIViewController {
         frame: .zero,
         collectionViewLayout: UICollectionViewFlowLayout())
     let presenter: IMainPresenter
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,13 @@ class MainViewController: UIViewController {
         navigationItem.title = "NETFLIX"
     }
     
-    func setupViews() {
+    @objc private func refreshData() {
+        
+        guard refreshControl.isRefreshing else { return }
+        presenter.refreshControlDidStart()
+    }
+    
+    private func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isScrollEnabled = true
@@ -59,6 +67,8 @@ class MainViewController: UIViewController {
         collectionView.register(
             NetflixCell.self,
             forCellWithReuseIdentifier: NetflixCell.id)
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -72,6 +82,10 @@ class MainViewController: UIViewController {
 extension MainViewController: IMainView {
     func reloadData() {
         collectionView.reloadData()
+    }
+    
+    func stopRefreshControl() {
+        refreshControl.endRefreshing()
     }
 }
 

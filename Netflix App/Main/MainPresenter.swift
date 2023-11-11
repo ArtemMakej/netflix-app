@@ -11,6 +11,7 @@ protocol IMainPresenter {
     func viewDidLoad()
     func numberOfCells() -> Int
     func cell(for indexPath: IndexPath) -> MainScreenCell
+    func refreshControlDidStart()
 }
 
 final class MainPresenter: IMainPresenter {
@@ -30,7 +31,15 @@ final class MainPresenter: IMainPresenter {
         return cells.count
     }
     
-    private func loadingNetflixList() {
+    func refreshControlDidStart() {
+        cells = []
+        view?.reloadData()
+        loadingNetflixList { [weak self] isOk in
+            self?.view?.stopRefreshControl()
+        }
+    }
+    
+    private func loadingNetflixList(completion: ((Bool) -> Void)? = nil) {
         let urlRequst = "https://netflix-list-rust.fly.dev/netflix/shows?page=1"
         guard let url = URL(string: urlRequst) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -43,9 +52,11 @@ final class MainPresenter: IMainPresenter {
                 self.cells = result.map { .tvShow(model: $0) }
                 DispatchQueue.main.async {
                     self.view?.reloadData()
+                    completion?(true)
                 }
             } catch let error {
                 print("Error serialization json", error)
+                completion?(false)
             }
         }.resume()
         
