@@ -18,6 +18,7 @@ final class MainViewController: UIViewController {
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
+    private var lastContentHeight: CGFloat = 0 as CGFloat
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +54,7 @@ final class MainViewController: UIViewController {
     @objc private func refreshData() {
         
         guard refreshControl.isRefreshing else { return }
+        lastContentHeight = 0
         presenter.refreshControlDidStart()
     }
     
@@ -116,4 +118,18 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: collectionView.frame.width, height: 232)
         }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let screenHeight = scrollView.bounds.size.height * 3
+        //print("offsetY - \(offsetY), contentHeight - \(contentHeight), screenHeight - \(screenHeight)")
+        if offsetY > abs(contentHeight - screenHeight) {
+            guard lastContentHeight != scrollView.contentSize.height else { return }
+            lastContentHeight = contentHeight
+            self.presenter.userDidScrollToPageEnd()
+        }
+    }
 }
