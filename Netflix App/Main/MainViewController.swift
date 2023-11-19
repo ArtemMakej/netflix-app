@@ -15,11 +15,15 @@ protocol IMainView: AnyObject {
 
 final class MainViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
     private var lastContentHeight: CGFloat = 0 as CGFloat
     
+    // MARK: - Lifecycle
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .dynamicColor(dynamic: .appBackground)
