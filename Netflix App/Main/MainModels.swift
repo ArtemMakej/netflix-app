@@ -9,10 +9,11 @@ import UIKit
 
 struct TvShowModel {
     let name: String
+    
 }
 
 enum MainScreenCell {
-    case tvShow(model: TvShowModel)
+    case tvShow(model: NetflixShortModel)
 }
 
 enum MainScreenSection {
