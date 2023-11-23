@@ -12,6 +12,9 @@
 		9A1A9E708EA59125B722E19F /* Pods_Netflix_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195D4919C23F8A76C4B20236 /* Pods_Netflix_App.framework */; };
 		AC4FE4C62AD71B7800010085 /* MainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FE4C52AD71B7800010085 /* MainModels.swift */; };
 		AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FE4C72AD73BC500010085 /* NetflixCell.swift */; };
+		AC510E242B0FD7860044E8E6 /* SeriesCardAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC510E232B0FD7860044E8E6 /* SeriesCardAssembly.swift */; };
+		AC510E272B0FD7F60044E8E6 /* SeriesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC510E262B0FD7F60044E8E6 /* SeriesCardView.swift */; };
+		AC510E292B0FD8090044E8E6 /* SeriesCardPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC510E282B0FD8090044E8E6 /* SeriesCardPresenter.swift */; };
 		ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACBB56982AD964C50040660E /* UIColor+Ext.swift */; };
 		ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */; };
 		ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */; };
@@ -64,6 +67,9 @@
 		ABF4BABEFDBDDD3467AB2B12 /* Pods-Netflix AppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netflix AppTests.release.xcconfig"; path = "Target Support Files/Pods-Netflix AppTests/Pods-Netflix AppTests.release.xcconfig"; sourceTree = "<group>"; };
 		AC4FE4C52AD71B7800010085 /* MainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModels.swift; sourceTree = "<group>"; };
 		AC4FE4C72AD73BC500010085 /* NetflixCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixCell.swift; sourceTree = "<group>"; };
+		AC510E232B0FD7860044E8E6 /* SeriesCardAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCardAssembly.swift; sourceTree = "<group>"; };
+		AC510E262B0FD7F60044E8E6 /* SeriesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCardView.swift; sourceTree = "<group>"; };
+		AC510E282B0FD8090044E8E6 /* SeriesCardPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCardPresenter.swift; sourceTree = "<group>"; };
 		ACBB56982AD964C50040660E /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		ACC8FB2E2ACC5F00008E34F0 /* Netflix App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -144,6 +150,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AC510E222B0FD6E10044E8E6 /* SeriesCard */ = {
+			isa = PBXGroup;
+			children = (
+				AC510E252B0FD78F0044E8E6 /* Assembly */,
+				AC510E262B0FD7F60044E8E6 /* SeriesCardView.swift */,
+				AC510E282B0FD8090044E8E6 /* SeriesCardPresenter.swift */,
+			);
+			path = SeriesCard;
+			sourceTree = "<group>";
+		};
+		AC510E252B0FD78F0044E8E6 /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				AC510E232B0FD7860044E8E6 /* SeriesCardAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
 		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,6 +206,7 @@
 				ACC8FB6A2ACDA5E4008E34F0 /* Likes */,
 				ACC8FB692ACDA5CE008E34F0 /* Settings */,
 				ACC8FB612ACC6B16008E34F0 /* Main */,
+				AC510E222B0FD6E10044E8E6 /* SeriesCard */,
 				ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */,
 				ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */,
 				ACBB56972AD964010040660E /* Extensions */,
@@ -509,7 +534,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */,
+				AC510E292B0FD8090044E8E6 /* SeriesCardPresenter.swift in Sources */,
 				ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */,
+				AC510E272B0FD7F60044E8E6 /* SeriesCardView.swift in Sources */,
+				AC510E242B0FD7860044E8E6 /* SeriesCardAssembly.swift in Sources */,
 				ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */,
 				AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */,
 				ACC8FB682ACDA4C7008E34F0 /* MainAssembly.swift in Sources */,
