@@ -63,11 +63,12 @@ final class NetflixCell: UICollectionViewCell {
         super.layoutSubviews()
         ///метод позволят отрисовать вью сейчас
         baseView.layoutIfNeeded()
-        setupGradientBackground()
+        setupGradientBackground(dynamic: .appBackground)
     }
     
-    private func setupGradientBackground() {
+    private func setupGradientBackground(dynamic: UIColor.Dynamic) {
         let gradientLayer = CAGradientLayer()
+        if dynamic.light.isEqual(UIColor.Dynamic.basic.light) && dynamic.dark.isEqual(UIColor.Dynamic.basic.dark) {
         gradientLayer.colors = [
             UIColor(
                 red: 217/255,
@@ -86,6 +87,10 @@ final class NetflixCell: UICollectionViewCell {
         gradientLayer.locations = [0.0, 0.5, 0.8, 1.0]
         gradientLayer.frame = baseView.bounds
         baseView.layer.insertSublayer(gradientLayer, at: 0)
+        } else {
+                // В противном случае, используем темный или светлый цвет в зависимости от темы
+            baseView.backgroundColor = UIColor(red: 35/255, green: 38/255, blue: 46/255, alpha: 1)
+            }
     }
     
     private func setupViews() {

@@ -17,7 +17,7 @@ final class SeriesCardViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
     }
-
+    
     public let presenter: ISeriesCardPresenter
 
     init(presenter:ISeriesCardPresenter) {

@@ -27,7 +27,7 @@ final class MainViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .dynamicColor(dynamic: .appBackground)
+        view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         presenter.viewDidLoad()
         setupNavigationItem()
         setupViews()
