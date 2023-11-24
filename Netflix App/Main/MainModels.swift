@@ -9,7 +9,6 @@ import UIKit
 
 struct TvShowModel {
     let name: String
-    
 }
 
 enum MainScreenCell {

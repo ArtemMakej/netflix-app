@@ -8,6 +8,7 @@
 import SnapKit
 import UIKit
 
+
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
@@ -111,6 +112,24 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 cell.configure(model: model)
                 return cell
             }
+        }
+    
+    private func showSeriesCard(for tvShowModel: NetflixShortModel) {
+            let seriesCardAssembly = SeriesCardAssembly()
+            let seriesCardViewController = seriesCardAssembly.assemble()
+    
+            if let seriesCardPresenter = (seriesCardViewController as? SeriesCardViewController)?.presenter as? SeriesCardPresenter {
+                seriesCardPresenter.setUp(with: tvShowModel)
+            }
+            navigationController?.pushViewController(seriesCardViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
+                return
+            }
+
+            showSeriesCard(for: model)
         }
 }
 
