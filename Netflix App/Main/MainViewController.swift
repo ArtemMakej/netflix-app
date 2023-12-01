@@ -43,11 +43,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        let navigationTitleColor = UIColor(
-            red: 52/255,
-            green: 120/255,
-            blue: 246/255,
-            alpha: 1)
+        let navigationTitleColor = UIColor.imageColor.color
         let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,

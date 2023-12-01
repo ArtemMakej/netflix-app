@@ -7,6 +7,28 @@
 
 import UIKit
 
+final class ImprovedTabBarViewController: UITabBarController {
+    
+    var themeTintColour: UIColor.Dynamic? {
+        
+        didSet {
+            apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
+        }
+    }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
+    }
+    
+    private func apply(dynamicColor: UIColor.Dynamic?, theme: UIUserInterfaceStyle) {
+        switch theme {
+        case .dark:
+            tabBar.tintColor = dynamicColor?.dark
+        default:
+            tabBar.tintColor = dynamicColor?.light
+        }
+    }
+}
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -21,10 +43,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let likesAssembly = LikesAssembly()
         let likesViewController = likesAssembly.assemble().wrapInNavigationController()
         
-        let tabBarController = UITabBarController()
+        let tabBarController = ImprovedTabBarViewController()
+        tabBarController.themeTintColour = UIColor.tabBarColor
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
-        window?.rootViewController = tabBarController        
+        window?.rootViewController = tabBarController
         guard let _ = (scene as? UIWindowScene) else { return }
         
         let appearance = UITabBarItem.appearance()
@@ -32,17 +55,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             .font: UIFont.systemFont(ofSize: 10, weight: .medium)
         ]
         appearance.setTitleTextAttributes(attributes, for: .normal)
-        tabBarController.tabBar.tintColor = UIColor(
-            red: 52/255,
-            green: 120/255,
-            blue: 246/255,
-            alpha: 1)
         
         guard let _ = (scene as? UIWindowScene) else { return }
         let mainTabBarItem = UITabBarItem(
             title: "Главная",
             image: UIImage(named: "home"),
             tag: 1)
+        
         mainViewController.tabBarItem = mainTabBarItem
         let likesTabBarItem = UITabBarItem(
             title: "Любимое",

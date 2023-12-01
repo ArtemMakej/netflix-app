@@ -18,6 +18,7 @@ final class NetflixCell: UICollectionViewCell {
     private let seriesNameLabel = UILabel()
     private let seriesDateLabel = UILabel()
     private let seriesGenreLabel = UILabel()
+    private let gradientLayer = CAGradientLayer()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,34 +64,27 @@ final class NetflixCell: UICollectionViewCell {
         super.layoutSubviews()
         ///метод позволят отрисовать вью сейчас
         baseView.layoutIfNeeded()
-        setupGradientBackground(dynamic: .appBackground)
+        baseView.layer.insertSublayer(gradientLayer, at: 0)
+        switch traitCollection.userInterfaceStyle {
+        case .dark:
+            print("Dark")
+            GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .dark)
+        default:
+            print("Light")
+            GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .light)
+        }
+        
     }
     
-    private func setupGradientBackground(dynamic: UIColor.Dynamic) {
-        let gradientLayer = CAGradientLayer()
-        if dynamic.light.isEqual(UIColor.Dynamic.basic.light) && dynamic.dark.isEqual(UIColor.Dynamic.basic.dark) {
-        gradientLayer.colors = [
-            UIColor(
-                red: 217/255,
-                green: 233/255,
-                blue: 250/255,
-                alpha: 1).cgColor,
-            UIColor(red: 206/255,
-                    green: 236/255,
-                    blue: 218/255,
-                    alpha: 1).cgColor,
-            UIColor(red: 201/255,
-                    green: 245/255,
-                    blue: 183/255,
-                    alpha: 1).cgColor
-        ]
-        gradientLayer.locations = [0.0, 0.5, 0.8, 1.0]
-        gradientLayer.frame = baseView.bounds
-        baseView.layer.insertSublayer(gradientLayer, at: 0)
-        } else {
-                // В противном случае, используем темный или светлый цвет в зависимости от темы
-            baseView.backgroundColor = UIColor(red: 35/255, green: 38/255, blue: 46/255, alpha: 1)
-            }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        switch traitCollection.userInterfaceStyle {
+        case .dark:
+            print("Dark")
+            GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .dark)
+        default:
+            print("Light")
+            GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .light)
+        }
     }
     
     private func setupViews() {
@@ -106,8 +100,10 @@ final class NetflixCell: UICollectionViewCell {
         baseView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview().inset(16)
         }
-        
-        seriesNameImageView.image = UIImage(named: "nameSeries")
+        seriesNameImageView.clipsToBounds = true
+        let nameImage = UIImage(named: "nameSeries")?.withRenderingMode(.alwaysTemplate)
+        seriesNameImageView.image = nameImage
+        seriesNameImageView.tintColor = UIColor.imageColor.color
         seriesNameImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesImageView).offset(42)
@@ -116,7 +112,9 @@ final class NetflixCell: UICollectionViewCell {
         }
         
         seriesDateImageView.clipsToBounds = true
-        seriesDateImageView.image = UIImage(named: "SeriesDate")
+        let dateImage = UIImage(named: "SeriesDate")?.withRenderingMode(.alwaysTemplate)
+        seriesDateImageView.image = dateImage
+        seriesDateImageView.tintColor = UIColor.imageColor.color
         seriesDateImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesNameImageView.snp.bottom).offset(8)
@@ -125,7 +123,9 @@ final class NetflixCell: UICollectionViewCell {
         }
         
         seriesGenreImageView.clipsToBounds = true
-        seriesGenreImageView.image = UIImage(named: "SeriesGenre")
+        let genreImage = UIImage(named: "SeriesGenre")?.withRenderingMode(.alwaysTemplate)
+        seriesGenreImageView.image = genreImage
+        seriesGenreImageView.tintColor = UIColor.imageColor.color
         seriesGenreImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesDateImageView.snp.bottom).offset(8)
@@ -142,6 +142,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesImageView.layer.masksToBounds = false
         seriesImageView.layer.cornerRadius = 8
         seriesImageView.clipsToBounds =  true
+     
         seriesImageView.snp.makeConstraints { maker in
             maker.left.top.equalTo(baseView)
             maker.height.equalToSuperview()
@@ -151,7 +152,7 @@ final class NetflixCell: UICollectionViewCell {
         clipsToBounds = true
         seriesNameLabel.textAlignment = .left
         seriesNameLabel.font = .boldSystemFont(ofSize: 15)
-        seriesNameLabel.textColor = .black
+        seriesNameLabel.textColor = .dynamicColor(dynamic: .textColourCustom)
         seriesNameLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
             weight: .bold,
             size: 12)
@@ -171,7 +172,7 @@ final class NetflixCell: UICollectionViewCell {
             weight: .medium,
             size: 12)
         )
-        seriesDateLabel.textColor = .black
+        seriesDateLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesDateLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
             maker.right.equalToSuperview()
@@ -184,7 +185,7 @@ final class NetflixCell: UICollectionViewCell {
             weight: .regular,
             size: 12)
         )
-        seriesGenreLabel.textColor = .black
+        seriesGenreLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping
         seriesGenreLabel.snp.makeConstraints { maker in
