@@ -12,7 +12,7 @@ struct TvShowModel {
 }
 
 enum MainScreenCell {
-    case tvShow(model: TvShowModel)
+    case tvShow(model: NetflixShortModel)
 }
 
 enum MainScreenSection {
