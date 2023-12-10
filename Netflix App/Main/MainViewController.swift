@@ -8,17 +8,26 @@
 import SnapKit
 import UIKit
 
+
 protocol IMainView: AnyObject {
+    func reloadData()
+    func stopRefreshControl()
 }
 
 final class MainViewController: UIViewController {
     
+    // MARK: - Properties
+    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
+    private let refreshControl = UIRefreshControl()
+    private var lastContentHeight: CGFloat = 0 as CGFloat
     
+    // MARK: - Lifecycle
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .dynamicColor(dynamic: .appBackground)
+        view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         presenter.viewDidLoad()
         setupNavigationItem()
         setupViews()
@@ -34,15 +43,8 @@ final class MainViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        let navigationTitleColor = UIColor(
-            red: 255/255,
-            green: 69/255,
-            blue: 58/255,
-            alpha: 1
-        )
-        
+        let navigationTitleColor = UIColor.imageColor.color
         let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
             .font: titleFont
@@ -50,11 +52,23 @@ final class MainViewController: UIViewController {
         navigationItem.title = "NETFLIX"
     }
     
+    @objc private func refreshData() {
+        
+        guard refreshControl.isRefreshing else { return }
+        lastContentHeight = 0
+        presenter.refreshControlDidStart()
+    }
+    
     private func setupViews() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = true
         view.addSubview(collectionView)
-        collectionView.register(NetflixCell.self, forCellWithReuseIdentifier: NetflixCell.id)
+        collectionView.register(
+            NetflixCell.self,
+            forCellWithReuseIdentifier: NetflixCell.id)
+        collectionView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         collectionView.backgroundColor = nil
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
         collectionView.snp.makeConstraints { maker in
@@ -65,18 +79,76 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: IMainView, UICollectionViewDelegate, UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return presenter.numberOfCells()
+extension MainViewController: IMainView {
+    func reloadData() {
+        collectionView.reloadData()
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellItem = presenter.cell(for: indexPath)
-        switch cellItem {
-        case let .tvShow(model):
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: NetflixCell.id, for: indexPath) as? NetflixCell else { fatalError("no such cell") }
-            cell.configure(model: model)
-            return cell
+    func stopRefreshControl() {
+        refreshControl.endRefreshing()
+    }
+}
+
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        numberOfItemsInSection section: Int) -> Int {
+            return presenter.numberOfCells()
+        }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cellItem = presenter.cell(for: indexPath)
+            switch cellItem {
+            case let .tvShow(model):
+                guard let cell = collectionView.dequeueReusableCell(
+                    withReuseIdentifier: NetflixCell.id,
+                    for: indexPath) as? NetflixCell else { fatalError("no such cell") }
+                cell.configure(model: model)
+                return cell
+            }
+        }
+    
+    private func showSeriesCard(for tvShowModel: NetflixShortModel) {
+            let seriesCardAssembly = SeriesCardAssembly()
+            let seriesCardViewController = seriesCardAssembly.assemble()
+    
+            if let seriesCardPresenter = (seriesCardViewController as? SeriesCardViewController)?.presenter as? SeriesCardPresenter {
+                seriesCardPresenter.setUp(with: tvShowModel)
+            }
+            navigationController?.pushViewController(seriesCardViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
+                return
+            }
+
+            showSeriesCard(for: model)
+        }
+}
+
+extension MainViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 232)
+        }
+}
+
+extension MainViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let screenHeight = scrollView.bounds.size.height * 3
+        //print("offsetY - \(offsetY), contentHeight - \(contentHeight), screenHeight - \(screenHeight)")
+        if offsetY > abs(contentHeight - screenHeight) {
+            guard lastContentHeight != scrollView.contentSize.height else { return }
+            lastContentHeight = contentHeight
+            self.presenter.userDidScrollToPageEnd()
         }
     }
 }
