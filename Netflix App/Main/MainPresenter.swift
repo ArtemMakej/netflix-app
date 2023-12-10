@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol IMainPresenter {
     func viewDidLoad()
@@ -73,6 +74,9 @@ final class MainPresenter: IMainPresenter {
                 completion?(false)
             }
         }.resume()
-        
+
+
+
     }
+
 }

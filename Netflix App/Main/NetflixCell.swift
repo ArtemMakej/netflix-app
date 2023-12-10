@@ -32,6 +32,9 @@ final class NetflixCell: UICollectionViewCell {
     func configure(model: NetflixShortModel) {
         seriesNameLabel.text = model.title
         let more = model.more
+        let imageUrl = model.img.url
+        print("imageURL \(imageUrl)")
+        loadImage(imageURL: imageUrl)
         
         //        /// 1 способ разбить строку more
         //        var didFindStopAnchor = false
@@ -73,7 +76,6 @@ final class NetflixCell: UICollectionViewCell {
             print("Light")
             GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .light)
         }
-        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -134,7 +136,6 @@ final class NetflixCell: UICollectionViewCell {
         }
         
         seriesImageView.contentMode = .scaleAspectFill
-        seriesImageView.image = UIImage(named: "pictureSeries")
         seriesImageView.layer.shadowColor = UIColor.black.cgColor
         seriesImageView.layer.shadowOpacity = 0.5
         seriesImageView.layer.shadowOffset = CGSize(width: 3, height: 3)
@@ -142,7 +143,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesImageView.layer.masksToBounds = false
         seriesImageView.layer.cornerRadius = 8
         seriesImageView.clipsToBounds =  true
-     
+        
         seriesImageView.snp.makeConstraints { maker in
             maker.left.top.equalTo(baseView)
             maker.height.equalToSuperview()
@@ -193,5 +194,19 @@ final class NetflixCell: UICollectionViewCell {
             maker.right.equalToSuperview()
             maker.top.equalTo(seriesGenreImageView).offset(5)
         }
+    }
+    
+    private func loadImage(imageURL: String) {
+        guard let url = URL(string: imageURL) else { return }
+        let urlRequest = URLRequest(url: url)
+        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+            guard let response = response,
+                  let data = data else { return }
+            let image = UIImage(data: data)
+            DispatchQueue.main.async { [weak self] in
+                self?.seriesImageView.image = image
+            }
+        }.resume()
+        
     }
 }

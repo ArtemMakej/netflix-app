@@ -13,6 +13,7 @@ struct NetflixShortModel: Decodable {
     let url: String
     let img: ImageData
     let more: String
+    
 }
 
 struct ImageData: Decodable {
