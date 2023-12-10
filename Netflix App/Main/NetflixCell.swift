@@ -200,8 +200,7 @@ final class NetflixCell: UICollectionViewCell {
         guard let url = URL(string: imageURL) else { return }
         let urlRequest = URLRequest(url: url)
         URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard let response = response,
-                  let data = data else { return }
+            guard let data = data else { return }
             let image = UIImage(data: data)
             DispatchQueue.main.async { [weak self] in
                 self?.seriesImageView.image = image
