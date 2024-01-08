@@ -100,7 +100,7 @@ final class NetflixCell: UICollectionViewCell {
         baseView.clipsToBounds = true
         baseView.layer.cornerRadius = 8
         baseView.snp.makeConstraints { maker in
-            maker.edges.equalToSuperview().inset(16)
+            maker.edges.equalToSuperview().inset(UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16))
         }
         seriesNameImageView.clipsToBounds = true
         let nameImage = UIImage(named: "nameSeries")?.withRenderingMode(.alwaysTemplate)
