@@ -73,9 +73,5 @@ final class MainPresenter: IMainPresenter {
                 completion?(false)
             }
         }.resume()
-
-
-
     }
-
 }

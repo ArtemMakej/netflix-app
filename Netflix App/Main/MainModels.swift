@@ -7,14 +7,10 @@
 
 import UIKit
 
-struct TvShowModel {
-    let name: String
-}
-
 enum MainScreenCell {
     case tvShow(model: NetflixShortModel)
 }
 
-enum MainScreenSection {
-    case shows(cells: [MainScreenCell])
-}
+//enum MainScreenSection {
+//    case shows(cells: [MainScreenCell])
+//}

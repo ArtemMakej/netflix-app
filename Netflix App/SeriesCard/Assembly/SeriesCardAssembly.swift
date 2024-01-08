@@ -8,12 +8,12 @@
 import UIKit
 
 protocol ISeriesCardAssembly {
-    func assemble() -> UIViewController
+    func assemble(id: String) -> UIViewController
 }
 
 final class SeriesCardAssembly: ISeriesCardAssembly {
-    func assemble() -> UIViewController {
-        let presenter = SeriesCardPresenter()
+    func assemble(id: String) -> UIViewController {
+        let presenter = SeriesCardPresenter(id: id)
         let viewcontroller = SeriesCardViewController(presenter: presenter)
         presenter.view = viewcontroller
         return viewcontroller

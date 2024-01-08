@@ -90,6 +90,7 @@ extension MainViewController: IMainView {
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
     func collectionView(
         _ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
@@ -98,7 +99,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(
         _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
             let cellItem = presenter.cell(for: indexPath)
             switch cellItem {
             case let .tvShow(model):
@@ -110,21 +112,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             }
         }
     
-    private func showSeriesCard(for tvShowModel: NetflixShortModel) {
-            let seriesCardAssembly = SeriesCardAssembly()
-            let seriesCardViewController = seriesCardAssembly.assemble()
-    
-            if let seriesCardPresenter = (seriesCardViewController as? SeriesCardViewController)?.presenter as? SeriesCardPresenter {
-                seriesCardPresenter.setUp(with: tvShowModel)
-            }
-            navigationController?.pushViewController(seriesCardViewController, animated: true)
+    private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
+        let seriesCardAssembly = SeriesCardAssembly()
+        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id)
+        
+        navigationController?.pushViewController(seriesCardViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
                 return
             }
-
             showSeriesCard(for: model)
         }
 }
