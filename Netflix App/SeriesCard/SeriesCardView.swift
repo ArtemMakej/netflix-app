@@ -50,25 +50,17 @@ final class SeriesCardView: UIView {
         loadImageSeriesCard(imageURL: imageUrl)
         seriesTitleLabel.text = model.title
         seriesDescriptionLabel.text = model.description
-        seriesDurationLabel.text = "Длительность: \(model.duration)"
-        seriesPresentedAtDateLabel.text = model.presented_at_date
-        seriesPresentedAtDateLabel.text = "Старт показа: \(model.presented_at_date)"
-        seriesRatingImdbLabel.text = model.rating.imbd
-        seriesRatingImdbLabel.text = "Рейтинг imdb: \(model.rating.imbd)"
-        seriesRatingKinopoiskLabel.text = model.rating.kinopoisk
-        seriesRatingKinopoiskLabel.text = "Рейтинг kinopoisk: \(model.rating.kinopoisk)"
-        let separetedseriesActors = model.actors.joined(separator: ", ")
-        seriesActorsLabel.text = separetedseriesActors
-        seriesActorsLabel.text = "Актеры: \(model.actors.joined(separator: ", "))"
-        let separetedseriesCountry = model.country.joined(separator: ", ")
-        seriesCountryLabel.text = separetedseriesCountry
-        seriesCountryLabel.text = "Страна: \(model.country.joined(separator: ", "))"
-        let separetedInLists = model.in_lists.joined(separator: ", ")
-        seriesInListsLabel.text = separetedInLists
-        seriesInListsLabel.text = "В списках: \(model.in_lists.joined(separator: ", "))"
-        let separetedGenge = model.genre.joined(separator: ", ")
-        seriesGenreLabel.text = separetedGenge
-        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
+        formatLabelForBoldText(label: seriesDurationLabel, boldText: "Длительность: ", normalText: model.duration)
+        formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: "Старт показа: ", normalText: model.presented_at_date)
+        formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: "Рейтинг imdb: ", normalText: model.rating.imbd)
+        formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
+        formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  ", normalText: model.actors.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: ", normalText: model.country.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: ", normalText: model.in_lists.joined(separator: ", "))
+//        let separetedGenge = model.genre.joined(separator: ", ")
+//        seriesGenreLabel.text = separetedGenge
+//        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
+        formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: ", normalText: model.genre.joined(separator: ", "))
     }
     
     private func setupScrollView() {
@@ -78,6 +70,14 @@ final class SeriesCardView: UIView {
             make.edges.equalToSuperview()
         }
     }
+    
+    private func formatLabelForBoldText(label: UILabel, boldText: String, normalText: String) {
+        let attributedText = NSMutableAttributedString(string: boldText + normalText)
+        let boldFontAttribute = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
+        attributedText.addAttributes(boldFontAttribute, range: NSRange(location: 0, length: boldText.count))
+        label.attributedText = attributedText
+    }
+    
     
     private func setupContentView() {
         scrollView.addSubview(customContentView)
