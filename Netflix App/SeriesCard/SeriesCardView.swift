@@ -33,6 +33,13 @@ final class SeriesCardView: UIView {
     private let seriesInListsImageView = UIImageView()
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
+    private let blurSeriesImageView = UIImageView()
+    
+    private let blurView: UIVisualEffectView = {
+       let view  = UIVisualEffectView()
+        view.clipsToBounds = true
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -54,13 +61,13 @@ final class SeriesCardView: UIView {
         formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: "Старт показа: ", normalText: model.presented_at_date)
         formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: "Рейтинг imdb: ", normalText: model.rating.imbd)
         formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
-        formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  ", normalText: model.actors.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: ", normalText: model.country.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: ", normalText: model.in_lists.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  \n", normalText: model.actors.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: model.country.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
 //        let separetedGenge = model.genre.joined(separator: ", ")
 //        seriesGenreLabel.text = separetedGenge
 //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
-        formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: ", normalText: model.genre.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
     }
     
     private func setupScrollView() {
@@ -84,7 +91,7 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesFullImageView)
         customContentView.addSubview(seriesPlayButton)
         customContentView.addSubview(seriesLikeAndDislikeButton)
-        customContentView.addSubview(seriesTitleLabel)
+     
         customContentView.addSubview(seriesDescriptionLabel)
         customContentView.addSubview(seriesDurationLabel)
         customContentView.addSubview(seriesDurationImageView)
@@ -102,6 +109,40 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesInListsImageView)
         customContentView.addSubview(seriesGenreLabel)
         customContentView.addSubview(seriesGenreImageView)
+        
+        
+        
+        
+        customContentView.addSubview(blurView)
+        let blurEffect = UIBlurEffect(style: .light)
+        blurView.effect = blurEffect
+        //blurView.alpha = 0.8
+        blurView.snp.makeConstraints { maker in
+                maker.bottom.equalTo(seriesFullImageView)
+                maker.top.equalTo(300)
+                maker.left.equalTo(seriesFullImageView)
+                maker.right.equalToSuperview()
+            }
+        customContentView.addSubview(blurSeriesImageView)
+        blurSeriesImageView.clipsToBounds = true
+        blurSeriesImageView.backgroundColor = .black
+        blurSeriesImageView.alpha = 0.3
+        blurSeriesImageView.snp.makeConstraints { maker in
+            maker.bottom.equalTo(seriesFullImageView)
+            maker.top.equalTo(300)
+            maker.left.equalTo(seriesFullImageView)
+            maker.right.equalToSuperview()
+        }
+
+        
+        customContentView.addSubview(seriesTitleLabel)
+        seriesTitleLabel.clipsToBounds = true
+        seriesTitleLabel.numberOfLines = 0
+        seriesTitleLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(size: 25))
+        seriesTitleLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(blurSeriesImageView).inset(36)
+            maker.centerX.equalTo( blurSeriesImageView)
+        }
         
         customContentView.clipsToBounds = true
         customContentView.layer.cornerRadius = 8
@@ -254,6 +295,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesCountryLabel.clipsToBounds = true
+        seriesCountryLabel.numberOfLines = 0
         seriesCountryLabel.textColor = .dynamicColor(dynamic: .textColourCustom)
         seriesCountryLabel.snp.makeConstraints { maker in
             maker.top.equalTo(seriesCountryImageView.snp.top)
