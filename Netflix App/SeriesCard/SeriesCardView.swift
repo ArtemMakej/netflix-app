@@ -62,12 +62,65 @@ final class SeriesCardView: UIView {
         formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: "Рейтинг imdb: ", normalText: model.rating.imbd)
         formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
         formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  \n", normalText: model.actors.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: model.country.joined(separator: ", "))
+        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
+        
         formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
 //        let separetedGenge = model.genre.joined(separator: ", ")
 //        seriesGenreLabel.text = separetedGenge
 //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
         formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
+    }
+    
+    private func emojiFlag(countryList: [String]) -> [String] {
+
+        var flagEmojis = [String]()
+
+        for country in countryList {
+
+           var flagEmoji = ""
+
+            switch country.lowercased() {
+            case "США".lowercased():
+                flagEmoji = "🇺🇸"
+            case "Франция".lowercased():
+                flagEmoji = "🇫🇷"
+            case "Италия".lowercased():
+                flagEmoji = "🇮🇹"
+            case "Великобритания".lowercased():
+                flagEmoji = "🇬🇧"
+            case "Япония".lowercased():
+                flagEmoji = "🇯🇵"
+            case "Индия".lowercased():
+                flagEmoji = "🇮🇳"
+            case "Германия".lowercased():
+                flagEmoji = "🇩🇪"
+            case "Китай".lowercased():
+                flagEmoji = "🇨🇳"
+            case "Россия".lowercased():
+                flagEmoji = "🇷🇺"
+            case "Швеция".lowercased():
+                flagEmoji = "🇸🇪"
+            case "Испания".lowercased():
+                flagEmoji = "🇪🇸"
+            case "Канада".lowercased():
+                flagEmoji = "🇨🇦"
+            case "Южная Корея".lowercased():
+                flagEmoji = "🇰🇷"
+            case "Австралия".lowercased():
+                flagEmoji = "🇦🇺"
+            case "Мексика".lowercased():
+                flagEmoji = "🇲🇽"
+            case "Турция".lowercased():
+                flagEmoji = "🇹🇷"
+            case "Аргентина".lowercased():
+                flagEmoji = "🇦🇷"
+            default:
+                flagEmoji = "❓"
+            }
+            flagEmojis.append(country + " " + flagEmoji)
+        }
+        return flagEmojis
+        
     }
     
     private func setupScrollView() {
@@ -91,7 +144,6 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesFullImageView)
         customContentView.addSubview(seriesPlayButton)
         customContentView.addSubview(seriesLikeAndDislikeButton)
-     
         customContentView.addSubview(seriesDescriptionLabel)
         customContentView.addSubview(seriesDurationLabel)
         customContentView.addSubview(seriesDurationImageView)
@@ -109,9 +161,6 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesInListsImageView)
         customContentView.addSubview(seriesGenreLabel)
         customContentView.addSubview(seriesGenreImageView)
-        
-        
-        
         
         customContentView.addSubview(blurView)
         let blurEffect = UIBlurEffect(style: .light)
