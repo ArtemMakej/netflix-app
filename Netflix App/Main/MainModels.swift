@@ -10,7 +10,3 @@ import UIKit
 enum MainScreenCell {
     case tvShow(model: NetflixShortModel)
 }
-
-//enum MainScreenSection {
-//    case shows(cells: [MainScreenCell])
-//}

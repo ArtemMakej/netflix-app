@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
         setupNavigationItem()
         setupViews()
     }
-    
+
     init(presenter: IMainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)

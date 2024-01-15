@@ -104,7 +104,7 @@ final class SeriesCardView: UIView {
                 flagEmoji = "🇪🇸"
             case "Канада".lowercased():
                 flagEmoji = "🇨🇦"
-            case "Южная Корея".lowercased():
+            case "Южная Корея".lowercased(), "Корея Южная".lowercased():
                 flagEmoji = "🇰🇷"
             case "Австралия".lowercased():
                 flagEmoji = "🇦🇺"
@@ -120,7 +120,6 @@ final class SeriesCardView: UIView {
             flagEmojis.append(country + " " + flagEmoji)
         }
         return flagEmojis
-        
     }
     
     private func setupScrollView() {
@@ -169,7 +168,7 @@ final class SeriesCardView: UIView {
         blurView.snp.makeConstraints { maker in
                 maker.bottom.equalTo(seriesFullImageView)
                 maker.top.equalTo(300)
-                maker.left.equalTo(seriesFullImageView)
+            maker.left.equalTo(seriesFullImageView)
                 maker.right.equalToSuperview()
             }
         customContentView.addSubview(blurSeriesImageView)
@@ -187,10 +186,13 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesTitleLabel)
         seriesTitleLabel.clipsToBounds = true
         seriesTitleLabel.numberOfLines = 0
+        seriesTitleLabel.textAlignment = .center
         seriesTitleLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(size: 25))
         seriesTitleLabel.snp.makeConstraints { maker in
-            maker.top.equalTo(blurSeriesImageView).inset(36)
-            maker.centerX.equalTo( blurSeriesImageView)
+            maker.top.equalTo(blurSeriesImageView).inset(7)
+            maker.height.equalTo(blurSeriesImageView)
+            maker.right.equalToSuperview().offset(-7)
+            maker.left.equalTo(blurSeriesImageView).offset(7)
         }
         
         customContentView.clipsToBounds = true
@@ -198,7 +200,7 @@ final class SeriesCardView: UIView {
         customContentView.backgroundColor = .dynamicColor(dynamic: .appBackground)
         customContentView.snp.makeConstraints { maker in
             maker.width.equalToSuperview()
-            maker.height.equalTo(1300)
+            maker.height.equalTo(1800)
             maker.edges.equalToSuperview()
         }
         

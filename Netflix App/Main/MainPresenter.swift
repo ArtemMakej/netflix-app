@@ -27,7 +27,7 @@ final class MainPresenter: IMainPresenter {
     }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
-        return cells[indexPath.item]
+        cells[indexPath.item]
     }
     
     func numberOfCells() -> Int {
