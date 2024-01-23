@@ -73,6 +73,8 @@ final class SeriesCardView: UIView {
     
     private func emojiFlag(countryList: [String]) -> [String] {
 
+        guard !countryList.isEmpty else { return [] }
+        
         var flagEmojis = [String]()
 
         for country in countryList {
@@ -80,6 +82,7 @@ final class SeriesCardView: UIView {
            var flagEmoji = ""
 
             switch country.lowercased() {
+                
             case "США".lowercased():
                 flagEmoji = "🇺🇸"
             case "Франция".lowercased():

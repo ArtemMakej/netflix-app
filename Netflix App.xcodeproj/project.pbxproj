@@ -156,14 +156,126 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AC0F4C782B5F04F900D77F6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB622ACC6B7D008E34F0 /* MainPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		AC0F4C792B5F051400D77F6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */,
+				AC4FE4C52AD71B7800010085 /* MainModels.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC0F4C7A2B5F051F00D77F6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC4FE4C72AD73BC500010085 /* NetflixCell.swift */,
+				ACC8FB642ACC6C16008E34F0 /* MainViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC0F4C7B2B5FF61E00D77F6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				AC510E282B0FD8090044E8E6 /* SeriesCardPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		AC0F4C7C2B5FF63600D77F6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AC79340A2B274D0E0005C003 /* NetflixFull.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC0F4C7D2B5FF65200D77F6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AC510E262B0FD7F60044E8E6 /* SeriesCardViewController.swift */,
+				AC79340C2B274D5B0005C003 /* SeriesCardView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC0F4C7E2B5FF6F500D77F6C /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB6B2ACDA606008E34F0 /* SettingsAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		AC0F4C7F2B5FF70600D77F6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC0F4C802B5FF71200D77F6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB6F2ACDA693008E34F0 /* SettingsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		AC0F4C812B5FF71E00D77F6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC0F4C822B5FF73F00D77F6C /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */,
+			);
+			path = Assembly;
+			sourceTree = "<group>";
+		};
+		AC0F4C832B5FF74D00D77F6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		AC0F4C842B5FF75B00D77F6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AC0F4C852B5FF76500D77F6C /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		AC510E222B0FD6E10044E8E6 /* SeriesCard */ = {
 			isa = PBXGroup;
 			children = (
 				AC510E252B0FD78F0044E8E6 /* Assembly */,
-				AC510E262B0FD7F60044E8E6 /* SeriesCardViewController.swift */,
-				AC510E282B0FD8090044E8E6 /* SeriesCardPresenter.swift */,
-				AC79340C2B274D5B0005C003 /* SeriesCardView.swift */,
-				AC79340A2B274D0E0005C003 /* NetflixFull.swift */,
+				AC0F4C7B2B5FF61E00D77F6C /* Presenter */,
+				AC0F4C7C2B5FF63600D77F6C /* Model */,
+				AC0F4C7D2B5FF65200D77F6C /* View */,
 			);
 			path = SeriesCard;
 			sourceTree = "<group>";
@@ -216,9 +328,9 @@
 				ACC8FB692ACDA5CE008E34F0 /* Settings */,
 				ACC8FB612ACC6B16008E34F0 /* Main */,
 				AC510E222B0FD6E10044E8E6 /* SeriesCard */,
+				ACBB56972AD964010040660E /* Extensions */,
 				ACC8FB312ACC5F00008E34F0 /* AppDelegate.swift */,
 				ACC8FB332ACC5F00008E34F0 /* SceneDelegate.swift */,
-				ACBB56972AD964010040660E /* Extensions */,
 				ACC8FB372ACC5F00008E34F0 /* Main.storyboard */,
 				ACC8FB3A2ACC5F00008E34F0 /* Assets.xcassets */,
 				ACC8FB3C2ACC5F00008E34F0 /* LaunchScreen.storyboard */,
@@ -248,11 +360,9 @@
 			isa = PBXGroup;
 			children = (
 				ACC8FB662ACDA466008E34F0 /* Assembly */,
-				ACC8FB642ACC6C16008E34F0 /* MainViewController.swift */,
-				ACC8FB622ACC6B7D008E34F0 /* MainPresenter.swift */,
-				AC4FE4C52AD71B7800010085 /* MainModels.swift */,
-				ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */,
-				AC4FE4C72AD73BC500010085 /* NetflixCell.swift */,
+				AC0F4C782B5F04F900D77F6C /* Presenter */,
+				AC0F4C792B5F051400D77F6C /* Model */,
+				AC0F4C7A2B5F051F00D77F6C /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -268,9 +378,10 @@
 		ACC8FB692ACDA5CE008E34F0 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				ACC8FB6B2ACDA606008E34F0 /* SettingsAssembly.swift */,
-				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
-				ACC8FB6F2ACDA693008E34F0 /* SettingsPresenter.swift */,
+				AC0F4C7E2B5FF6F500D77F6C /* Assembly */,
+				AC0F4C802B5FF71200D77F6C /* Presenter */,
+				AC0F4C7F2B5FF70600D77F6C /* Model */,
+				AC0F4C812B5FF71E00D77F6C /* View */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -278,9 +389,10 @@
 		ACC8FB6A2ACDA5E4008E34F0 /* Likes */ = {
 			isa = PBXGroup;
 			children = (
-				ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */,
-				ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */,
-				ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */,
+				AC0F4C822B5FF73F00D77F6C /* Assembly */,
+				AC0F4C852B5FF76500D77F6C /* Presenter */,
+				AC0F4C832B5FF74D00D77F6C /* Model */,
+				AC0F4C842B5FF75B00D77F6C /* View */,
 			);
 			path = Likes;
 			sourceTree = "<group>";
