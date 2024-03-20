@@ -38,7 +38,7 @@ final class MainPresenter: IMainPresenter {
         cells = []
         pageNumber = 1
         view?.reloadData()
-        loadingNetflixList(page: pageNumber) { [weak self] isOk in
+        loadingNetflixList(page: pageNumber) { [weak self] _ in
             self?.view?.stopRefreshControl()
         }
     }

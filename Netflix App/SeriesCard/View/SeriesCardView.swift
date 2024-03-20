@@ -10,6 +10,9 @@ import SnapKit
 
 final class SeriesCardView: UIView {
     
+    
+    var likeAndDislikeButtonTap: (() -> Void)?
+    
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
     private let seriesFullImageView = UIImageView()
@@ -34,7 +37,7 @@ final class SeriesCardView: UIView {
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
-    
+
     private let blurView: UIVisualEffectView = {
        let view  = UIVisualEffectView()
         view.clipsToBounds = true
@@ -51,9 +54,22 @@ final class SeriesCardView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @objc func likeAndDislikeButtonTapped(_ sender: UIButton) {
+            self.likeAndDislikeButtonTap?()
+    }
+    
+    func setLikeButton(filled: Bool) {
+        if filled {
+            let likeandDislikeImage = UIImage(named: "likeFilled")?.withRenderingMode(.alwaysTemplate)
+            seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
+        } else {
+            let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
+            seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
+        }
+    }
+    
     func configure(model: NetflixFull) {
         let imageUrl = model.full_image_url
-        print("imageURL \(imageUrl)")
         loadImageSeriesCard(imageURL: imageUrl)
         seriesTitleLabel.text = model.title
         seriesDescriptionLabel.text = model.description
@@ -135,7 +151,7 @@ final class SeriesCardView: UIView {
     
     private func formatLabelForBoldText(label: UILabel, boldText: String, normalText: String) {
         let attributedText = NSMutableAttributedString(string: boldText + normalText)
-        let boldFontAttribute = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 15)]
+        let boldFontAttribute = [NSAttributedString.Key.font: Font.avenir(weight: .bold, size: 15)]
         attributedText.addAttributes(boldFontAttribute, range: NSRange(location: 0, length: boldText.count))
         label.attributedText = attributedText
     }
@@ -190,7 +206,8 @@ final class SeriesCardView: UIView {
         seriesTitleLabel.clipsToBounds = true
         seriesTitleLabel.numberOfLines = 0
         seriesTitleLabel.textAlignment = .center
-        seriesTitleLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(size: 25))
+        seriesTitleLabel.textColor = .white
+        seriesTitleLabel.font = Font.avenir(weight: .medium, size: 25)
         seriesTitleLabel.snp.makeConstraints { maker in
             maker.top.equalTo(blurSeriesImageView).inset(7)
             maker.height.equalTo(blurSeriesImageView)
@@ -214,10 +231,10 @@ final class SeriesCardView: UIView {
             maker.height.equalTo(393)
             maker.width.equalToSuperview()
         }
-        
+        seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
         seriesLikeAndDislikeButton.clipsToBounds = true
         seriesLikeAndDislikeButton.tintColor = UIColor.imageColor.color
-        let likeandDislikeImage = UIImage(named: "like")?.withRenderingMode(.alwaysTemplate)
+        let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
         seriesLikeAndDislikeButton.snp.makeConstraints { maker in
             maker.left.equalTo(self.safeAreaLayoutGuide.snp.left).inset(144)

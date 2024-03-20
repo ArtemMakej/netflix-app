@@ -10,6 +10,8 @@ import SnapKit
 
 protocol ISeriesCardView: AnyObject {
     func updateView(with tvShowModel: NetflixFull)
+    func showFilledLike()
+    func showEmptyLike()
 }
 
 final class SeriesCardViewController: UIViewController {
@@ -17,8 +19,16 @@ final class SeriesCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenView.likeAndDislikeButtonTap = { [weak self] in
+            self?.presenter.didTapLikeButton()
+        }
         presenter.viewDidLoad()
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.viewWillAppear()
     }
     
     public let presenter: ISeriesCardPresenter
@@ -45,6 +55,14 @@ final class SeriesCardViewController: UIViewController {
 }
 
 extension SeriesCardViewController: ISeriesCardView {
+    func showFilledLike() {
+        screenView.setLikeButton(filled: true)
+    }
+    
+    func showEmptyLike() {
+        screenView.setLikeButton(filled: false)
+    }
+    
     func updateView(with tvShowModel:NetflixFull) {
         screenView.configure(model: tvShowModel)
     }

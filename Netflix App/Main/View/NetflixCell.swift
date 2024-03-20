@@ -33,10 +33,8 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameLabel.text = model.title
         let more = model.more
         let imageUrl = model.img.url
-        print("imageURL \(imageUrl)")
         loadImage(imageURL: imageUrl)
-        
-        //        /// 1 способ разбить строку more
+        //        1 способ разбить строку more
         //        var didFindStopAnchor = false
         //        var date = ""
         //        var info = ""
@@ -154,10 +152,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameLabel.textAlignment = .left
         seriesNameLabel.font = .boldSystemFont(ofSize: 15)
         seriesNameLabel.textColor = .dynamicColor(dynamic: .textColourCustom)
-        seriesNameLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
-            weight: .bold,
-            size: 12)
-        )
+        seriesNameLabel.font = Font.avenir(weight: .bold, size: 12)
         seriesNameLabel.adjustsFontForContentSizeCategory = true
         seriesNameLabel.numberOfLines = 3
         seriesNameLabel.snp.makeConstraints { maker in
@@ -169,10 +164,7 @@ final class NetflixCell: UICollectionViewCell {
         baseView.addSubview(seriesDateLabel)
         clipsToBounds = true
         seriesDateLabel.textAlignment = .left
-        seriesDateLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
-            weight: .medium,
-            size: 12)
-        )
+        seriesDateLabel.font = Font.avenir(weight: .medium, size: 12)
         seriesDateLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesDateLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
@@ -182,10 +174,7 @@ final class NetflixCell: UICollectionViewCell {
         
         clipsToBounds = true
         seriesGenreLabel.textAlignment = .left
-        seriesGenreLabel.font = UIFontMetrics.default.scaledFont(for: Font.avenir(
-            weight: .regular,
-            size: 12)
-        )
+        seriesGenreLabel.font = Font.avenir(weight: .regular, size: 12)
         seriesGenreLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping
@@ -206,6 +195,5 @@ final class NetflixCell: UICollectionViewCell {
                 self?.seriesImageView.image = image
             }
         }.resume()
-        
     }
 }

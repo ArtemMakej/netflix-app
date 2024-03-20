@@ -7,28 +7,6 @@
 
 import UIKit
 
-final class ImprovedTabBarViewController: UITabBarController {
-    
-    var themeTintColour: UIColor.Dynamic? {
-        
-        didSet {
-            apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
-        }
-    }
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
-    }
-    
-    private func apply(dynamicColor: UIColor.Dynamic?, theme: UIUserInterfaceStyle) {
-        switch theme {
-        case .dark:
-            tabBar.tintColor = dynamicColor?.dark
-        default:
-            tabBar.tintColor = dynamicColor?.light
-        }
-    }
-}
-
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
@@ -56,8 +34,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         return [mainViewController, likesViewController, settingsViewController]
     }
     
-    func setupTabBarController(with viewControllers: [UIViewController]) -> ImprovedTabBarViewController {
-        let tabBarController = ImprovedTabBarViewController()
+    func setupTabBarController(with viewControllers: [UIViewController]) -> SettingColourTabBarViewController {
+        let tabBarController = SettingColourTabBarViewController()
         tabBarController.themeTintColour = UIColor.tabBarColor
         configureTabBarAppearance()
         
@@ -98,8 +76,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func configureTabBarAppearance() {
         let appearance = UITabBarItem.appearance()
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.systemFont(ofSize: 10, weight: .medium)
+            .font: Font.avenir(weight: .medium, size: 10)
         ]
         appearance.setTitleTextAttributes(attributes, for: .normal)
     }
 }
+

@@ -8,13 +8,13 @@
 import UIKit
 
 protocol ISettingsView: AnyObject {
-    
 }
 
 final class SettingsViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewDidLoad()
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
     }
     

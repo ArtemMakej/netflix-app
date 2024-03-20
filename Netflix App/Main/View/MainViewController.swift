@@ -24,7 +24,7 @@ final class MainViewController: UIViewController {
     private var lastContentHeight: CGFloat = 0 as CGFloat
     
     // MARK: - Lifecycle
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
         setupNavigationItem()
         setupViews()
     }
-
+    
     init(presenter: IMainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -44,7 +44,7 @@ final class MainViewController: UIViewController {
     
     private func setupNavigationItem() {
         let navigationTitleColor = UIColor.imageColor.color
-        let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        let titleFont = Font.avenir(weight: .bold, size: 17)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
             .font: titleFont
@@ -53,7 +53,6 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func refreshData() {
-        
         guard refreshControl.isRefreshing else { return }
         lastContentHeight = 0
         presenter.refreshControlDidStart()
@@ -79,16 +78,6 @@ final class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: IMainView {
-    func reloadData() {
-        collectionView.reloadData()
-    }
-    
-    func stopRefreshControl() {
-        refreshControl.endRefreshing()
-    }
-}
-
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(
@@ -101,16 +90,16 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-            let cellItem = presenter.cell(for: indexPath)
-            switch cellItem {
-            case let .tvShow(model):
-                guard let cell = collectionView.dequeueReusableCell(
-                    withReuseIdentifier: NetflixCell.id,
-                    for: indexPath) as? NetflixCell else { fatalError("no such cell") }
-                cell.configure(model: model)
-                return cell
-            }
+        let cellItem = presenter.cell(for: indexPath)
+        switch cellItem {
+        case let .tvShow(model):
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: NetflixCell.id,
+                for: indexPath) as? NetflixCell else { fatalError("no such cell") }
+            cell.configure(model: model)
+            return cell
         }
+    }
     
     private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
         let seriesCardAssembly = SeriesCardAssembly()
@@ -120,11 +109,21 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
-                return
-            }
-            showSeriesCard(for: model)
+        guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
+            return
         }
+        showSeriesCard(for: model)
+    }
+}
+
+extension MainViewController: IMainView {
+    func reloadData() {
+        collectionView.reloadData()
+    }
+    
+    func stopRefreshControl() {
+        refreshControl.endRefreshing()
+    }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
@@ -142,8 +141,8 @@ extension MainViewController: UIScrollViewDelegate {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
         let screenHeight = scrollView.bounds.size.height * 3
-        //print("offsetY - \(offsetY), contentHeight - \(contentHeight), screenHeight - \(screenHeight)")
-        if offsetY > abs(contentHeight - screenHeight) {
+        print("offsetY - \(offsetY), contentHeight - \(contentHeight), screenHeight - \(screenHeight)")
+        if offsetY > (contentHeight - screenHeight) {
             guard lastContentHeight != scrollView.contentSize.height else { return }
             lastContentHeight = contentHeight
             self.presenter.userDidScrollToPageEnd()

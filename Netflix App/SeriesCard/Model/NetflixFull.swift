@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NetflixFull: Decodable {
+struct NetflixFull: Codable {
     let id: String
     let full_image_url: String
     let title: String
@@ -21,7 +21,7 @@ struct NetflixFull: Decodable {
     let genre: [String]
 }
 
-struct NetflixRating: Decodable {
+struct NetflixRating: Codable {
     let imbd: String
     let kinopoisk: String
 }
