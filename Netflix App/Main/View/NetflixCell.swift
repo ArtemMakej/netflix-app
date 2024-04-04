@@ -197,3 +197,4 @@ final class NetflixCell: UICollectionViewCell {
         }.resume()
     }
 }
+

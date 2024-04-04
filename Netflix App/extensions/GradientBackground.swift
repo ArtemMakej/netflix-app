@@ -35,3 +35,21 @@ struct GradientBackground {
         }
     }
 }
+
+extension UIColor {
+    
+    static let backgroundColor = Dynamic(
+        light:UIColor(
+            red: 239/255,
+            green: 246/255,
+            blue: 254/255,
+            alpha: 1
+        ),
+        dark: UIColor(
+            red: 35/255,
+            green: 38/255,
+            blue: 46/255,
+            alpha: 1
+        )
+    )
+}

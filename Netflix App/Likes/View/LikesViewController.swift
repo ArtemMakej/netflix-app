@@ -195,7 +195,7 @@ extension LikesViewController: UICollectionViewDelegateFlowLayout{
     }
 }
 
-extension LikesViewController: UICollectionViewDataSource {
+extension LikesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return presenter.numberOfCells()
     }
@@ -213,7 +213,4 @@ extension LikesViewController: UICollectionViewDataSource {
             return cell
         }
     }
-}
-
-extension LikesViewController: UICollectionViewDelegate {
 }

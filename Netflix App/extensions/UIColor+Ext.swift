@@ -32,8 +32,15 @@ extension UIColor {
             light: .black,
             dark: UIColor(red: 155/255, green: 156/255, blue: 164/255, alpha: 1))
         static let textColourCustom = Dynamic(light: .black, dark: .white)
+        
+        static let stackViewBackgroundColor = Dynamic(
+            light: UIColor(
+                red: 239/255,green: 246/255,blue: 254/255,alpha: 1
+            ),
+            dark: UIColor(
+                red: 35/255, green: 38/255, blue: 46/255, alpha: 1
+            ))
     }
-    
 }
 
 extension UIColor {
@@ -63,7 +70,7 @@ extension UIColor {
 }
 
 extension UIColor {
-    
+
     static func dynamicColor(dynamic: Dynamic) -> UIColor {
         if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {
@@ -72,7 +79,7 @@ extension UIColor {
         }
         return dynamic.light
     }
-    
+
     static func getOppositeColor(dynamic: Dynamic) -> UIColor {
         if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {
