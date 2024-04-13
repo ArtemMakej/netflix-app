@@ -32,6 +32,7 @@ final class SettingsViewController: UIViewController {
     private let themeScreenStackView = UIStackView()
     private let themesScreenLabel = UILabel()
     private let changeThemeScreenStackView = UIStackView()
+    private let themeChangerView = ThemeChangerView()
     private let changeThemeSwitch = UISwitch()
     private let changeThemeButton = UIButton()
     
@@ -47,7 +48,7 @@ final class SettingsViewController: UIViewController {
     private let aboutAppLabel = UILabel()
     private let developerInfoStackView = UIStackView()
     private let developerInfoLabel = UILabel()
-    private let fullDeveloperNameLabel = UILabel()
+    private let developerFullNameLabel = UILabel()
     private let emailInfoStackView = UIStackView()
     private let emailLabel = UILabel()
     private let linktoEmailLabel = UILabel()
@@ -65,8 +66,9 @@ final class SettingsViewController: UIViewController {
         presenter.viewDidLoad()
         configure()
         setupNavigationItem()
-        сonfigurationGeneralStackView()
-        сonfigurationAboutAppStackView()
+        setupThemeChangerView()
+        //сonfigurationGeneralStackView()
+        //сonfigurationAboutAppStackView()
     }
     
     // MARK: - Init
@@ -132,44 +134,139 @@ private extension SettingsViewController {
         view.addSubview(generalStackView)
         generalStackView.layer.cornerRadius = 20
         generalStackView.axis = .vertical
+        generalStackView.distribution = .fillEqually
         generalStackView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
         generalStackView.snp.makeConstraints { maker in
             maker.top.equalTo(createAvatarButton.snp.bottom).offset(28)
             maker.leading.trailing.equalToSuperview().inset(25)
-            maker.height.equalTo(193)
         }
         generalTitleStackView.axis = .horizontal
         generalTitleStackView.addArrangedSubview(generalTitleLabel)
         generalTitleLabel.text = "Общие"
         generalTitleLabel.font = Font.avenir(weight: .bold, size: 22)
+        
         languageInfoStackView.axis = .horizontal
+        languageInfoStackView.spacing = 20
         languageInfoStackView.addArrangedSubview(languageInfoLabel)
         languageInfoLabel.text = "Язык"
         languageInfoLabel.font = Font.avenir(weight: .regular, size: 22)
+
         languageInfoStackView.addArrangedSubview(languageNameLabel)
         languageNameLabel.text = "Русский"
         languageNameLabel.font = Font.avenir(weight: .regular, size: 22)
+        
         themeScreenStackView.axis = .horizontal
         themeScreenStackView.addArrangedSubview(themesScreenLabel)
         themesScreenLabel.text = "Тема"
         themesScreenLabel.font = Font.avenir(weight: .regular, size: 22)
+        
         changeThemeScreenStackView.axis = .horizontal
         changeThemeScreenStackView.layer.cornerRadius = 20
         changeThemeScreenStackView.backgroundColor = UIColor(red: 214/255, green: 231/255, blue: 253/255, alpha: 1)
-        changeThemeScreenStackView.addArrangedSubview(changeThemeSwitch)
-        changeThemeScreenStackView.addArrangedSubview(changeThemeButton)
         
+        changeThemeScreenStackView.addArrangedSubview(changeThemeSwitch)
+        
+        changeThemeScreenStackView.addArrangedSubview(changeThemeButton)
+   
+        
+        
+//        enum Theme {
+//            case dark
+//            case light
+//        }
+//
+//        switch themeButton {
+//            case .dark:
+//                let changeThemeDark = UIImage(named: "cloud_dark")
+//                changeThemeButton.setImage(changeThemeDark, for: .normal)
+//            case .light:
+//                let changeThemeLight = UIImage(named: "cloud_light")
+//                changeThemeButton.setImage(changeThemeLight, for: .normal)
+//            }
     }
     
     func сonfigurationAboutAppStackView() {
         view.addSubview(aboutAppStackView)
+        aboutAppStackView.distribution = .fillEqually
         aboutAppStackView.layer.cornerRadius = 20
         aboutAppStackView.axis = .vertical
         aboutAppStackView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
         aboutAppStackView.snp.makeConstraints { maker in
                 maker.top.equalTo(generalStackView.snp.bottom).offset(25)
                 maker.leading.trailing.equalToSuperview().inset(25)
-                maker.height.equalTo(193)
+        }
+        appTitleStackView.axis = .horizontal
+        appTitleStackView.addArrangedSubview(aboutAppLabel)
+        aboutAppLabel.text = "О приложении"
+        aboutAppLabel.font = Font.avenir(weight: .bold, size: 22)
+        
+        developerInfoStackView.axis = .horizontal
+        
+        developerInfoStackView.spacing = 20
+        developerInfoStackView.addArrangedSubview(developerInfoLabel)
+        developerInfoLabel.text = "Разработчик"
+        developerInfoLabel.font = Font.avenir(weight: .regular, size: 22)
+        
+        developerInfoStackView.addArrangedSubview(developerFullNameLabel)
+        developerFullNameLabel.text = "Макей Артём"
+        developerFullNameLabel.font = Font.avenir(weight: .regular, size: 22)
+        
+        emailInfoStackView.axis = .horizontal
+        emailInfoStackView.spacing = 20
+        emailInfoStackView.addArrangedSubview(emailLabel)
+        emailLabel.text = "Email"
+        emailLabel.font = Font.avenir(weight: .regular, size: 22)
+        
+        emailInfoStackView.addArrangedSubview(linktoEmailLabel)
+        linktoEmailLabel.textColor =  UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
+        linktoEmailLabel.isUserInteractionEnabled = true
+        linktoEmailLabel.text = "artem.makej@bk.ru"
+        linktoEmailLabel.font = Font.avenir(weight: .regular, size: 22)
+       let linktoEmail = UITapGestureRecognizer(target: self, action: #selector(tappedlinktoEmail))
+        linktoEmailLabel.addGestureRecognizer(linktoEmail)
+        
+        websiteInfoStackView.spacing = 20
+        websiteInfoStackView.axis = .horizontal
+        websiteInfoStackView.addArrangedSubview(websiteInfoLabel)
+        websiteInfoLabel.text = "Website"
+        websiteInfoLabel.font = Font.avenir(weight: .regular, size: 22)
+        
+        websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
+        linkToWebsiteLabel.isUserInteractionEnabled = true
+        linkToWebsiteLabel.textColor = UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
+        linkToWebsiteLabel.text = "https://github.com/ArtemMakej"
+        linkToWebsiteLabel.font = Font.avenir(weight: .regular, size: 22)
+        let linkToWebsite = UITapGestureRecognizer(target: self, action: #selector(tappedLinkToWebsite))
+        linkToWebsiteLabel.addGestureRecognizer(linkToWebsite)
+        
+        
+        versionAppStackView.axis = .horizontal
+        versionAppStackView.spacing = 20
+        versionAppStackView.addArrangedSubview(versionAppLabel)
+        versionAppLabel.text = "Version"
+        versionAppLabel.font = Font.avenir(weight: .regular, size: 22)
+        versionAppStackView.addArrangedSubview(numberVersionLabel)
+        
+        numberVersionLabel.text = "1.0.0"
+        numberVersionLabel.font = Font.avenir(weight: .regular, size: 22)
+        
+    }
+    
+    @objc func tappedLinkToWebsite() {
+        print("Распечатай \(linkToWebsiteLabel.text)")
+    }
+    
+    @objc func tappedlinktoEmail() {
+        print("Распечатай \(linktoEmailLabel.text)")
+    }
+    
+    func setupThemeChangerView() {
+        view.addSubview(themeChangerView)
+        themeChangerView.snp.makeConstraints { maker in
+            maker.centerY.equalToSuperview()
+            maker.centerX.equalToSuperview()
+            maker.width.equalTo(226)
+            maker.height.equalTo(84)
         }
     }
 }

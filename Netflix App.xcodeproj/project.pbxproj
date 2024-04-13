@@ -18,6 +18,8 @@
 		AC510E2B2B1507E70044E8E6 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */; };
 		AC79340B2B274D0E0005C003 /* NetflixFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC79340A2B274D0E0005C003 /* NetflixFull.swift */; };
 		AC79340D2B274D5B0005C003 /* SeriesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC79340C2B274D5B0005C003 /* SeriesCardView.swift */; };
+		ACA83B672BBEEBC80021C473 /* ThemeChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */; };
+		ACA83B6B2BBF33AE0021C473 /* ThemeChangerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */; };
 		ACAAFE622B7BC69500D9E4A9 /* LikesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAAFE612B7BC69500D9E4A9 /* LikesCell.swift */; };
 		ACAAFE642B7CE57C00D9E4A9 /* LikesScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAAFE632B7CE57C00D9E4A9 /* LikesScreenCell.swift */; };
 		ACB0F8602B7E526000FF99B6 /* LikedTvShowsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0F85F2B7E526000FF99B6 /* LikedTvShowsService.swift */; };
@@ -81,6 +83,8 @@
 		AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientBackground.swift; path = "Netflix App/extensions/GradientBackground.swift"; sourceTree = SOURCE_ROOT; };
 		AC79340A2B274D0E0005C003 /* NetflixFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixFull.swift; sourceTree = "<group>"; };
 		AC79340C2B274D5B0005C003 /* SeriesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCardView.swift; sourceTree = "<group>"; };
+		ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerView.swift; sourceTree = "<group>"; };
+		ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerSwitch.swift; sourceTree = "<group>"; };
 		ACAAFE612B7BC69500D9E4A9 /* LikesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesCell.swift; sourceTree = "<group>"; };
 		ACAAFE632B7CE57C00D9E4A9 /* LikesScreenCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesScreenCell.swift; sourceTree = "<group>"; };
 		ACB0F85F2B7E526000FF99B6 /* LikedTvShowsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikedTvShowsService.swift; sourceTree = "<group>"; };
@@ -244,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
+				ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */,
+				ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -683,8 +689,10 @@
 				ACC8FB6E2ACDA66B008E34F0 /* SettingsViewController.swift in Sources */,
 				ACE0F5A42AF54D9900BEE9F7 /*  NetflixShort.swift in Sources */,
 				ACAAFE622B7BC69500D9E4A9 /* LikesCell.swift in Sources */,
+				ACA83B6B2BBF33AE0021C473 /* ThemeChangerSwitch.swift in Sources */,
 				ACAAFE642B7CE57C00D9E4A9 /* LikesScreenCell.swift in Sources */,
 				ACC8FB702ACDA693008E34F0 /* SettingsPresenter.swift in Sources */,
+				ACA83B672BBEEBC80021C473 /* ThemeChangerView.swift in Sources */,
 				ACC8FB632ACC6B7D008E34F0 /* MainPresenter.swift in Sources */,
 				ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */,
 				AC79340D2B274D5B0005C003 /* SeriesCardView.swift in Sources */,
