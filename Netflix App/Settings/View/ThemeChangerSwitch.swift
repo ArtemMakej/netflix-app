@@ -130,7 +130,7 @@ class ThemeChangerSwitch: UIView {
             // Сообщаем о событии презентеру только если позиция изменилась
             guard horizontalPosition != self.position else { return }
             
-            guard sliderMovingPositionPercentange > 0.8 || sliderMovingPositionPercentange < 0.2 else { return }
+            guard sliderMovingPositionPercentange > 0.5 || sliderMovingPositionPercentange < 0.5 else { return }
             // Сохраняем новое значение позиции
             self.position = horizontalPosition
             // Включаем вибрацию (отдачу)
