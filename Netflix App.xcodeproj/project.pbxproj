@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		25A7303FA106B9D81193BCD8 /* Pods_Netflix_App_Netflix_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */; };
+		2C2D08CC2BCED406009ADCA1 /* UIApplication+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */; };
+		2C2D08CE2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D08CD2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift */; };
+		2C2D08D12BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */; };
+		2C6128B82BCC670900E94885 /* ThemeChangerSwitchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6128B72BCC670900E94885 /* ThemeChangerSwitchPresenter.swift */; };
 		4C017E1472EAB2C1D27E4CD1 /* Pods_Netflix_AppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D9E36B77ABAF32793610ECB /* Pods_Netflix_AppTests.framework */; };
 		9A1A9E708EA59125B722E19F /* Pods_Netflix_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 195D4919C23F8A76C4B20236 /* Pods_Netflix_App.framework */; };
 		AC4FE4C62AD71B7800010085 /* MainScreenCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4FE4C52AD71B7800010085 /* MainScreenCell.swift */; };
@@ -68,6 +72,10 @@
 
 /* Begin PBXFileReference section */
 		195D4919C23F8A76C4B20236 /* Pods_Netflix_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Ext.swift"; sourceTree = "<group>"; };
+		2C2D08CD2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerSwitchViewAssembly.swift; sourceTree = "<group>"; };
+		2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIUserInterfaceStyle+Ext.swift"; path = "../extensions/UIUserInterfaceStyle+Ext.swift"; sourceTree = "<group>"; };
+		2C6128B72BCC670900E94885 /* ThemeChangerSwitchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerSwitchPresenter.swift; sourceTree = "<group>"; };
 		3C2EC67CBC1AA2541DC15876 /* Pods-Netflix AppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netflix AppTests.debug.xcconfig"; path = "Target Support Files/Pods-Netflix AppTests/Pods-Netflix AppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		42D57DB5AD0A4E1EFA362B99 /* Pods-Netflix App-Netflix AppUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netflix App-Netflix AppUITests.debug.xcconfig"; path = "Target Support Files/Pods-Netflix App-Netflix AppUITests/Pods-Netflix App-Netflix AppUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5BBA311CDCD8BE14AF8A1DF3 /* Pods-Netflix App-Netflix AppUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Netflix App-Netflix AppUITests.release.xcconfig"; path = "Target Support Files/Pods-Netflix App-Netflix AppUITests/Pods-Netflix App-Netflix AppUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -249,7 +257,9 @@
 			children = (
 				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
 				ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */,
+				2C2D08CD2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift */,
 				ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */,
+				2C6128B72BCC670900E94885 /* ThemeChangerSwitchPresenter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -310,7 +320,9 @@
 		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */,
 				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
+				2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */,
 				AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */,
 				ACC34BE52B7135E200A86358 /* GradientBackgroundLikes.swift */,
 				ACC34BE72B75235C00A86358 /* SettingColourTabBarViewController.swift */,
@@ -675,6 +687,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C2D08CE2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift in Sources */,
+				2C2D08CC2BCED406009ADCA1 /* UIApplication+Ext.swift in Sources */,
 				ACB0F8602B7E526000FF99B6 /* LikedTvShowsService.swift in Sources */,
 				ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */,
 				AC510E292B0FD8090044E8E6 /* SeriesCardPresenter.swift in Sources */,
@@ -685,6 +699,7 @@
 				AC510E2B2B1507E70044E8E6 /* GradientBackground.swift in Sources */,
 				ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */,
 				AC4FE4C82AD73BC500010085 /* NetflixCell.swift in Sources */,
+				2C2D08D12BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift in Sources */,
 				ACC8FB682ACDA4C7008E34F0 /* MainAssembly.swift in Sources */,
 				ACC8FB6E2ACDA66B008E34F0 /* SettingsViewController.swift in Sources */,
 				ACE0F5A42AF54D9900BEE9F7 /*  NetflixShort.swift in Sources */,
@@ -698,6 +713,7 @@
 				AC79340D2B274D5B0005C003 /* SeriesCardView.swift in Sources */,
 				ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */,
 				ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */,
+				2C6128B82BCC670900E94885 /* ThemeChangerSwitchPresenter.swift in Sources */,
 				AC4FE4C62AD71B7800010085 /* MainScreenCell.swift in Sources */,
 				ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */,
 				ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */,

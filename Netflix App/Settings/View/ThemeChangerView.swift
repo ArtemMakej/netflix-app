@@ -10,10 +10,11 @@ import UIKit
 class ThemeChangerView: UIView {
     
     private let themeChangerCloudImageView = UIImageView()
-    private let themeChangerCloudSwith = ThemeChangerSwitch()
+    private let themeChangerCloudSwitch: ThemeChangerSwitch
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init() {
+        self.themeChangerCloudSwitch = ThemeChangerSwitchViewAssembly().assemble()
+        super.init(frame: .zero)
         configureCloud()
         configureSwitch()
     }
@@ -37,9 +38,9 @@ class ThemeChangerView: UIView {
     }
     
     func configureSwitch() {
-        self.addSubview(themeChangerCloudSwith)
-        themeChangerCloudSwith.layer.cornerRadius = 15
-        themeChangerCloudSwith.snp.makeConstraints { maker in
+        self.addSubview(themeChangerCloudSwitch)
+        themeChangerCloudSwitch.layer.cornerRadius = 15
+        themeChangerCloudSwitch.snp.makeConstraints { maker in
             maker.leading.equalToSuperview().inset(16)
             maker.centerY.equalToSuperview()
             maker.height.equalTo(33)

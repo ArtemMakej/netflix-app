@@ -7,24 +7,18 @@
 
 import UIKit
 
-/// Горизонтальная позиция
-enum HorizontalPosition {
-    case left
-    case right
-}
-
-protocol IThemeChangerSwitchPresenter {
-    
-    /// Обработка изменения значения позиции свитча
-    func switchMovedTo(position: HorizontalPosition)
+/// View Protocol для взаимодействия презентера с вью
+protocol IThemeChangerSwitchView: AnyObject {
+    /// Устанавливаем значение позиции свитча
+    func set(position: HorizontalPosition)
 }
 
 /// Позволяет менять тему
 ///  
 /// Меняется с градиентом с красного (справа) на синий (слева)
-class ThemeChangerSwitch: UIView {
+final class ThemeChangerSwitch: UIView, IThemeChangerSwitchView {
     
-    private lazy var presenter: IThemeChangerSwitchPresenter = self
+    private let presenter: IThemeChangerSwitchPresenter
     /// Позволяет включить поведение доводки жеста
     private let snapsToSides = true
     /// Крайняя позиция слайдера
@@ -41,8 +35,10 @@ class ThemeChangerSwitch: UIView {
     /// Позволяет сделать вибрацию на какое либо событие
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    
+    init(presenter: IThemeChangerSwitchPresenter) {
+        self.presenter = presenter
+        super.init(frame: .zero)
         setupViews()
     }
     
@@ -50,19 +46,30 @@ class ThemeChangerSwitch: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Устанавливаем значение позиции свитча
+    func set(position: HorizontalPosition) {
+        let range = getSliderHorizontalMovingRange()
+        let xPoint = position == .left ? range.lowerBound : range.upperBound
+        updateSliderPosition(location: CGPoint(x: xPoint, y: .zero), animated: false)
+    }
+    
     /// Обработка жеста
     @objc func handlePanGestureRecognizer(_ sender: UIPanGestureRecognizer) {
         /// Забираем значение координат точки GCPoint - x,y
         /// где по отношению к нашему свитчу происходит нажатие
         var location = panGestureRecognizer.location(in: self)
+        
+        /// Половина ширины колесика
+        let halfOfSlider = sliderImageView.frame.width / 2
         /// Чтобы двигать слайдер не с левого края (origin.x) а по середени слайдер
         /// убираем у локации жеста половину ширины слайдера
-        location.x -= (self.sliderImageView.frame.width / 2)
+        location.x = location.x - halfOfSlider
         
         /// Проверяем закончил ли юзер нажатие, и включен ли снаппинг (доводчик)
         if snapsToSides && sender.state == .ended {
-            /// Узнаем в какую сторону нужно довести слайдер
-            if location.x > frame.width / 2.5 {
+            /// Узнаем в какую сторону нужно довести
+            let dividingPoint = (frame.width / 2) - halfOfSlider
+            if location.x > dividingPoint {
                 /// Доводим враво
                 location.x = getSliderHorizontalMovingRange().upperBound
             } else {
@@ -78,13 +85,12 @@ class ThemeChangerSwitch: UIView {
         }
     }
     
-    
     /// Обновляет позицию слайдера
     /// Уведомляет (в случае если позиция поменялась) презентер о произошедшем событии
     /// - Parameters:
     ///   - location: Точка нажатия - x,y
     ///   - animated: Позволяет включить анимированные изменения
-    func updateSliderPosition(location: CGPoint, animated: Bool) {
+    private func updateSliderPosition(location: CGPoint, animated: Bool) {
         /// Ширина для передвижения колесика
         let movingWidth = getSliderHorizontalMovingWidth()
         
@@ -105,8 +111,8 @@ class ThemeChangerSwitch: UIView {
         /// если нет - то выходим
         guard getSliderHorizontalMovingRange().contains(location.x) else { return }
         
-        ///  Конвертируем значение процентов в позицию слайдера
-        ///  меньше 0.5 значит что слайдер тянут влево и наборот
+        /// Конвертируем значение процентов в позицию слайдера
+        /// меньше 0.5 значит что слайдер тянут влево и наборот
         let horizontalPosition: HorizontalPosition = sliderMovingPositionPercentange < 0.5 ? .left : .right
         
         /// Клоужер анимаций, вынесен в отдельный блок,
@@ -120,7 +126,6 @@ class ThemeChangerSwitch: UIView {
             
             /// Меняем прозрачность у синего вью
             /// Вычитаем от 1 значение пройденого процента
-            ///
             self.blueView.alpha = 1 - sliderMovingPositionPercentange
         }
         
@@ -129,8 +134,6 @@ class ThemeChangerSwitch: UIView {
             guard let self = self else { return }
             // Сообщаем о событии презентеру только если позиция изменилась
             guard horizontalPosition != self.position else { return }
-            
-            guard sliderMovingPositionPercentange > 0.5 || sliderMovingPositionPercentange < 0.5 else { return }
             // Сохраняем новое значение позиции
             self.position = horizontalPosition
             // Включаем вибрацию (отдачу)
@@ -160,6 +163,7 @@ class ThemeChangerSwitch: UIView {
         super.layoutSubviews()
         redView.frame = self.bounds
         blueView.frame = self.bounds
+        presenter.viewLayoutSubviews()
     }
 }
 
@@ -182,7 +186,10 @@ extension ThemeChangerSwitch {
          3. И вычитаем 1.5 (подобрали значение) - так чтобы выглядило как в дизайне,
             чтобы колесо не доходило до конца свитча
         */
-        self.frame.width - sliderImageView.frame.width - 1.5
+        
+        /// из-за того что неправильно расставил скобки отнимался 1.5 от ширины колесика
+        /// и только потом от всей ширины и это позволило колесику уехать за границу его позиции
+        (self.frame.width - sliderImageView.frame.width) - 1.5
     }
     
     /// Просчитываем сколько у нас есть свободного места
@@ -220,15 +227,5 @@ extension ThemeChangerSwitch {
         sliderImageView.frame = CGRect(x: Self.sliderInset, y: Self.sliderInset, width: sliderSize, height: sliderSize)
         // получим 30 / 2 = 15 чтобы сделать полностью круглым вью
         sliderImageView.layer.cornerRadius = sliderSize / 2
-    }
-}
-
-extension ThemeChangerSwitch: IThemeChangerSwitchPresenter {
-    
-    /// Меняем тему
-    func switchMovedTo(position: HorizontalPosition) {
-        let theme: InterfaceTheme = (position == .left) ? .light : .dark
-        let keyWindow = UIApplication.shared.keyWindow
-        keyWindow?.overrideUserInterfaceStyle = (theme == .light) ? .light : .dark
     }
 }
