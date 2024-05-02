@@ -10,10 +10,10 @@ import UIKit
 class ThemeChangerView: UIView {
     
     private let themeChangerCloudImageView = UIImageView()
-    private let themeChangerCloudSwitch: ThemeChangerSwitch
+    private let themeChangerSwitch: ThemeChangerSwitch
     
     init() {
-        self.themeChangerCloudSwitch = ThemeChangerSwitchViewAssembly().assemble()
+        self.themeChangerSwitch = ThemeChangerSwitchViewAssembly().assemble()
         super.init(frame: .zero)
         configureCloud()
         configureSwitch()
@@ -25,7 +25,7 @@ class ThemeChangerView: UIView {
     
     func configureCloud() {
         self.addSubview(themeChangerCloudImageView)
-        self.backgroundColor = .backgroundColour.color
+        self.backgroundColor = Self.backgroundColour.color
         self.layer.cornerRadius = 42
         themeChangerCloudImageView.clipsToBounds = true
         themeChangerCloudImageView.snp.makeConstraints { maker in
@@ -33,14 +33,13 @@ class ThemeChangerView: UIView {
             maker.height.equalTo(52)
             maker.width.equalTo(95)
         }
-    
         themeChangerCloudImageView.image = UIImage(named: "cloud")
     }
     
     func configureSwitch() {
-        self.addSubview(themeChangerCloudSwitch)
-        themeChangerCloudSwitch.layer.cornerRadius = 15
-        themeChangerCloudSwitch.snp.makeConstraints { maker in
+        self.addSubview(themeChangerSwitch)
+        themeChangerSwitch.layer.cornerRadius = 15
+        themeChangerSwitch.snp.makeConstraints { maker in
             maker.leading.equalToSuperview().inset(16)
             maker.centerY.equalToSuperview()
             maker.height.equalTo(33)
@@ -49,10 +48,10 @@ class ThemeChangerView: UIView {
     }
 }
 
-extension UIColor {
-    static let backgroundColour = Dynamic(
+extension ThemeChangerView {
+    private static let backgroundColour = UIColor.Dynamic(
         light: UIColor(red: 214/255, green: 231/255, blue: 253/255, alpha: 1),
-        dark: UIColor(red: 35/255, green: 38/255, blue: 46/255, alpha: 1)
+        dark: UIColor(red: 56/255, green: 59/255, blue: 68/255, alpha: 1)
     )
 }
 

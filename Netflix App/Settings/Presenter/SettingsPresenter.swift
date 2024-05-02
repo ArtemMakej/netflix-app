@@ -13,10 +13,9 @@ protocol ISettingsPresenter {
 
 final class SettingsPresenter: ISettingsPresenter {
     
+    // MARK: - Properties
     weak var view: ISettingsView?
-    
-    func viewDidLoad() {
-    }
+    func viewDidLoad() {}
     
 }
 

@@ -255,11 +255,8 @@
 		AC0F4C812B5FF71E00D77F6C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				ACBAD4A92BD9A6320082983B /* ThemeChangerswich */,
 				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
-				ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */,
-				2C2D08CD2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift */,
-				ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */,
-				2C6128B72BCC670900E94885 /* ThemeChangerSwitchPresenter.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,12 +314,23 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
+		ACBAD4A92BD9A6320082983B /* ThemeChangerswich */ = {
+			isa = PBXGroup;
+			children = (
+				ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */,
+				2C6128B72BCC670900E94885 /* ThemeChangerSwitchPresenter.swift */,
+				2C2D08CD2BCED668009ADCA1 /* ThemeChangerSwitchViewAssembly.swift */,
+				ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */,
+			);
+			path = ThemeChangerswich;
+			sourceTree = "<group>";
+		};
 		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */,
-				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
 				2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */,
+				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
 				AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */,
 				ACC34BE52B7135E200A86358 /* GradientBackgroundLikes.swift */,
 				ACC34BE72B75235C00A86358 /* SettingColourTabBarViewController.swift */,

@@ -7,17 +7,21 @@
 
 import UIKit
 
-/// Подписываем `UIApplication` под протокол, чтобы
-/// передать в дальнейшем в презентер
+protocol InterfaceStyleOverrider {
+    // изменяет текущую тему
+    func change(theme: InterfaceTheme)
+    // получить
+    func currentTheme() -> InterfaceTheme
+}
+
 extension UIApplication: InterfaceStyleOverrider {
-    
-    /// Меняем тему
     func change(theme: InterfaceTheme) {
-        self.keyWindow!.overrideUserInterfaceStyle = UIUserInterfaceStyle(theme: theme)
+        UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = UIUserInterfaceStyle(theme: theme)
     }
     
-    /// Получаем текущую тему интерфейса
     func currentTheme() -> InterfaceTheme {
-        self.keyWindow!.traitCollection.userInterfaceStyle.toInterfaceTheme()
+        UIApplication.shared.keyWindow!.traitCollection.userInterfaceStyle.toInterfaceTheme()
     }
+    
+    
 }
