@@ -237,13 +237,6 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
-		AC0F4C7F2B5FF70600D77F6C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		AC0F4C802B5FF71200D77F6C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,7 +414,6 @@
 			children = (
 				AC0F4C7E2B5FF6F500D77F6C /* Assembly */,
 				AC0F4C802B5FF71200D77F6C /* Presenter */,
-				AC0F4C7F2B5FF70600D77F6C /* Model */,
 				AC0F4C812B5FF71E00D77F6C /* View */,
 			);
 			path = Settings;

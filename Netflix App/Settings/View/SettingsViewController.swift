@@ -129,23 +129,25 @@ extension SettingsViewController {
 private extension SettingsViewController {
     
     func сonfigurationGeneralStackView() {
+        
         view.addSubview(generalStackCoverView)
         view.addSubview(generalStackView)
+        
         generalStackView.spacing = 16
-       generalStackCoverView.layer.cornerRadius = 20
         generalStackView.axis = .vertical
         generalStackView.distribution = .fill
         generalStackView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
-        generalStackCoverView.backgroundColor = generalStackView.backgroundColor
-        
-        generalStackCoverView.snp.makeConstraints { maker in
-            maker.top.equalTo(createAvatarButton.snp.bottom).offset(28)
-            maker.leading.trailing.equalToSuperview().inset(25)
-            maker.bottom.greaterThanOrEqualTo(generalStackView).offset(16)
-        }
         generalStackView.snp.makeConstraints { maker in
             maker.top.equalTo(generalStackCoverView).offset(16)
             maker.left.right.equalTo(generalStackCoverView).inset(16)
+        }
+        
+        generalStackCoverView.layer.cornerRadius = 20
+        generalStackCoverView.backgroundColor = generalStackView.backgroundColor
+        generalStackCoverView.snp.makeConstraints { maker in
+            maker.top.equalTo(createAvatarButton.snp.bottom).offset(28)
+            maker.leading.trailing.equalToSuperview().inset(25)
+            maker.bottom.greaterThanOrEqualTo(generalStackView).offset(23)
         }
         
         generalTitleStackView.axis = .horizontal
@@ -155,12 +157,13 @@ private extension SettingsViewController {
         
         languageInfoStackView.axis = .horizontal
         languageInfoStackView.spacing = 20
+        languageInfoStackView.distribution = .fill
         languageInfoStackView.addArrangedSubview(languageInfoLabel)
         languageInfoLabel.text = "Язык"
         languageInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         languageInfoStackView.addArrangedSubview(languageNameLabel)
-        languageNameLabel.text = "Русский"
+        languageNameLabel.text = "Русский🔎"
         languageNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         themeScreenStackView.axis = .horizontal
@@ -219,11 +222,11 @@ private extension SettingsViewController {
         
         emailInfoStackView.addArrangedSubview(linktoEmailLabel)
         linktoEmailLabel.textColor =  UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
-        linktoEmailLabel.isUserInteractionEnabled = true
         linktoEmailLabel.text = "artem.makej@bk.ru"
         linktoEmailLabel.font = Font.avenir(weight: .regular, size: 14)
         let linktoEmail = UITapGestureRecognizer(target: self, action: #selector(tappedlinktoEmail))
         linktoEmailLabel.addGestureRecognizer(linktoEmail)
+        linktoEmailLabel.isUserInteractionEnabled = true
         
         websiteInfoStackView.spacing = 20
         websiteInfoStackView.axis = .horizontal
@@ -232,12 +235,12 @@ private extension SettingsViewController {
         websiteInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
-        linkToWebsiteLabel.isUserInteractionEnabled = true
         linkToWebsiteLabel.textColor = UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
         linkToWebsiteLabel.text = "https://github.com/ArtemMakej"
         linkToWebsiteLabel.font = Font.avenir(weight: .regular, size: 14)
         let linkToWebsite = UITapGestureRecognizer(target: self, action: #selector(tappedLinkToWebsite))
         linkToWebsiteLabel.addGestureRecognizer(linkToWebsite)
+        linkToWebsiteLabel.isUserInteractionEnabled = true
         
         versionAppStackView.axis = .horizontal
         versionAppStackView.spacing = 20

@@ -93,7 +93,6 @@ extension ThemeChangerSwitch {
         print(location.x)
         if location.x < leftLimitX || location.x > rightLimitX {
             return
-
         }
         let centerX = (self.frame.width / 2) - (sliderImageView.frame.width / 2)
        // print(location.x, centerX)
@@ -102,7 +101,6 @@ extension ThemeChangerSwitch {
         updateSwitchForChangeTheme(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX, centerSliderX: centerX)
         snapToSide(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX, centerSliderX: centerX)
     }
-    
 }
 
 extension ThemeChangerSwitch {

@@ -103,7 +103,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
         let seriesCardAssembly = SeriesCardAssembly()
-        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id)
+        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
         
         navigationController?.pushViewController(seriesCardViewController, animated: true)
     }

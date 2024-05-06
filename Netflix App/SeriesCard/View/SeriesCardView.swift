@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import SnapKit
 
 final class SeriesCardView: UIView {
-    
-    
     var likeAndDislikeButtonTap: (() -> Void)?
-    
+    // создаем чтобы его можно использовать вне класса
+    var playButtonTap: (() -> Void)?
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
     private let seriesFullImageView = UIImageView()
@@ -37,9 +35,8 @@ final class SeriesCardView: UIView {
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
-
     private let blurView: UIVisualEffectView = {
-       let view  = UIVisualEffectView()
+        let view  = UIVisualEffectView()
         view.clipsToBounds = true
         return view
     }()
@@ -55,7 +52,7 @@ final class SeriesCardView: UIView {
     }
     
     @objc func likeAndDislikeButtonTapped(_ sender: UIButton) {
-            self.likeAndDislikeButtonTap?()
+        self.likeAndDislikeButtonTap?()
     }
     
     func setLikeButton(filled: Bool) {
@@ -81,22 +78,22 @@ final class SeriesCardView: UIView {
         formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
         
         formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
-//        let separetedGenge = model.genre.joined(separator: ", ")
-//        seriesGenreLabel.text = separetedGenge
-//        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
+        //        let separetedGenge = model.genre.joined(separator: ", ")
+        //        seriesGenreLabel.text = separetedGenge
+        //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
         formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
     }
     
     private func emojiFlag(countryList: [String]) -> [String] {
-
+        
         guard !countryList.isEmpty else { return [] }
         
         var flagEmojis = [String]()
-
+        
         for country in countryList {
-
-           var flagEmoji = ""
-
+            
+            var flagEmoji = ""
+            
             switch country.lowercased() {
                 
             case "США".lowercased():
@@ -156,7 +153,6 @@ final class SeriesCardView: UIView {
         label.attributedText = attributedText
     }
     
-    
     private func setupContentView() {
         scrollView.addSubview(customContentView)
         customContentView.addSubview(seriesFullImageView)
@@ -179,17 +175,16 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesInListsImageView)
         customContentView.addSubview(seriesGenreLabel)
         customContentView.addSubview(seriesGenreImageView)
-        
         customContentView.addSubview(blurView)
         let blurEffect = UIBlurEffect(style: .light)
         blurView.effect = blurEffect
-        //blurView.alpha = 0.8
         blurView.snp.makeConstraints { maker in
-                maker.bottom.equalTo(seriesFullImageView)
-                maker.top.equalTo(300)
+            maker.bottom.equalTo(seriesFullImageView)
+            maker.top.equalTo(300)
             maker.left.equalTo(seriesFullImageView)
-                maker.right.equalToSuperview()
-            }
+            maker.right.equalToSuperview()
+        }
+        
         customContentView.addSubview(blurSeriesImageView)
         blurSeriesImageView.clipsToBounds = true
         blurSeriesImageView.backgroundColor = .black
@@ -200,7 +195,6 @@ final class SeriesCardView: UIView {
             maker.left.equalTo(seriesFullImageView)
             maker.right.equalToSuperview()
         }
-
         
         customContentView.addSubview(seriesTitleLabel)
         seriesTitleLabel.clipsToBounds = true
@@ -231,6 +225,7 @@ final class SeriesCardView: UIView {
             maker.height.equalTo(393)
             maker.width.equalToSuperview()
         }
+        
         seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
         seriesLikeAndDislikeButton.clipsToBounds = true
         seriesLikeAndDislikeButton.tintColor = UIColor.imageColor.color
@@ -245,6 +240,7 @@ final class SeriesCardView: UIView {
         seriesPlayButton.tintColor = UIColor.imageColor.color
         let playImage = UIImage(named: "play")?.withRenderingMode(.alwaysTemplate)
         seriesPlayButton.setImage(playImage, for: .normal)
+        seriesPlayButton.addTarget(self, action: #selector(playButton), for: .touchUpInside)
         seriesPlayButton.snp.makeConstraints { maker in
             maker.left.equalTo(seriesLikeAndDislikeButton.snp.right).inset(-30)
             maker.top.equalTo(seriesLikeAndDislikeButton)
@@ -412,6 +408,12 @@ final class SeriesCardView: UIView {
             maker.left.equalTo(seriesInListsLabel)
             maker.right.equalTo(seriesInListsLabel)
         }
+    }
+    
+    @objc func playButton() {
+        // опциональный клоужер - ставим вопрос
+        playButtonTap?()
+        print("Play")
     }
 }
 

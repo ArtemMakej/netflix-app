@@ -6,21 +6,26 @@
 //
 
 import UIKit
-import SnapKit
+import SafariServices
 
 protocol ISeriesCardView: AnyObject {
     func updateView(with tvShowModel: NetflixFull)
+    func showSafariViewController(url: String)
     func showFilledLike()
     func showEmptyLike()
 }
 
 final class SeriesCardViewController: UIViewController {
+    
     private lazy var screenView = SeriesCardView(frame: view.frame)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         screenView.likeAndDislikeButtonTap = { [weak self] in
             self?.presenter.didTapLikeButton()
+        }
+        screenView.playButtonTap = { [weak self] in
+            self?.presenter.didTapPlayButton()
         }
         presenter.viewDidLoad()
         view.backgroundColor = UIColor.dynamicColor(dynamic: .appBackground)
@@ -65,6 +70,15 @@ extension SeriesCardViewController: ISeriesCardView {
     
     func updateView(with tvShowModel:NetflixFull) {
         screenView.configure(model: tvShowModel)
+    }
+    
+    func showSafariViewController(url: String) {
+        guard let url = URL(string: url) else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = true
+        // она показывает модально след viewcontroller
+        present(safariViewController, animated: true)
     }
 }
 
