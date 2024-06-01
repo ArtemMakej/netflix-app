@@ -6,15 +6,20 @@
 //
 
 import UIKit
+import SafariServices
+import MessageUI
 
 protocol ISettingsView: AnyObject {
     func setupNavigationItem()
+    func setupView(email: String, website: String)
+    func openSafari(url: URL)
+    func openEmail(_ email: String)
 }
 
 final class SettingsViewController: UIViewController {
     
     // MARK: - Properties
-
+    
     private let generalStackCoverView = UIView()
     private let aboutStackCoverView = UIView()
     
@@ -61,12 +66,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.Dynamic.appBackground.color
         presenter.viewDidLoad()
-        configure()
-        setupNavigationItem()
-        сonfigurationGeneralStackView()
-        сonfigurationAboutAppStackView()
     }
     
     // MARK: - Init
@@ -82,7 +82,7 @@ final class SettingsViewController: UIViewController {
 
 extension SettingsViewController: ISettingsView {
     func setupNavigationItem() {
-        let navigationTitleColor = UIColor.imageColor.color
+        let navigationTitleColor = UIColor.Dynamic.imageColor.color
         let titleFont = Font.avenir(weight: .bold, size: 17)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
@@ -90,7 +90,35 @@ extension SettingsViewController: ISettingsView {
         ]
         navigationItem.title = "NETFLIX"
     }
+    
+    func setupView(email: String, website: String) {
+        view.backgroundColor = UIColor.Dynamic.appBackground.color
+        configure()
+        setupNavigationItem()
+        сonfigurationGeneralStackView()
+        сonfigurationAboutAppStackView(email: email, website: website)
+    }
+    
+    func openSafari(url: URL) {
+        let safariViewController = SFSafariViewController(url: url)
+        present(safariViewController, animated: true)
+    }
+    
+    func openEmail(_ email: String) {
+        guard MFMailComposeViewController.canSendMail()
+        else {
+            print("Mail services are not available")
+            return
+        }
+        
+        let composeVC = MFMailComposeViewController()
+        composeVC.setToRecipients([email])
+        composeVC.setSubject("Netflix App")
+        composeVC.setMessageBody("Hello, Artem!", isHTML: false)
+        self.present(composeVC, animated: true, completion: nil)
+    }
 }
+
 extension SettingsViewController {
     func configure() {
         view.addSubview(settingContentView)
@@ -129,7 +157,6 @@ extension SettingsViewController {
 private extension SettingsViewController {
     
     func сonfigurationGeneralStackView() {
-        
         view.addSubview(generalStackCoverView)
         view.addSubview(generalStackView)
         
@@ -178,12 +205,12 @@ private extension SettingsViewController {
         }
     }
     
-    func сonfigurationAboutAppStackView() {
+    func сonfigurationAboutAppStackView(email: String, website: String) {
         view.addSubview(aboutStackCoverView)
         view.addSubview(aboutAppStackView)
         aboutStackCoverView.layer.cornerRadius = 20
         aboutStackCoverView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
-    
+        
         aboutAppStackView.spacing = 16
         aboutAppStackView.distribution = .fill
         aboutAppStackView.layer.cornerRadius = 20
@@ -204,7 +231,6 @@ private extension SettingsViewController {
         aboutAppLabel.font = Font.avenir(weight: .bold, size: 17)
         
         developerInfoStackView.axis = .horizontal
-        
         developerInfoStackView.spacing = 20
         developerInfoStackView.addArrangedSubview(developerInfoLabel)
         developerInfoLabel.text = "Разработчик"
@@ -222,7 +248,7 @@ private extension SettingsViewController {
         
         emailInfoStackView.addArrangedSubview(linktoEmailLabel)
         linktoEmailLabel.textColor =  UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
-        linktoEmailLabel.text = "artem.makej@bk.ru"
+        linktoEmailLabel.text = email
         linktoEmailLabel.font = Font.avenir(weight: .regular, size: 14)
         let linktoEmail = UITapGestureRecognizer(target: self, action: #selector(tappedlinktoEmail))
         linktoEmailLabel.addGestureRecognizer(linktoEmail)
@@ -236,7 +262,7 @@ private extension SettingsViewController {
         
         websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
         linkToWebsiteLabel.textColor = UIColor(red: 44/255, green: 101/255, blue: 208/255, alpha: 1)
-        linkToWebsiteLabel.text = "https://github.com/ArtemMakej"
+        linkToWebsiteLabel.text = website
         linkToWebsiteLabel.font = Font.avenir(weight: .regular, size: 14)
         let linkToWebsite = UITapGestureRecognizer(target: self, action: #selector(tappedLinkToWebsite))
         linkToWebsiteLabel.addGestureRecognizer(linkToWebsite)
@@ -251,9 +277,13 @@ private extension SettingsViewController {
         
         numberVersionLabel.text = "1.0.0"
         numberVersionLabel.font = Font.avenir(weight: .regular, size: 14)
-        
     }
     
-    @objc func tappedLinkToWebsite() {}
-    @objc func tappedlinktoEmail() {}
+    @objc func tappedlinktoEmail() {
+        presenter.didTapLinkToEmail()
+    }
+    
+    @objc func tappedLinkToWebsite() {
+        presenter.didTapLinkToWebSite()
+    }
 }

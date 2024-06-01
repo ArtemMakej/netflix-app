@@ -8,7 +8,6 @@
 import SnapKit
 import UIKit
 
-
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
@@ -43,8 +42,8 @@ final class MainViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        let navigationTitleColor = UIColor.imageColor.color
-        let titleFont = Font.avenir(weight: .bold, size: 17)
+        let navigationTitleColor = UIColor.Dynamic.imageColor.color
+        let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
             .font: titleFont

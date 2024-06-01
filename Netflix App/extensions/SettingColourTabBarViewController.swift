@@ -15,6 +15,7 @@ final class SettingColourTabBarViewController: UITabBarController {
             apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
         }
     }
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         apply(dynamicColor: themeTintColour, theme: traitCollection.userInterfaceStyle)
     }
@@ -22,7 +23,7 @@ final class SettingColourTabBarViewController: UITabBarController {
     private func apply(dynamicColor: UIColor.Dynamic?, theme: UIUserInterfaceStyle) {
         switch theme {
         case .dark:
-            tabBar.tintColor = dynamicColor?.dark
+           tabBar.tintColor = dynamicColor?.dark
         default:
             tabBar.tintColor = dynamicColor?.light
         }

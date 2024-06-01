@@ -27,7 +27,6 @@ final class LikesViewController: UIViewController {
     private let flowLayout = UICollectionViewFlowLayout()
     private lazy var collectionLikesView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.Dynamic.appBackground.color
@@ -54,7 +53,7 @@ final class LikesViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        let navigationTitleColor = UIColor.imageColor.color
+        let navigationTitleColor = UIColor.Dynamic.imageColor.color
         let titleFont = Font.avenir(weight: .bold, size: 17)
         
         navigationController?.navigationBar.titleTextAttributes = [
@@ -131,7 +130,6 @@ final class LikesViewController: UIViewController {
         
         likesView.setNeedsLayout() // метод, запрашивает отрисовку
         likesView.layoutIfNeeded() // метод, который требует отрисовать вьюшку
-        
         favoritesLabel.clipsToBounds = true
         favoritesLabel.numberOfLines = 0
         favoritesLabel.textAlignment = .left
@@ -174,7 +172,6 @@ extension LikesViewController: ILikesView {
     // indexPath чтобы понять какая  ячейка будет закрашена
     func showFilledLike(indexPath: IndexPath) {
         //dequeueReusableCell - через функцию можем достать ячейку
-       
         let cell = collectionLikesView.cellForItem(at: indexPath) as? LikesCell
         cell?.tapLikesButton(filled: true)
     }
@@ -184,6 +181,7 @@ extension LikesViewController: ILikesView {
         cell?.tapLikesButton(filled: false)
     }
 }
+
 extension Notification.Name {
     static let likePressed = Notification.Name("LikePressed")
 }

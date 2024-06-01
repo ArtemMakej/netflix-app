@@ -321,13 +321,13 @@
 		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */,
 				2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */,
+				ACC34BE72B75235C00A86358 /* SettingColourTabBarViewController.swift */,
 				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
 				AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */,
 				ACC34BE52B7135E200A86358 /* GradientBackgroundLikes.swift */,
-				ACC34BE72B75235C00A86358 /* SettingColourTabBarViewController.swift */,
 				ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */,
+				2C2D08CB2BCED406009ADCA1 /* UIApplication+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";

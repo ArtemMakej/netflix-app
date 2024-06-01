@@ -7,7 +7,11 @@
 
 import UIKit
 
-//
+enum InterfaceTheme {
+    case light
+    case dark
+}
+
 extension UIUserInterfaceStyle {
     
     func toInterfaceTheme() -> InterfaceTheme {
@@ -26,4 +30,3 @@ extension UIUserInterfaceStyle {
         }
     }
 }
-

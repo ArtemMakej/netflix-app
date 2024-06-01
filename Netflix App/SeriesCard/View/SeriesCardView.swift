@@ -228,7 +228,7 @@ final class SeriesCardView: UIView {
         
         seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
         seriesLikeAndDislikeButton.clipsToBounds = true
-        seriesLikeAndDislikeButton.tintColor = UIColor.imageColor.color
+        seriesLikeAndDislikeButton.tintColor = UIColor.Dynamic.imageColor.color
         let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
         seriesLikeAndDislikeButton.snp.makeConstraints { maker in
@@ -237,7 +237,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesPlayButton.clipsToBounds = true
-        seriesPlayButton.tintColor = UIColor.imageColor.color
+        seriesPlayButton.tintColor = UIColor.Dynamic.imageColor.color
         let playImage = UIImage(named: "play")?.withRenderingMode(.alwaysTemplate)
         seriesPlayButton.setImage(playImage, for: .normal)
         seriesPlayButton.addTarget(self, action: #selector(playButton), for: .touchUpInside)
@@ -260,7 +260,7 @@ final class SeriesCardView: UIView {
         seriesDurationImageView.clipsToBounds = true
         let durationImage = UIImage(named: "duration")?.withRenderingMode(.alwaysTemplate)
         seriesDurationImageView.image = durationImage
-        seriesDurationImageView.tintColor = UIColor.imageColor.color
+        seriesDurationImageView.tintColor = UIColor.Dynamic.imageColor.color
         seriesDurationImageView.snp.makeConstraints { maker in
             maker.top.equalTo(seriesDescriptionLabel.snp.bottom).inset(-22)
             maker.left.equalTo(seriesDescriptionLabel)
@@ -277,7 +277,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesPresentedAtDateImageView.clipsToBounds = true
-        seriesPresentedAtDateImageView.tintColor = UIColor.imageColor.color
+        seriesPresentedAtDateImageView.tintColor = UIColor.Dynamic.imageColor.color
         let presentedAtDateImage = UIImage(named: "presentedAtDate")?.withRenderingMode(.alwaysTemplate)
         seriesPresentedAtDateImageView.image = presentedAtDateImage
         seriesPresentedAtDateImageView.snp.makeConstraints { maker in
@@ -295,7 +295,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesRatingImdbImageView.clipsToBounds = true
-        seriesRatingImdbImageView.tintColor = UIColor.imageColor.color
+        seriesRatingImdbImageView.tintColor = UIColor.Dynamic.imageColor.color
         let ratingImdbImage = UIImage(named: "rating")?.withRenderingMode(.alwaysTemplate)
         seriesRatingImdbImageView.image = ratingImdbImage
         seriesRatingImdbImageView.snp.makeConstraints { maker in
@@ -313,7 +313,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesRatingKinopoiskImageView.clipsToBounds = true
-        seriesRatingKinopoiskImageView.tintColor = UIColor.imageColor.color
+        seriesRatingKinopoiskImageView.tintColor = UIColor.Dynamic.imageColor.color
         let ratingKinopoiskImage = UIImage(named: "rating")?.withRenderingMode(.alwaysTemplate)
         seriesRatingKinopoiskImageView.image = ratingKinopoiskImage
         seriesRatingKinopoiskImageView.snp.makeConstraints { maker in
@@ -331,7 +331,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesActorsImageView.clipsToBounds = true
-        seriesActorsImageView.tintColor = UIColor.imageColor.color
+        seriesActorsImageView.tintColor = UIColor.Dynamic.imageColor.color
         let actorsImage = UIImage(named: "actors")?.withRenderingMode(.alwaysTemplate)
         seriesActorsImageView.image = actorsImage
         seriesActorsImageView.snp.makeConstraints { maker in
@@ -351,7 +351,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesCountryImageView.clipsToBounds = true
-        seriesCountryImageView.tintColor = UIColor.imageColor.color
+        seriesCountryImageView.tintColor = UIColor.Dynamic.imageColor.color
         let countryImage = UIImage(named: "country")?.withRenderingMode(.alwaysTemplate)
         seriesCountryImageView.image = countryImage
         seriesCountryImageView.snp.makeConstraints { maker in
@@ -370,7 +370,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesInListsImageView.clipsToBounds = true
-        seriesInListsImageView.tintColor = UIColor.imageColor.color
+        seriesInListsImageView.tintColor = UIColor.Dynamic.imageColor.color
         let listsImage = UIImage(named: "lists")?.withRenderingMode(.alwaysTemplate)
         seriesInListsImageView.image = listsImage
         seriesInListsImageView.snp.makeConstraints { maker in
@@ -390,7 +390,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesGenreImageView.clipsToBounds = true
-        seriesGenreImageView.tintColor = UIColor.imageColor.color
+        seriesGenreImageView.tintColor = UIColor.Dynamic.imageColor.color
         let genreImage = UIImage(named: "genre")?.withRenderingMode(.alwaysTemplate)
         seriesGenreImageView.image = genreImage
         seriesGenreImageView.snp.makeConstraints { maker in

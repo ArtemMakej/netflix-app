@@ -13,7 +13,6 @@ protocol IThemeChangerSwitchView: AnyObject {
 
 final class ThemeChangerSwitch: UIView, IThemeChangerSwitchView {
     
-    
     private let presenter: IThemeChangerSwitchPresenter
     private let redView = UIView()
     private let blueView = UIView()
@@ -24,7 +23,6 @@ final class ThemeChangerSwitch: UIView, IThemeChangerSwitchView {
     private let snapsToSides = true
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
     
-    //
     init(presenter: IThemeChangerSwitchPresenter) {
         self.presenter = presenter
         super.init(frame: .zero)
@@ -84,7 +82,6 @@ extension ThemeChangerSwitch {
         updateSliderPosition(location: location)
     }
     
-    // вынесли логику по определению location в отдельную функцию чтобы изменять ее, поскольку в handlePanGestureRecognizer можно изменять location только при нажатии
     private func updateSliderPosition(location: CGPoint) {
         var location = location
         location.x = location.x - (sliderImageView.frame.width / 2)
@@ -94,8 +91,9 @@ extension ThemeChangerSwitch {
         if location.x < leftLimitX || location.x > rightLimitX {
             return
         }
+        
         let centerX = (self.frame.width / 2) - (sliderImageView.frame.width / 2)
-       // print(location.x, centerX)
+        // print(location.x, centerX)
         sliderImageView.frame.origin.x = location.x
         updateSwitchBackground(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX)
         updateSwitchForChangeTheme(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX, centerSliderX: centerX)
@@ -129,10 +127,10 @@ extension ThemeChangerSwitch {
         guard self.position != newPosition else { return }
         self.position = newPosition
         presenter.switchMovedTo(position: newPosition)
-//        if location.x > centerSliderX {
-//            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .dark
-//        } else {
-//            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .light
-//        }
+        //        if location.x > centerSliderX {
+        //            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .dark
+        //        } else {
+        //            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .light
+        //        }
     }
 }

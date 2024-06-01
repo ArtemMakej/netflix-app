@@ -14,8 +14,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewControllers = configureViewControllers()
-        let tabBarController = setupTabBarController(with: viewControllers)
+        let tabBarController = setupTabBarController(with: configureViewControllers())
         
         window = UIWindow(windowScene: windowScene)
         window?.makeKeyAndVisible()
@@ -36,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func setupTabBarController(with viewControllers: [UIViewController]) -> SettingColourTabBarViewController {
         let tabBarController = SettingColourTabBarViewController()
-        tabBarController.themeTintColour = UIColor.tabBarColor
+        tabBarController.themeTintColour = UIColor.Dynamic.tabBarColor
         configureTabBarAppearance()
         
         setupTabBarItems(for: viewControllers, in: tabBarController)

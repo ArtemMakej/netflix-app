@@ -21,21 +21,17 @@ protocol IThemeChangerSwitchPresenter {
 final class ThemeChangerSwitchPresenter: IThemeChangerSwitchPresenter {
     
     weak var view: IThemeChangerSwitchView?
-    
-    // создаем зависимость UIApplication: InterfaceStyleOverrider
     private let interfaceStyleOverrider: InterfaceStyleOverrider
     
-    //
     init(interfaceStyleOverrider: InterfaceStyleOverrider) {
         self.interfaceStyleOverrider = interfaceStyleOverrider
-        
     }
+    
     func switchMovedTo(position: HorizontalPosition) {
         interfaceStyleOverrider.change(theme: position == .left ? .light : .dark)
     }
 
     func viewLayotSubviews() {
-        //получаем текущую тему
         let currentTheme = interfaceStyleOverrider.currentTheme()
         let position: HorizontalPosition = currentTheme == .light ? .left : .right
         view?.set(position: position)

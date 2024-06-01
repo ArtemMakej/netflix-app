@@ -104,7 +104,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameImageView.clipsToBounds = true
         let nameImage = UIImage(named: "nameSeries")?.withRenderingMode(.alwaysTemplate)
         seriesNameImageView.image = nameImage
-        seriesNameImageView.tintColor = UIColor.imageColor.color
+        seriesNameImageView.tintColor = UIColor.Dynamic.imageColor.color
         seriesNameImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesImageView).offset(42)
@@ -115,7 +115,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesDateImageView.clipsToBounds = true
         let dateImage = UIImage(named: "SeriesDate")?.withRenderingMode(.alwaysTemplate)
         seriesDateImageView.image = dateImage
-        seriesDateImageView.tintColor = UIColor.imageColor.color
+        seriesDateImageView.tintColor = UIColor.Dynamic.imageColor.color
         seriesDateImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesNameImageView.snp.bottom).offset(8)
@@ -126,7 +126,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesGenreImageView.clipsToBounds = true
         let genreImage = UIImage(named: "SeriesGenre")?.withRenderingMode(.alwaysTemplate)
         seriesGenreImageView.image = genreImage
-        seriesGenreImageView.tintColor = UIColor.imageColor.color
+        seriesGenreImageView.tintColor = UIColor.Dynamic.imageColor.color
         seriesGenreImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesDateImageView.snp.bottom).offset(8)
@@ -149,9 +149,8 @@ final class NetflixCell: UICollectionViewCell {
             maker.width.equalTo(160)
         }
         
-        clipsToBounds = true
+        seriesNameLabel.clipsToBounds = true
         seriesNameLabel.textAlignment = .left
-        seriesNameLabel.font = .boldSystemFont(ofSize: 15)
         seriesNameLabel.textColor = .dynamicColor(dynamic: .textColourCustom)
         seriesNameLabel.font = Font.avenir(weight: .bold, size: 12)
         seriesNameLabel.adjustsFontForContentSizeCategory = true
@@ -165,7 +164,7 @@ final class NetflixCell: UICollectionViewCell {
         baseView.addSubview(seriesDateLabel)
         clipsToBounds = true
         seriesDateLabel.textAlignment = .left
-        seriesDateLabel.font = Font.avenir(weight: .medium, size: 12)
+        seriesDateLabel.font = Font.avenir(weight: .medium, size: 10)
         seriesDateLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesDateLabel.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(46)
@@ -175,7 +174,7 @@ final class NetflixCell: UICollectionViewCell {
         
         clipsToBounds = true
         seriesGenreLabel.textAlignment = .left
-        seriesGenreLabel.font = Font.avenir(weight: .regular, size: 12)
+        seriesGenreLabel.font = Font.avenir(weight: .regular, size: 10)
         seriesGenreLabel.textColor = .dynamicColor(dynamic: .textColour)
         seriesGenreLabel.numberOfLines = 3
         seriesGenreLabel.lineBreakMode = .byWordWrapping
