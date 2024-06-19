@@ -6,13 +6,11 @@
 //
 
 import UIKit
-import SnapKit
 
 final class SeriesCardView: UIView {
-    
-    
     var likeAndDislikeButtonTap: (() -> Void)?
-    
+    // создаем чтобы его можно использовать вне класса
+    var playButtonTap: (() -> Void)?
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
     private let seriesFullImageView = UIImageView()
@@ -37,9 +35,8 @@ final class SeriesCardView: UIView {
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
-
     private let blurView: UIVisualEffectView = {
-       let view  = UIVisualEffectView()
+        let view  = UIVisualEffectView()
         view.clipsToBounds = true
         return view
     }()
@@ -55,7 +52,7 @@ final class SeriesCardView: UIView {
     }
     
     @objc func likeAndDislikeButtonTapped(_ sender: UIButton) {
-            self.likeAndDislikeButtonTap?()
+        self.likeAndDislikeButtonTap?()
     }
     
     func setLikeButton(filled: Bool) {
@@ -81,22 +78,22 @@ final class SeriesCardView: UIView {
         formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
         
         formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
-//        let separetedGenge = model.genre.joined(separator: ", ")
-//        seriesGenreLabel.text = separetedGenge
-//        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
+        //        let separetedGenge = model.genre.joined(separator: ", ")
+        //        seriesGenreLabel.text = separetedGenge
+        //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
         formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
     }
     
     private func emojiFlag(countryList: [String]) -> [String] {
-
+        
         guard !countryList.isEmpty else { return [] }
         
         var flagEmojis = [String]()
-
+        
         for country in countryList {
-
-           var flagEmoji = ""
-
+            
+            var flagEmoji = ""
+            
             switch country.lowercased() {
                 
             case "США".lowercased():
@@ -156,7 +153,6 @@ final class SeriesCardView: UIView {
         label.attributedText = attributedText
     }
     
-    
     private func setupContentView() {
         scrollView.addSubview(customContentView)
         customContentView.addSubview(seriesFullImageView)
@@ -179,17 +175,16 @@ final class SeriesCardView: UIView {
         customContentView.addSubview(seriesInListsImageView)
         customContentView.addSubview(seriesGenreLabel)
         customContentView.addSubview(seriesGenreImageView)
-        
         customContentView.addSubview(blurView)
         let blurEffect = UIBlurEffect(style: .light)
         blurView.effect = blurEffect
-        //blurView.alpha = 0.8
         blurView.snp.makeConstraints { maker in
-                maker.bottom.equalTo(seriesFullImageView)
-                maker.top.equalTo(300)
+            maker.bottom.equalTo(seriesFullImageView)
+            maker.top.equalTo(300)
             maker.left.equalTo(seriesFullImageView)
-                maker.right.equalToSuperview()
-            }
+            maker.right.equalToSuperview()
+        }
+        
         customContentView.addSubview(blurSeriesImageView)
         blurSeriesImageView.clipsToBounds = true
         blurSeriesImageView.backgroundColor = .black
@@ -200,7 +195,6 @@ final class SeriesCardView: UIView {
             maker.left.equalTo(seriesFullImageView)
             maker.right.equalToSuperview()
         }
-
         
         customContentView.addSubview(seriesTitleLabel)
         seriesTitleLabel.clipsToBounds = true
@@ -231,9 +225,10 @@ final class SeriesCardView: UIView {
             maker.height.equalTo(393)
             maker.width.equalToSuperview()
         }
+        
         seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
         seriesLikeAndDislikeButton.clipsToBounds = true
-        seriesLikeAndDislikeButton.tintColor = UIColor.imageColor.color
+        seriesLikeAndDislikeButton.tintColor = UIColor.Dynamic.imageColor.color
         let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
         seriesLikeAndDislikeButton.snp.makeConstraints { maker in
@@ -242,9 +237,10 @@ final class SeriesCardView: UIView {
         }
         
         seriesPlayButton.clipsToBounds = true
-        seriesPlayButton.tintColor = UIColor.imageColor.color
+        seriesPlayButton.tintColor = UIColor.Dynamic.imageColor.color
         let playImage = UIImage(named: "play")?.withRenderingMode(.alwaysTemplate)
         seriesPlayButton.setImage(playImage, for: .normal)
+        seriesPlayButton.addTarget(self, action: #selector(playButton), for: .touchUpInside)
         seriesPlayButton.snp.makeConstraints { maker in
             maker.left.equalTo(seriesLikeAndDislikeButton.snp.right).inset(-30)
             maker.top.equalTo(seriesLikeAndDislikeButton)
@@ -264,7 +260,7 @@ final class SeriesCardView: UIView {
         seriesDurationImageView.clipsToBounds = true
         let durationImage = UIImage(named: "duration")?.withRenderingMode(.alwaysTemplate)
         seriesDurationImageView.image = durationImage
-        seriesDurationImageView.tintColor = UIColor.imageColor.color
+        seriesDurationImageView.tintColor = UIColor.Dynamic.imageColor.color
         seriesDurationImageView.snp.makeConstraints { maker in
             maker.top.equalTo(seriesDescriptionLabel.snp.bottom).inset(-22)
             maker.left.equalTo(seriesDescriptionLabel)
@@ -281,7 +277,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesPresentedAtDateImageView.clipsToBounds = true
-        seriesPresentedAtDateImageView.tintColor = UIColor.imageColor.color
+        seriesPresentedAtDateImageView.tintColor = UIColor.Dynamic.imageColor.color
         let presentedAtDateImage = UIImage(named: "presentedAtDate")?.withRenderingMode(.alwaysTemplate)
         seriesPresentedAtDateImageView.image = presentedAtDateImage
         seriesPresentedAtDateImageView.snp.makeConstraints { maker in
@@ -299,7 +295,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesRatingImdbImageView.clipsToBounds = true
-        seriesRatingImdbImageView.tintColor = UIColor.imageColor.color
+        seriesRatingImdbImageView.tintColor = UIColor.Dynamic.imageColor.color
         let ratingImdbImage = UIImage(named: "rating")?.withRenderingMode(.alwaysTemplate)
         seriesRatingImdbImageView.image = ratingImdbImage
         seriesRatingImdbImageView.snp.makeConstraints { maker in
@@ -317,7 +313,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesRatingKinopoiskImageView.clipsToBounds = true
-        seriesRatingKinopoiskImageView.tintColor = UIColor.imageColor.color
+        seriesRatingKinopoiskImageView.tintColor = UIColor.Dynamic.imageColor.color
         let ratingKinopoiskImage = UIImage(named: "rating")?.withRenderingMode(.alwaysTemplate)
         seriesRatingKinopoiskImageView.image = ratingKinopoiskImage
         seriesRatingKinopoiskImageView.snp.makeConstraints { maker in
@@ -335,7 +331,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesActorsImageView.clipsToBounds = true
-        seriesActorsImageView.tintColor = UIColor.imageColor.color
+        seriesActorsImageView.tintColor = UIColor.Dynamic.imageColor.color
         let actorsImage = UIImage(named: "actors")?.withRenderingMode(.alwaysTemplate)
         seriesActorsImageView.image = actorsImage
         seriesActorsImageView.snp.makeConstraints { maker in
@@ -355,7 +351,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesCountryImageView.clipsToBounds = true
-        seriesCountryImageView.tintColor = UIColor.imageColor.color
+        seriesCountryImageView.tintColor = UIColor.Dynamic.imageColor.color
         let countryImage = UIImage(named: "country")?.withRenderingMode(.alwaysTemplate)
         seriesCountryImageView.image = countryImage
         seriesCountryImageView.snp.makeConstraints { maker in
@@ -374,7 +370,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesInListsImageView.clipsToBounds = true
-        seriesInListsImageView.tintColor = UIColor.imageColor.color
+        seriesInListsImageView.tintColor = UIColor.Dynamic.imageColor.color
         let listsImage = UIImage(named: "lists")?.withRenderingMode(.alwaysTemplate)
         seriesInListsImageView.image = listsImage
         seriesInListsImageView.snp.makeConstraints { maker in
@@ -394,7 +390,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesGenreImageView.clipsToBounds = true
-        seriesGenreImageView.tintColor = UIColor.imageColor.color
+        seriesGenreImageView.tintColor = UIColor.Dynamic.imageColor.color
         let genreImage = UIImage(named: "genre")?.withRenderingMode(.alwaysTemplate)
         seriesGenreImageView.image = genreImage
         seriesGenreImageView.snp.makeConstraints { maker in
@@ -412,6 +408,12 @@ final class SeriesCardView: UIView {
             maker.left.equalTo(seriesInListsLabel)
             maker.right.equalTo(seriesInListsLabel)
         }
+    }
+    
+    @objc func playButton() {
+        // опциональный клоужер - ставим вопрос
+        playButtonTap?()
+        print("Play")
     }
 }
 

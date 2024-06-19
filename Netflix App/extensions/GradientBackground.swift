@@ -7,11 +7,6 @@
 
 import UIKit
 
-enum InterfaceTheme {
-    case light
-    case dark
-}
-
 struct GradientBackground {
     static func setup(for view: UIView, gradientLayer: CAGradientLayer, theme: InterfaceTheme) {
         switch theme {
@@ -25,12 +20,11 @@ struct GradientBackground {
         case .dark:
             
             let gradientColors: [CGColor] = [
-                UIColor(red: 35/255, green: 38/255, blue: 46/255, alpha: 0).cgColor,
-                UIColor(red: 200/255, green: 33/255, blue: 23/255, alpha: 0.2).cgColor,
+                UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.3).cgColor,
+                UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.3).cgColor
             ]
             gradientLayer.colors = gradientColors
-            gradientLayer.locations = [0.0,  1.0]
-            //
+            gradientLayer.locations = [1.0, 1.0]
             gradientLayer.frame = view.bounds
         }
     }

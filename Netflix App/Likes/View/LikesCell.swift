@@ -90,7 +90,7 @@ final class LikesCell: UICollectionViewCell {
         }
         contentView.addSubview(likeButton)
         likeButton.addTarget(self, action: #selector(tappedLikeButton), for: .touchUpInside)
-        likeButton.tintColor = UIColor.imageColor.color
+        likeButton.tintColor = UIColor.Dynamic.imageColor.color
         likeButton.snp.makeConstraints { maker in
             maker.top.equalTo(seriesLikeImageView).inset(5)
             maker.right.equalTo(seriesLikeImageView).inset(5)

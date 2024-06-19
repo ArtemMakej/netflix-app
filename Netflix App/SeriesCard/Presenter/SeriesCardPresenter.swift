@@ -11,16 +11,19 @@ protocol ISeriesCardPresenter {
     func viewDidLoad()
     func viewWillAppear()
     func didTapLikeButton()
+    func didTapPlayButton()
 }
 
 final class SeriesCardPresenter: ISeriesCardPresenter {
     weak var view: ISeriesCardView?
     private var netflixFullModel: NetflixFull?
+    private let netflixShortModel: NetflixShortModel
     private let id: String
     private var isLiked = false
     
-    init(id: String) {
+    init(id: String, netflixShortModel: NetflixShortModel) {
         self.id = id
+        self.netflixShortModel = netflixShortModel
     }
     
     func viewDidLoad() {
@@ -48,6 +51,11 @@ final class SeriesCardPresenter: ISeriesCardPresenter {
         }
     }
     
+    func didTapPlayButton() {
+        let url = netflixShortModel.url
+        view?.showSafariViewController(url: url)
+    }
+    
     private func loadNetflixFull() {
         let urlRequst = "https://netflix-list-rust.fly.dev/netflix/show/\(id)"
         guard let url = URL(string: urlRequst) else { return }
@@ -56,7 +64,6 @@ final class SeriesCardPresenter: ISeriesCardPresenter {
             else { return }
             do {
                 let decoder = JSONDecoder()
-                //decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let result = try decoder.decode(NetflixFull.self, from: data)
                 self?.netflixFullModel = result
                 DispatchQueue.main.async {
