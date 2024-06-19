@@ -63,7 +63,7 @@ final class NetflixCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        ///метод позволят отрисовать вью сейчас
+        /// метод позволят отрисовать вью сейчас
         baseView.layoutIfNeeded()
         baseView.layer.insertSublayer(gradientLayer, at: 0)
         switch traitCollection.userInterfaceStyle {

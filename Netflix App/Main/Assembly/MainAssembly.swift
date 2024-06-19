@@ -8,12 +8,13 @@
 import UIKit
 
 protocol IMainAssembly {
-    func assemble() -> UIViewController
+    func assemble(netflixNetworkAssembly: INetflixNetworkAssembly) -> UIViewController
 }
 
 final class MainAssembly: IMainAssembly {
-    func assemble() -> UIViewController {
-        let presenter = MainPresenter()
+    func assemble(netflixNetworkAssembly: INetflixNetworkAssembly) -> UIViewController {
+        let netflixService = netflixNetworkAssembly.assembleNetflixService()
+        let presenter = MainPresenter(netflixService: netflixService)
         let viewcontroller = MainViewController(presenter:presenter)
         presenter.view = viewcontroller
         return viewcontroller

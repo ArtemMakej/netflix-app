@@ -26,8 +26,11 @@ final class NetflixTabBarViewController: UITabBarController {
         let mainAssembly = MainAssembly()
         let likesAssembly = LikesAssembly()
         let settingAssembly = SettingsAssembly()
+        let networkAssembly = NetflixNetworkAssembly()
         
-        let mainViewController = mainAssembly.assemble().wrapInNavigationController()
+        let mainViewController = mainAssembly
+            .assemble(netflixNetworkAssembly: networkAssembly)
+            .wrapInNavigationController()
         let likesViewController = likesAssembly.assemble().wrapInNavigationController()
         let settingViewController = settingAssembly.assemble().wrapInNavigationController()
         
