@@ -23,7 +23,7 @@ final class MainPresenter: IMainPresenter {
     private var canMakeNewRequest = true
     
     func viewDidLoad() {
-        loadingNetflixList(page: pageNumber)
+        loadNetflixTvShows(page: pageNumber)
     }
     
     func cell(for indexPath: IndexPath) -> MainScreenCell {
@@ -38,7 +38,7 @@ final class MainPresenter: IMainPresenter {
         cells = []
         pageNumber = 1
         view?.reloadData()
-        loadingNetflixList(page: pageNumber) { [weak self] _ in
+        loadNetflixTvShows(page: pageNumber) { [weak self] _ in
             self?.view?.stopRefreshControl()
         }
     }
@@ -47,12 +47,12 @@ final class MainPresenter: IMainPresenter {
         guard canMakeNewRequest else { return }
         pageNumber += 1
         canMakeNewRequest = false
-        loadingNetflixList(page: pageNumber) { [weak self] _ in
+        loadNetflixTvShows(page: pageNumber) { [weak self] _ in
             self?.canMakeNewRequest = true
         }
     }
     
-    private func loadingNetflixList(page: Int, completion: ((Bool) -> Void)? = nil) {
+    private func loadNetflixTvShows(page: Int, completion: ((Bool) -> Void)? = nil) {
         let urlRequst = "https://netflix-list-rust.fly.dev/netflix/shows?page=\(page)"
         guard let url = URL(string: urlRequst) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in

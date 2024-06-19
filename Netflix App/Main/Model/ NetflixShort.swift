@@ -15,9 +15,9 @@ struct NetflixShortModel: Decodable {
     let more: String
 }
 
-struct ImageData: Decodable {
+struct ImageData: Decodable  {
     let width: Int
     let height: Int
     let url: String
-    let alt_text: String?
+    let altText: String?
 }
