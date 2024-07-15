@@ -11,6 +11,7 @@ import UIKit
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
+    func updateNetflixCell(imageData: Data, indexPath: IndexPath)
 }
 
 final class MainViewController: UIViewController {
@@ -96,6 +97,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 withReuseIdentifier: NetflixCell.id,
                 for: indexPath) as? NetflixCell else { fatalError("no such cell") }
             cell.configure(model: model)
+            presenter.didConfigureCell(indexPath)
             return cell
         }
     }
@@ -103,7 +105,6 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
         let seriesCardAssembly = SeriesCardAssembly()
         let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
-        
         navigationController?.pushViewController(seriesCardViewController, animated: true)
     }
     
@@ -122,6 +123,12 @@ extension MainViewController: IMainView {
     
     func stopRefreshControl() {
         refreshControl.endRefreshing()
+    }
+    
+    func updateNetflixCell(imageData: Data, indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? NetflixCell
+        let image = UIImage(data: imageData)
+        cell?.set(image: image)
     }
 }
 

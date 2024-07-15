@@ -108,7 +108,8 @@ extension UIColor {
 extension UIColor {
     
     static func dynamicColor(dynamic: Dynamic) -> UIColor {
-        if #available(iOS 13.0, *) {
+        //if @backDeployed(before: iOS 13.0, *) {
+       if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {
                 $0.userInterfaceStyle == .dark ? dynamic.dark : dynamic.light
             })

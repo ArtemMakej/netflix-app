@@ -2,7 +2,7 @@
 //  NetflixService.swift
 //  Netflix App
 //
-//  Created by Ivan Glushko on 19.06.2024.
+//  Created by Artem Mackei on 19.06.2024.
 //
 
 import Foundation
@@ -10,6 +10,11 @@ import Foundation
 protocol INetflixService {
     func getNetflix(page: Int) async throws -> [NetflixShortModel]
     func getNetflixFull() async throws -> NetflixFull
+    func loadImage(imageURL: String) async throws -> Data 
+}
+
+enum NetflixError: Error {
+    case failedToCreatedUrl
 }
 
 struct NetflixService: INetflixService {
@@ -28,10 +33,18 @@ struct NetflixService: INetflixService {
     }
     
     func getNetflix(page: Int) async throws -> [NetflixShortModel] {
-        let path = "netflix/shows"
+        let path = "netflix/shows" //путь
         let url = baseUrl.appending(path: path)
         let query = URLQueryItem(name: "page", value: String(page))
         let request = requestBuilder.buildGetRequest(url: url, headers: [:], queryItems: [query])
         return try await networkClient.performJsonDataRequest(request: request)
+    }
+    
+    func loadImage(imageURL: String) async throws -> Data {
+        guard let url = URL(string: imageURL) else {
+            throw NetflixError.failedToCreatedUrl
+        }
+        let request = requestBuilder.buildGetRequest(url: url, headers: [:], queryItems: [])
+        return try await networkClient.performDataRequest(request: request)
     }
 }

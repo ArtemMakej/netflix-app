@@ -32,8 +32,6 @@ final class NetflixCell: UICollectionViewCell {
     func configure(model: NetflixShortModel) {
         seriesNameLabel.text = model.title
         let more = model.more
-        let imageUrl = model.img.url
-        loadImage(imageURL: imageUrl)
         //        1 способ разбить строку more
         //        var didFindStopAnchor = false
         //        var date = ""
@@ -59,6 +57,20 @@ final class NetflixCell: UICollectionViewCell {
         /// заполняем
         seriesDateLabel.text = newDate
         seriesGenreLabel.text = Array(newInfo).joined(separator: ",")
+    }
+    
+    func set(image: UIImage?) {
+        seriesImageView.image = image
+    }
+    
+    override func prepareForReuse() {
+        seriesNameImageView.image = nil
+        seriesDateImageView.image = nil
+        seriesGenreImageView.image = nil
+        seriesImageView.image = nil
+        seriesNameLabel.text = nil
+        seriesDateLabel.text = nil
+        seriesGenreLabel.text = nil
     }
     
     override func layoutSubviews() {
@@ -142,6 +154,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesImageView.layer.masksToBounds = false
         seriesImageView.layer.cornerRadius = 8
         seriesImageView.clipsToBounds =  true
+        seriesImageView.backgroundColor = .lightGray
         
         seriesImageView.snp.makeConstraints { maker in
             maker.left.top.equalTo(baseView)
@@ -185,16 +198,16 @@ final class NetflixCell: UICollectionViewCell {
         }
     }
     
-    private func loadImage(imageURL: String) {
-        guard let url = URL(string: imageURL) else { return }
-        let urlRequest = URLRequest(url: url)
-        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-            guard let data = data else { return }
-            let image = UIImage(data: data)
-            DispatchQueue.main.async { [weak self] in
-                self?.seriesImageView.image = image
-            }
-        }.resume()
-    }
+//    private func loadImage(imageURL: String) {
+//        guard let url = URL(string: imageURL) else { return }
+//        let urlRequest = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
+//            guard let data = data else { return }
+//            let image = UIImage(data: data)
+//            DispatchQueue.main.async { [weak self] in
+//                self?.seriesImageView.image = image
+//            }
+//        }.resume()
+//    }
 }
 

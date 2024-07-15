@@ -191,9 +191,9 @@
 		2C1244162C2375A600F806C7 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				2C1244182C2375C200F806C7 /* Request.swift */,
 				2C1242722C235D4B00F806C7 /* NetworkClient.swift */,
 				2C12441A2C2375F600F806C7 /* RequestBuilder.swift */,
-				2C1244182C2375C200F806C7 /* Request.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -402,8 +402,8 @@
 		ACC8FB302ACC5F00008E34F0 /* Netflix App */ = {
 			isa = PBXGroup;
 			children = (
-				2C1242712C235D3700F806C7 /* Network */,
 				ACCE919A2AE1BDBE00ED44B5 /* Resources */,
+				2C1242712C235D3700F806C7 /* Network */,
 				ACC8FB6A2ACDA5E4008E34F0 /* Likes */,
 				AC510E222B0FD6E10044E8E6 /* SeriesCard */,
 				ACC8FB612ACC6B16008E34F0 /* Main */,

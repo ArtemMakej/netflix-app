@@ -13,6 +13,7 @@ protocol IMainPresenter {
     func cell(for indexPath: IndexPath) -> MainScreenCell
     func refreshControlDidStart()
     func userDidScrollToPageEnd()
+    func didConfigureCell(_ indexPath: IndexPath)
 }
 
 final class MainPresenter: IMainPresenter {
@@ -55,6 +56,23 @@ final class MainPresenter: IMainPresenter {
         canMakeNewRequest = false
         loadNetflixTvShows(page: pageNumber) { [weak self] _ in
             self?.canMakeNewRequest = true
+        }
+    }
+    
+    func didConfigureCell(_ indexPath: IndexPath) {
+        let cell = cell(for: indexPath)
+        switch cell {
+        case let .tvShow(model):
+            Task {
+                do {
+                    let data = try await netflixService.loadImage(imageURL: model.img.url)
+                    await MainActor.run { [weak self] in
+                        self?.view?.updateNetflixCell(imageData: data, indexPath: indexPath)
+                    }
+                } catch {
+                    print("🔥 Error: ", error)
+                }
+            }
         }
     }
     

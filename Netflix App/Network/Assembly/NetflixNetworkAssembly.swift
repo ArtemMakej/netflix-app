@@ -2,7 +2,7 @@
 //  NetflixNetworkAssembly.swift
 //  Netflix App
 //
-//  Created by Ivan Glushko on 19.06.2024.
+//  Created by Artem Mackei on 19.06.2024.
 //
 
 import Foundation
