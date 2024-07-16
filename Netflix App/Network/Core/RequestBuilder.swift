@@ -12,7 +12,6 @@ protocol IRequestBuilder {
     func buildPostRequest<T: Encodable>(url: URL, headers: [String: String], data: T) throws -> IRequest
 }
 
-
 final class RequestBuilder: IRequestBuilder {
     private let jsonEncoder: JSONEncoder
     // MARK: - Init
@@ -26,7 +25,7 @@ final class RequestBuilder: IRequestBuilder {
         return Request(url: url, method: .GET, headers: headers, body: nil)
     }
     
-    func buildPostRequest<T>(url: URL, headers: [String : String], data: T) throws -> IRequest where T : Encodable {
+    func buildPostRequest<T>(url: URL, headers: [String : String], data: T) throws -> IRequest where T: Encodable {
         let body = try jsonEncoder.encode(data)
         return Request(url: url, method: .POST, headers: headers, body: body)
     }
