@@ -12,6 +12,7 @@ protocol INetflixNetworkAssembly {
 }
 
 final class NetflixNetworkAssembly: INetflixNetworkAssembly {
+    // MARK: - Properties
     private let baseURL = URL(string: "https://netflix-list-rust.fly.dev")!
     private let jsonEncoder = JSONEncoder()
     private lazy var jsonDecoder = assembleJsonDecoder()

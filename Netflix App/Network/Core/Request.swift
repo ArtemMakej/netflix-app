@@ -15,15 +15,15 @@ enum HTTPMethod: String {
     case POST
 }
 
-
 struct Request: IRequest {
+    // MARK: - Properties
     var url: URL
     let method: HTTPMethod
     let headers: [String: String]
     let body: Data?
     
     func toUrlRequest() -> URLRequest {
-    var urlRequest = URLRequest(url: url)
+        var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body
         

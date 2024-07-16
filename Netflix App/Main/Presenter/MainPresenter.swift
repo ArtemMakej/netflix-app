@@ -17,14 +17,13 @@ protocol IMainPresenter {
 }
 
 final class MainPresenter: IMainPresenter {
-    
+    // MARK: - Properties
     weak var view: IMainView?
     private let netflixService: INetflixService
-    
     private var cells: [MainScreenCell] = []
     private var pageNumber = 1
     private var canMakeNewRequest = true
-    
+    // MARK: - Init
     init(netflixService: INetflixService) {
         self.netflixService = netflixService
     }

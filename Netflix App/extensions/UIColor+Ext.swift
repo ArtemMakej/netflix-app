@@ -10,17 +10,12 @@ import UIKit
 extension UIColor {
     
     struct Dynamic {
-        
         let light: UIColor
         let dark: UIColor
-        
-        //получаем текущее значение цвета
         var color: UIColor {
             UIColor.dynamicColor(dynamic: self)
         }
-        
         // MARK: - Static
-        
         static let appBackground = Dynamic(
             light: .white,
             dark: UIColor(red: 24/255, green: 29/255, blue: 37/255, alpha: 1)
@@ -41,7 +36,6 @@ extension UIColor {
         )
         
         static let stackViewBackgroundColor = Dynamic(
-            
             light: UIColor(
                 red: 239/255,
                 green: 246/255,
@@ -57,7 +51,6 @@ extension UIColor {
             ))
         
         static let backgroundColor = Dynamic(
-            
             light:UIColor(
                 red: 239/255,
                 green: 246/255,
@@ -65,7 +58,6 @@ extension UIColor {
                 alpha: 1
             ),
             dark: UIColor(
-                
                 red: 35/255,
                 green: 38/255,
                 blue: 46/255,
@@ -106,10 +98,9 @@ extension UIColor {
 }
 
 extension UIColor {
-    
+    // MARK: - Static
     static func dynamicColor(dynamic: Dynamic) -> UIColor {
-        //if @backDeployed(before: iOS 13.0, *) {
-       if #available(iOS 13.0, *) {
+        if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {
                 $0.userInterfaceStyle == .dark ? dynamic.dark : dynamic.light
             })

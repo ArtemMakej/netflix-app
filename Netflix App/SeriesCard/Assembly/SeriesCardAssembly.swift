@@ -12,6 +12,7 @@ protocol ISeriesCardAssembly {
 }
 
 final class SeriesCardAssembly: ISeriesCardAssembly {
+    
     func assemble(id: String, netflixShortModel: NetflixShortModel) -> UIViewController {
         let presenter = SeriesCardPresenter(id: id, netflixShortModel: netflixShortModel)
         let viewcontroller = SeriesCardViewController(presenter: presenter)

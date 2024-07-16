@@ -8,31 +8,27 @@
 import UIKit
 
 final class LikesCell: UICollectionViewCell {
-    
+    // MARK: - Properties
     static let id = "LikesCell"
+    var onLikeTap: (() -> Void)?
     private let seriesLikeLabel = UILabel()
     private let seriesLikeImageView = UIImageView()
     private let blurLikeImageView = UIImageView()
     private let likeButton = UIButton()
-    var onLikeTap: (() -> Void)?
-    
-    
     private let blurLikeView: UIVisualEffectView = {
         let view = UIVisualEffectView()
         view.clipsToBounds = true
         return view
     }()
-    
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        //backgroundColor = .lightGray
         setupView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     func configure(model: NetflixFull) {
         seriesLikeLabel.text = model.title
@@ -52,13 +48,12 @@ final class LikesCell: UICollectionViewCell {
     func setupView() {
         contentView.layer.cornerRadius = 10
         contentView.clipsToBounds = true
-
         contentView.addSubview(seriesLikeImageView)
         seriesLikeImageView.contentMode = .scaleAspectFill
         seriesLikeImageView.clipsToBounds = true
         seriesLikeImageView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
-            }
+        }
         contentView.addSubview(blurLikeView)
         let blurEffect = UIBlurEffect(style: .light)
         blurLikeView.effect = blurEffect
@@ -76,17 +71,16 @@ final class LikesCell: UICollectionViewCell {
             maker.height.equalTo(40)
             maker.right.left.equalTo(seriesLikeImageView)
         }
-        
         blurLikeImageView.addSubview(seriesLikeLabel)
         seriesLikeLabel.textColor = .white
         seriesLikeLabel.numberOfLines = 0
         seriesLikeLabel.textAlignment = .center
         seriesLikeLabel.font = Font.avenir(weight: .regular, size: 12)
-            seriesLikeLabel.snp.makeConstraints { maker in
-                maker.top.equalTo(blurLikeImageView).inset(1)
-                maker.height.equalTo(blurLikeImageView)
-                maker.left.equalToSuperview().inset(1)
-                maker.right.equalTo(seriesLikeImageView).inset(1)
+        seriesLikeLabel.snp.makeConstraints { maker in
+            maker.top.equalTo(blurLikeImageView).inset(1)
+            maker.height.equalTo(blurLikeImageView)
+            maker.left.equalToSuperview().inset(1)
+            maker.right.equalTo(seriesLikeImageView).inset(1)
         }
         contentView.addSubview(likeButton)
         likeButton.addTarget(self, action: #selector(tappedLikeButton), for: .touchUpInside)
@@ -98,7 +92,7 @@ final class LikesCell: UICollectionViewCell {
             maker.width.equalTo(25)
         }
     }
-
+    
     @objc func tappedLikeButton() {
         self.onLikeTap?()
     }

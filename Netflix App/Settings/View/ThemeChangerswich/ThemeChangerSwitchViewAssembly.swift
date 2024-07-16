@@ -12,6 +12,7 @@ protocol IThemeChangerSwitchViewAssembly {
 }
 
 final class ThemeChangerSwitchViewAssembly: IThemeChangerSwitchViewAssembly {
+    
     func assemble() -> ThemeChangerSwitch {
         let presenter = ThemeChangerSwitchPresenter(interfaceStyleOverrider: UIApplication.shared)
         let view = ThemeChangerSwitch(presenter: presenter)

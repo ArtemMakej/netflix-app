@@ -20,49 +20,6 @@ final class NetflixCell: UICollectionViewCell {
     private let seriesGenreLabel = UILabel()
     private let gradientLayer = CAGradientLayer()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func configure(model: NetflixShortModel) {
-        seriesNameLabel.text = model.title
-        let more = model.more
-        //        1 способ разбить строку more
-        //        var didFindStopAnchor = false
-        //        var date = ""
-        //        var info = ""
-        //
-        //        for char in more {
-        //            if char == "," {
-        //                didFindStopAnchor = true
-        //                continue
-        //            }
-        //
-        //            if !didFindStopAnchor {
-        //                date += String(char)
-        //            } else {
-        //                info += String(char)
-        //            }
-        //        }
-        
-        /// 2 способ разбить строку more
-        let separetedMore = more.components(separatedBy: [","])
-        let newDate = separetedMore[0]
-        let newInfo = separetedMore[1...]
-        /// заполняем
-        seriesDateLabel.text = newDate
-        seriesGenreLabel.text = Array(newInfo).joined(separator: ",")
-    }
-    
-    func set(image: UIImage?) {
-        seriesImageView.image = image
-    }
-    
     override func prepareForReuse() {
         seriesNameImageView.image = nil
         seriesDateImageView.image = nil
@@ -75,7 +32,6 @@ final class NetflixCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        /// метод позволят отрисовать вью сейчас
         baseView.layoutIfNeeded()
         baseView.layer.insertSublayer(gradientLayer, at: 0)
         switch traitCollection.userInterfaceStyle {
@@ -97,6 +53,29 @@ final class NetflixCell: UICollectionViewCell {
             print("Light")
             GradientBackground.setup(for: baseView, gradientLayer: gradientLayer, theme: .light)
         }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: NetflixShortModel) {
+        seriesNameLabel.text = model.title
+        let more = model.more
+        let separetedMore = more.components(separatedBy: [","])
+        let newDate = separetedMore[0]
+        let newInfo = separetedMore[1...]
+        seriesDateLabel.text = newDate
+        seriesGenreLabel.text = Array(newInfo).joined(separator: ",")
+    }
+    
+    func set(image: UIImage?) {
+        seriesImageView.image = image
     }
     
     private func setupViews() {
@@ -155,7 +134,6 @@ final class NetflixCell: UICollectionViewCell {
         seriesImageView.layer.cornerRadius = 8
         seriesImageView.clipsToBounds =  true
         seriesImageView.backgroundColor = .lightGray
-        
         seriesImageView.snp.makeConstraints { maker in
             maker.left.top.equalTo(baseView)
             maker.height.equalToSuperview()
@@ -197,17 +175,4 @@ final class NetflixCell: UICollectionViewCell {
             maker.top.equalTo(seriesGenreImageView).offset(5)
         }
     }
-    
-//    private func loadImage(imageURL: String) {
-//        guard let url = URL(string: imageURL) else { return }
-//        let urlRequest = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
-//            guard let data = data else { return }
-//            let image = UIImage(data: data)
-//            DispatchQueue.main.async { [weak self] in
-//                self?.seriesImageView.image = image
-//            }
-//        }.resume()
-//    }
 }
-

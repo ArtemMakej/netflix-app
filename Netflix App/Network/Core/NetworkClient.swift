@@ -13,15 +13,14 @@ protocol INetworkClient {
 }
 
 final class NetworkClient: INetworkClient {
-    
     private let session: URLSession
     private let jsonDecoder: JSONDecoder
-    
+    // MARK: - Init
     init(session: URLSession, jsonDecoder: JSONDecoder) {
         self.session = session
         self.jsonDecoder = jsonDecoder
     }
-
+    
     func performJsonDataRequest<Response>(request: IRequest) async throws -> Response where Response : Decodable {
         let (data, _) = try await session.data(for: request.toUrlRequest())
         let decodedResult = try jsonDecoder.decode(Response.self, from: data)

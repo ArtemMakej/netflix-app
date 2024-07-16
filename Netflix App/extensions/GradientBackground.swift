@@ -8,6 +8,7 @@
 import UIKit
 
 struct GradientBackground {
+    // MARK: - Static
     static func setup(for view: UIView, gradientLayer: CAGradientLayer, theme: InterfaceTheme) {
         switch theme {
         case .light:
@@ -18,7 +19,6 @@ struct GradientBackground {
             gradientLayer.locations = [0.0, 1.0]
             gradientLayer.frame = view.bounds
         case .dark:
-            
             let gradientColors: [CGColor] = [
                 UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.3).cgColor,
                 UIColor(red: 60/255, green: 60/255, blue: 67/255, alpha: 0.3).cgColor

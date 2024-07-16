@@ -14,9 +14,7 @@ protocol ISettingsPresenter {
 }
 
 final class SettingsPresenter: ISettingsPresenter {
-    
     // MARK: - Properties
-    
     weak var view: ISettingsView?
     private let email = "artem.makej@bk.ru"
     private let website = "https://github.com/ArtemMakej"

@@ -8,33 +8,24 @@
 import Foundation
 
 protocol ILikedTvShowsService {
-    // все лайки
     func likedTvShows() -> [NetflixFull]
-    // добавляем
     func addLike(tvShow: NetflixFull)
-    // удаляем
     func removeLike(tvShow: NetflixFull)
-    // проверяем есть ли лайк на вью
     func hasLike(tvShowId: String) -> Bool
 }
 
 final class LikedTvShowsService: ILikedTvShowsService {
-    
+    // MARK: - Properties
     static let shared = LikedTvShowsService()
-    
     private static let likedTvShowsKey = "likedTvShows"
-    
     private var shows: [NetflixFull] = []
-    
+    // MARK: - Init
     private init() {
-     // получаем сохраненнные данные data (данные UserDefaults) по ключу
         guard let showsObject = UserDefaults.standard.object(forKey: LikedTvShowsService.likedTvShowsKey) as? Data else { return }
-    // дату преобразовываем в массив [NetflixFull] с помощью метода decode
         guard let showsToStorage = try? JSONDecoder().decode([NetflixFull].self, from: showsObject)
         else {
             return
         }
-        // присваиваем новое значение массиву shows от showsToStorage
         shows = showsToStorage
     }
     
@@ -43,7 +34,7 @@ final class LikedTvShowsService: ILikedTvShowsService {
     }
     
     func addLike(tvShow: NetflixFull) {
-        guard !shows.contains(where: { item in //логическое отрицание shows - false
+        guard !shows.contains(where: { item in
             item.id == tvShow.id
         }) else { return }
         shows.append(tvShow)
@@ -77,8 +68,7 @@ final class LikedTvShowsService: ILikedTvShowsService {
     
     private func saveToUserDefaults() {
         let defaults = UserDefaults.standard
-        // превращаем массив shows в Data
         let data = try! JSONEncoder().encode(shows)
         defaults.set(data, forKey: LikedTvShowsService.likedTvShowsKey)
-     }
+    }
 }

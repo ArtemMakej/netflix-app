@@ -12,6 +12,7 @@ protocol ISettingsAssembly {
 }
 
 final class SettingsAssembly: ISettingsAssembly {
+    
     func assemble() -> UIViewController {
         let presenter = SettingsPresenter()
         let viewcontroller = SettingsViewController(presenter: presenter)

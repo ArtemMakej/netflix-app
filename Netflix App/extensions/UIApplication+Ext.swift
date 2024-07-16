@@ -8,9 +8,7 @@
 import UIKit
 
 protocol InterfaceStyleOverrider {
-    // изменяет текущую тему
     func change(theme: InterfaceTheme)
-    // получить
     func currentTheme() -> InterfaceTheme
 }
 
@@ -22,6 +20,4 @@ extension UIApplication: InterfaceStyleOverrider {
     func currentTheme() -> InterfaceTheme {
         UIApplication.shared.keyWindow!.traitCollection.userInterfaceStyle.toInterfaceTheme()
     }
-    
-    
 }

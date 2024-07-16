@@ -8,10 +8,10 @@
 import UIKit
 
 class ThemeChangerView: UIView {
-    
+    // MARK: - Properties
     private let themeChangerCloudImageView = UIImageView()
     private let themeChangerSwitch: ThemeChangerSwitch
-    
+    // MARK: - Init
     init() {
         self.themeChangerSwitch = ThemeChangerSwitchViewAssembly().assemble()
         super.init(frame: .zero)
@@ -54,4 +54,3 @@ extension ThemeChangerView {
         dark: UIColor(red: 56/255, green: 59/255, blue: 68/255, alpha: 1)
     )
 }
-

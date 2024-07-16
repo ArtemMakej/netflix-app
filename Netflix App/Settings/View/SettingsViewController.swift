@@ -17,21 +17,12 @@ protocol ISettingsView: AnyObject {
 }
 
 final class SettingsViewController: UIViewController {
-    
     // MARK: - Properties
-    
     private let generalStackCoverView = UIView()
     private let aboutStackCoverView = UIView()
-    
     private let settingContentView = UIView()
     private let avatarImageView = UIImageView()
     private let createAvatarButton = UIButton()
-    private lazy var generalStackView = UIStackView(arrangedSubviews: [
-        generalTitleStackView,
-        languageInfoStackView,
-        themeScreenStackView
-    ])
-    
     private let generalTitleStackView = UIStackView()
     private let generalTitleLabel = UILabel()
     private let languageInfoStackView = UIStackView()
@@ -40,14 +31,6 @@ final class SettingsViewController: UIViewController {
     private let themeScreenStackView = UIStackView()
     private let themesScreenLabel = UILabel()
     private let themeChangerView = ThemeChangerView()
-    private lazy var aboutAppStackView = UIStackView(arrangedSubviews: [
-        appTitleStackView,
-        developerInfoStackView,
-        emailInfoStackView,
-        websiteInfoStackView,
-        versionAppStackView
-    ])
-    
     private let appTitleStackView = UIStackView()
     private let aboutAppLabel = UILabel()
     private let developerInfoStackView = UIStackView()
@@ -63,12 +46,23 @@ final class SettingsViewController: UIViewController {
     private let versionAppLabel = UILabel()
     private let numberVersionLabel = UILabel()
     private let presenter: ISettingsPresenter
+    private lazy var aboutAppStackView = UIStackView(arrangedSubviews: [
+        appTitleStackView,
+        developerInfoStackView,
+        emailInfoStackView,
+        websiteInfoStackView,
+        versionAppStackView
+    ])
+    private lazy var generalStackView = UIStackView(arrangedSubviews: [
+        generalTitleStackView,
+        languageInfoStackView,
+        themeScreenStackView
+    ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
     }
-    
     // MARK: - Init
     init(presenter: ISettingsPresenter) {
         self.presenter = presenter
@@ -81,6 +75,7 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: ISettingsView {
+    
     func setupNavigationItem() {
         let navigationTitleColor = UIColor.Dynamic.imageColor.color
         let titleFont = Font.avenir(weight: .bold, size: 17)
@@ -120,6 +115,7 @@ extension SettingsViewController: ISettingsView {
 }
 
 extension SettingsViewController {
+    
     func configure() {
         view.addSubview(settingContentView)
         settingContentView.clipsToBounds = true
@@ -159,7 +155,6 @@ private extension SettingsViewController {
     func сonfigurationGeneralStackView() {
         view.addSubview(generalStackCoverView)
         view.addSubview(generalStackView)
-        
         generalStackView.spacing = 16
         generalStackView.axis = .vertical
         generalStackView.distribution = .fill
@@ -210,7 +205,6 @@ private extension SettingsViewController {
         view.addSubview(aboutAppStackView)
         aboutStackCoverView.layer.cornerRadius = 20
         aboutStackCoverView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
-        
         aboutAppStackView.spacing = 16
         aboutAppStackView.distribution = .fill
         aboutAppStackView.layer.cornerRadius = 20
@@ -225,6 +219,7 @@ private extension SettingsViewController {
             maker.top.equalTo(aboutStackCoverView).offset(16)
             maker.left.right.equalTo(aboutStackCoverView).inset(16)
         }
+        
         appTitleStackView.axis = .horizontal
         appTitleStackView.addArrangedSubview(aboutAppLabel)
         aboutAppLabel.text = "О приложении"

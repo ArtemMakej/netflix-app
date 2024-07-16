@@ -12,6 +12,7 @@ protocol IMainAssembly {
 }
 
 final class MainAssembly: IMainAssembly {
+    
     func assemble(netflixNetworkAssembly: INetflixNetworkAssembly) -> UIViewController {
         let netflixService = netflixNetworkAssembly.assembleNetflixService()
         let presenter = MainPresenter(netflixService: netflixService)

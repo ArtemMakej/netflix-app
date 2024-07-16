@@ -17,13 +17,10 @@ protocol IMainView: AnyObject {
 final class MainViewController: UIViewController {
     
     // MARK: - Properties
-    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
     private var lastContentHeight: CGFloat = 0 as CGFloat
-    
-    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +29,7 @@ final class MainViewController: UIViewController {
         setupNavigationItem()
         setupViews()
     }
-    
+    // MARK: - Init
     init(presenter: IMainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -102,17 +99,17 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
     }
     
-    private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
-        let seriesCardAssembly = SeriesCardAssembly()
-        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
-        navigationController?.pushViewController(seriesCardViewController, animated: true)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard case let .tvShow(model) = presenter.cell(for: indexPath) else {
             return
         }
         showSeriesCard(for: model)
+    }
+    
+    private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
+        let seriesCardAssembly = SeriesCardAssembly()
+        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
+        navigationController?.pushViewController(seriesCardViewController, animated: true)
     }
 }
 

@@ -8,8 +8,8 @@
 import UIKit
 
 final class SeriesCardView: UIView {
+    // MARK: - Properties
     var likeAndDislikeButtonTap: (() -> Void)?
-    // создаем чтобы его можно использовать вне класса
     var playButtonTap: (() -> Void)?
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
@@ -40,7 +40,7 @@ final class SeriesCardView: UIView {
         view.clipsToBounds = true
         return view
     }()
-    
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupScrollView()
@@ -76,26 +76,17 @@ final class SeriesCardView: UIView {
         formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
         formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  \n", normalText: model.actors.joined(separator: ", "))
         formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
-        
         formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
-        //        let separetedGenge = model.genre.joined(separator: ", ")
-        //        seriesGenreLabel.text = separetedGenge
-        //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
         formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
     }
     
     private func emojiFlag(countryList: [String]) -> [String] {
-        
         guard !countryList.isEmpty else { return [] }
-        
         var flagEmojis = [String]()
         
         for country in countryList {
-            
             var flagEmoji = ""
-            
             switch country.lowercased() {
-                
             case "США".lowercased():
                 flagEmoji = "🇺🇸"
             case "Франция".lowercased():
@@ -133,8 +124,10 @@ final class SeriesCardView: UIView {
             default:
                 flagEmoji = "❓"
             }
+            
             flagEmojis.append(country + " " + flagEmoji)
         }
+        
         return flagEmojis
     }
     
@@ -411,13 +404,13 @@ final class SeriesCardView: UIView {
     }
     
     @objc func playButton() {
-        // опциональный клоужер - ставим вопрос
         playButtonTap?()
         print("Play")
     }
 }
 
 extension SeriesCardView {
+    
     func loadImageSeriesCard(imageURL: String?) {
         guard let imageURL = imageURL else { return }
         guard let url = URL(string: imageURL) else { return }
