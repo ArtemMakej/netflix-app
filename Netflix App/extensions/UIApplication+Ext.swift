@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// MARK: - InterfaceStyleOverrider
 protocol InterfaceStyleOverrider {
     func change(theme: InterfaceTheme)
     func currentTheme() -> InterfaceTheme

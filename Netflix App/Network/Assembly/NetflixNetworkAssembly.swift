@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - INetflixNetworkAssembly
 protocol INetflixNetworkAssembly {
     func assembleNetflixService() -> INetflixService
 }

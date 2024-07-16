@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - ILikedTvShowsService
 protocol ILikedTvShowsService {
     func likedTvShows() -> [NetflixFull]
     func addLike(tvShow: NetflixFull)

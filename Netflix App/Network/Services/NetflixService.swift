@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - INetflixService
 protocol INetflixService {
     func getNetflix(page: Int) async throws -> [NetflixShortModel]
     func getNetflixFull() async throws -> NetflixFull

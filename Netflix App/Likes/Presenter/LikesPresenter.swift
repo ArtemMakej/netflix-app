@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - ILikesPresenter
 protocol ILikesPresenter {
     func viewDidLoad()
     func viewWillAppear()

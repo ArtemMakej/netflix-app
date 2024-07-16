@@ -8,6 +8,7 @@
 import UIKit
 
 protocol ILikesView: AnyObject {
+    // MARK: - ILikesView
     func reloadData()
     func showEmptyLike(indexPath: IndexPath)
     func showFilledLike(indexPath: IndexPath)

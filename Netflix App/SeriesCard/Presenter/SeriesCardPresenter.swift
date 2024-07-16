@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - ISeriesCardPresenter
 protocol ISeriesCardPresenter {
     func viewDidLoad()
     func viewWillAppear()

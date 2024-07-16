@@ -5,7 +5,7 @@
 //  Created by Artem Mackei on 19.06.2024.
 //
 import Foundation
-
+// MARK: - IRequest
 protocol IRequest {
     func toUrlRequest() -> URLRequest
 }

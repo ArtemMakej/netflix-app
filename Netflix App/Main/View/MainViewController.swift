@@ -7,7 +7,7 @@
 
 import SnapKit
 import UIKit
-
+// MARK: - IMainView
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()

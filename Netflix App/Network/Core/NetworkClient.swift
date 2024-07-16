@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - INetworkClient
 protocol INetworkClient {
     func performJsonDataRequest<Response: Decodable>(request: IRequest) async throws -> Response
     func performDataRequest(request: IRequest) async throws -> Data 

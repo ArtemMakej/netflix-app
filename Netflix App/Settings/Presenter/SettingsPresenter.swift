@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+    // MARK: - ISettingsPresenter
 protocol ISettingsPresenter {
     func viewDidLoad()
     func didTapLinkToWebSite()

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// MARK: - ISettingsAssembly
 protocol ISettingsAssembly {
     func assemble() -> UIViewController
 }

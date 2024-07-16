@@ -9,6 +9,7 @@ import UIKit
 import SafariServices
 import MessageUI
 
+// MARK: - ISettingsView
 protocol ISettingsView: AnyObject {
     func setupNavigationItem()
     func setupView(email: String, website: String)

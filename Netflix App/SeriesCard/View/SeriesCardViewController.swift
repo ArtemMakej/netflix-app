@@ -7,7 +7,7 @@
 
 import UIKit
 import SafariServices
-
+// MARK: - ISeriesCardView
 protocol ISeriesCardView: AnyObject {
     func updateView(with tvShowModel: NetflixFull)
     func showSafariViewController(url: String)

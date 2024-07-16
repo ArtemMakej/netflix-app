@@ -12,8 +12,8 @@ enum HorizontalPosition {
     case right
 }
 
+// MARK: - IThemeChangerSwitchPresenter
 protocol IThemeChangerSwitchPresenter {
-    
     func switchMovedTo(position: HorizontalPosition)
     func viewLayotSubviews()
 }

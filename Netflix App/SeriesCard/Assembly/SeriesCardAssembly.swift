@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// MARK: - ISeriesCardAssembly
 protocol ISeriesCardAssembly {
     func assemble(id: String, netflixShortModel: NetflixShortModel) -> UIViewController
 }

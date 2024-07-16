@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - IRequestBuilder
 protocol IRequestBuilder {
     func buildGetRequest(url: URL, headers: [String: String], queryItems: [URLQueryItem]) -> IRequest
     func buildPostRequest<T: Encodable>(url: URL, headers: [String: String], data: T) throws -> IRequest

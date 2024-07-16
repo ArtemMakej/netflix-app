@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - IMainPresenter
 protocol IMainPresenter {
     func viewDidLoad()
     func numberOfCells() -> Int

@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+    // MARK: - IThemeChangerSwitchView
 protocol IThemeChangerSwitchView: AnyObject {
     func set(position: HorizontalPosition)
 }
