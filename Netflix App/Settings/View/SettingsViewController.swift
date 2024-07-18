@@ -19,6 +19,7 @@ protocol ISettingsView: AnyObject {
 
 final class SettingsViewController: UIViewController {
     // MARK: - Properties
+    private let imagePickerController = ImagePickerController()
     private let generalStackCoverView = UIView()
     private let aboutStackCoverView = UIView()
     private let settingContentView = UIView()
@@ -129,6 +130,7 @@ extension SettingsViewController {
         settingContentView.addSubview(createAvatarButton)
         createAvatarButton.clipsToBounds = true
         createAvatarButton.contentMode = .scaleAspectFill
+        createAvatarButton.layer.cornerRadius = 50
         let createAvatar = UIImage(named: "createAvatar")
         createAvatarButton.setImage(createAvatar, for: .normal)
         createAvatarButton.snp.makeConstraints { maker in
@@ -136,6 +138,7 @@ extension SettingsViewController {
             maker.top.equalTo(settingContentView).inset(50)
             maker.height.width.equalTo(100)
         }
+        createAvatarButton.addTarget(self, action: #selector(tappedAvatarButton), for: .touchUpInside)
         
         settingContentView.addSubview(avatarImageView)
         avatarImageView.clipsToBounds = true
@@ -281,5 +284,22 @@ private extension SettingsViewController {
     
     @objc func tappedLinkToWebsite() {
         presenter.didTapLinkToWebSite()
+    }
+    
+    @objc func tappedAvatarButton() {
+        present(imagePickerController.getViewController(delegate: self), animated: true)
+    }
+}
+
+extension SettingsViewController: UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+   
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
+        createAvatarButton.setImage(image, for: .normal)
     }
 }

@@ -8,6 +8,8 @@
 	<array>
 		<string>Avenir Next.ttc</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow to use camera for avatar</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

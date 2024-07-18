@@ -51,6 +51,7 @@
 		ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */; };
 		ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */; };
 		ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */; };
+		ACCA6F722C48527F00DD60D6 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCA6F712C48527F00DD60D6 /* ImagePickerController.swift */; };
 		ACCE91972ADF284900ED44B5 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */; };
 		ACCE919D2AE1BE2D00ED44B5 /* Avenir Next.ttc in Resources */ = {isa = PBXBuildFile; fileRef = ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */; };
 		ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE919E2AE1C15C00ED44B5 /* Font.swift */; };
@@ -129,6 +130,7 @@
 		ACC8FB712ACEECE9008E34F0 /* LikesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesAssembly.swift; sourceTree = "<group>"; };
 		ACC8FB732ACEED09008E34F0 /* LikesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
 		ACC8FB752ACEED23008E34F0 /* LikesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesPresenter.swift; sourceTree = "<group>"; };
+		ACCA6F712C48527F00DD60D6 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		ACCE91962ADF284900ED44B5 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		ACCE919E2AE1C15C00ED44B5 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			children = (
 				ACBAD4A92BD9A6320082983B /* ThemeChangerswich */,
 				ACC8FB6D2ACDA66B008E34F0 /* SettingsViewController.swift */,
+				ACCA6F712C48527F00DD60D6 /* ImagePickerController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				ACC8FB632ACC6B7D008E34F0 /* MainPresenter.swift in Sources */,
 				ACC8FB722ACEECE9008E34F0 /* LikesAssembly.swift in Sources */,
 				AC79340D2B274D5B0005C003 /* SeriesCardView.swift in Sources */,
+				ACCA6F722C48527F00DD60D6 /* ImagePickerController.swift in Sources */,
 				ACC8FB342ACC5F00008E34F0 /* SceneDelegate.swift in Sources */,
 				ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */,
 				2C6128B82BCC670900E94885 /* ThemeChangerSwitchPresenter.swift in Sources */,
@@ -959,6 +963,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S597543FQ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -986,6 +991,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = S597543FQ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix App/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
