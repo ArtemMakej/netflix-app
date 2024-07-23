@@ -133,7 +133,7 @@ final class LikesViewController: UIViewController {
         favoritesLabel.numberOfLines = 0
         favoritesLabel.textAlignment = .left
         favoritesLabel.font = Font.avenir(weight: .bold, size: 42)
-        favoritesLabel.text = "Избранное"
+        favoritesLabel.text = LocalizedStrings.favoritesLabel.localizeString
         favoritesLabel.textColor = .white
         favoritesLabel.snp.makeConstraints { maker in
             maker.bottom.equalTo(favoritesImageView.snp.bottom)

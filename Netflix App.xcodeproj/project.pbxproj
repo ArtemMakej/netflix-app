@@ -27,6 +27,8 @@
 		AC510E2B2B1507E70044E8E6 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */; };
 		AC79340B2B274D0E0005C003 /* NetflixFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC79340A2B274D0E0005C003 /* NetflixFull.swift */; };
 		AC79340D2B274D5B0005C003 /* SeriesCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC79340C2B274D5B0005C003 /* SeriesCardView.swift */; };
+		AC7E1DF02C4E87EF00DE7E54 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AC7E1DEF2C4E87EF00DE7E54 /* Localizable.xcstrings */; };
+		AC7E1DF22C4EE73300DE7E54 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E1DF12C4EE73300DE7E54 /* LocalizedStrings.swift */; };
 		ACA83B672BBEEBC80021C473 /* ThemeChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */; };
 		ACA83B6B2BBF33AE0021C473 /* ThemeChangerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */; };
 		ACAAFE622B7BC69500D9E4A9 /* LikesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACAAFE612B7BC69500D9E4A9 /* LikesCell.swift */; };
@@ -102,6 +104,8 @@
 		AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GradientBackground.swift; path = "Netflix App/extensions/GradientBackground.swift"; sourceTree = SOURCE_ROOT; };
 		AC79340A2B274D0E0005C003 /* NetflixFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixFull.swift; sourceTree = "<group>"; };
 		AC79340C2B274D5B0005C003 /* SeriesCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesCardView.swift; sourceTree = "<group>"; };
+		AC7E1DEF2C4E87EF00DE7E54 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		AC7E1DF12C4EE73300DE7E54 /* LocalizedStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalizedStrings.swift; path = "Netflix App/extensions/LocalizedStrings.swift"; sourceTree = SOURCE_ROOT; };
 		ACA83B662BBEEBC80021C473 /* ThemeChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerView.swift; sourceTree = "<group>"; };
 		ACA83B6A2BBF33AE0021C473 /* ThemeChangerSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerSwitch.swift; sourceTree = "<group>"; };
 		ACAAFE612B7BC69500D9E4A9 /* LikesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesCell.swift; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 		ACBB56972AD964010040660E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AC7E1DEF2C4E87EF00DE7E54 /* Localizable.xcstrings */,
+				AC7E1DF12C4EE73300DE7E54 /* LocalizedStrings.swift */,
 				2C2D08D02BCED98A009ADCA1 /* UIUserInterfaceStyle+Ext.swift */,
 				ACBB56982AD964C50040660E /* UIColor+Ext.swift */,
 				AC510E2A2B1507E70044E8E6 /* GradientBackground.swift */,
@@ -597,6 +603,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = ACC8FB252ACC5F00008E34F0;
 			productRefGroup = ACC8FB2F2ACC5F00008E34F0 /* Products */;
@@ -616,6 +623,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ACCE919D2AE1BE2D00ED44B5 /* Avenir Next.ttc in Resources */,
+				AC7E1DF02C4E87EF00DE7E54 /* Localizable.xcstrings in Resources */,
 				ACC8FB3E2ACC5F00008E34F0 /* LaunchScreen.storyboard in Resources */,
 				ACC8FB3B2ACC5F00008E34F0 /* Assets.xcassets in Resources */,
 				ACC8FB392ACC5F00008E34F0 /* Main.storyboard in Resources */,
@@ -778,6 +786,7 @@
 				ACBB56992AD964C50040660E /* UIColor+Ext.swift in Sources */,
 				2C6128B82BCC670900E94885 /* ThemeChangerSwitchPresenter.swift in Sources */,
 				2C12441D2C23767200F806C7 /* NetflixNetworkAssembly.swift in Sources */,
+				AC7E1DF22C4EE73300DE7E54 /* LocalizedStrings.swift in Sources */,
 				AC4FE4C62AD71B7800010085 /* MainScreenCell.swift in Sources */,
 				ACCE919F2AE1C15C00ED44B5 /* Font.swift in Sources */,
 				ACC8FB762ACEED23008E34F0 /* LikesPresenter.swift in Sources */,
@@ -845,6 +854,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -905,6 +915,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -974,7 +985,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 78.28.36;
 				PRODUCT_BUNDLE_IDENTIFIER = "artem.makej-bk.ru.Netflix-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -1002,7 +1013,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 78.28.36;
 				PRODUCT_BUNDLE_IDENTIFIER = "artem.makej-bk.ru.Netflix-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

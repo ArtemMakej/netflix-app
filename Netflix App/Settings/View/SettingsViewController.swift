@@ -19,6 +19,7 @@ protocol ISettingsView: AnyObject {
 
 final class SettingsViewController: UIViewController {
     // MARK: - Properties
+    private let versionApp = "CFBundleShortVersionString"
     private let imagePickerController = ImagePickerController()
     private let generalStackCoverView = UIView()
     private let aboutStackCoverView = UIView()
@@ -116,7 +117,7 @@ extension SettingsViewController: ISettingsView {
     }
 }
 
-extension SettingsViewController {
+private extension SettingsViewController {
     
     func configure() {
         view.addSubview(settingContentView)
@@ -178,25 +179,25 @@ private extension SettingsViewController {
         
         generalTitleStackView.axis = .horizontal
         generalTitleStackView.addArrangedSubview(generalTitleLabel)
-        generalTitleLabel.text = "Общие"
+        generalTitleLabel.text = LocalizedStrings.generalTitleLabel.localizeString
         generalTitleLabel.font = Font.avenir(weight: .bold, size: 17)
         
         languageInfoStackView.axis = .horizontal
         languageInfoStackView.spacing = 20
         languageInfoStackView.distribution = .fill
         languageInfoStackView.addArrangedSubview(languageInfoLabel)
-        languageInfoLabel.text = "Язык"
+        languageInfoLabel.text = LocalizedStrings.languageInfoLabel.localizeString
         languageInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         languageInfoStackView.addArrangedSubview(languageNameLabel)
-        languageNameLabel.text = "Русский🔎"
+        languageNameLabel.text = LocalizedStrings.languageNameLabel.localizeString
         languageNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         themeScreenStackView.axis = .horizontal
         themeScreenStackView.distribution = .fill
         themeScreenStackView.addArrangedSubview(themesScreenLabel)
         themeScreenStackView.addArrangedSubview(themeChangerView)
-        themesScreenLabel.text = "Тема"
+        themesScreenLabel.text = LocalizedStrings.themesScreenLabel.localizeString
         themesScreenLabel.font = Font.avenir(weight: .regular, size: 14)
         themeChangerView.snp.makeConstraints { maker in
             maker.width.equalTo(226)
@@ -226,17 +227,17 @@ private extension SettingsViewController {
         
         appTitleStackView.axis = .horizontal
         appTitleStackView.addArrangedSubview(aboutAppLabel)
-        aboutAppLabel.text = "О приложении"
+        aboutAppLabel.text = LocalizedStrings.aboutAppLabel.localizeString
         aboutAppLabel.font = Font.avenir(weight: .bold, size: 17)
         
         developerInfoStackView.axis = .horizontal
         developerInfoStackView.spacing = 20
         developerInfoStackView.addArrangedSubview(developerInfoLabel)
-        developerInfoLabel.text = "Разработчик"
+        developerInfoLabel.text = LocalizedStrings.developerInfoLabel.localizeString
         developerInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         developerInfoStackView.addArrangedSubview(developerFullNameLabel)
-        developerFullNameLabel.text = "Макей Артём"
+        developerFullNameLabel.text = LocalizedStrings.developerFullNameLabel.localizeString
         developerFullNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         emailInfoStackView.axis = .horizontal
@@ -256,7 +257,7 @@ private extension SettingsViewController {
         websiteInfoStackView.spacing = 20
         websiteInfoStackView.axis = .horizontal
         websiteInfoStackView.addArrangedSubview(websiteInfoLabel)
-        websiteInfoLabel.text = "Website"
+        websiteInfoLabel.text = LocalizedStrings.websiteInfoLabel.localizeString
         websiteInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
@@ -270,11 +271,11 @@ private extension SettingsViewController {
         versionAppStackView.axis = .horizontal
         versionAppStackView.spacing = 20
         versionAppStackView.addArrangedSubview(versionAppLabel)
-        versionAppLabel.text = "Version"
+        versionAppLabel.text = LocalizedStrings.versionAppLabel.localizeString
         versionAppLabel.font = Font.avenir(weight: .regular, size: 14)
         versionAppStackView.addArrangedSubview(numberVersionLabel)
         
-        numberVersionLabel.text = "1.0.0"
+        numberVersionLabel.text = getVersion()
         numberVersionLabel.font = Font.avenir(weight: .regular, size: 14)
     }
     
@@ -288,6 +289,12 @@ private extension SettingsViewController {
     
     @objc func tappedAvatarButton() {
         present(imagePickerController.getViewController(delegate: self), animated: true)
+    }
+    
+    func getVersion() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary[versionApp] as! String
+        return "\(version)"
     }
 }
 

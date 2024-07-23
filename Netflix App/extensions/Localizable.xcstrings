@@ -1,0 +1,193 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "About app" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O приложении"
+          }
+        }
+      }
+    },
+    "Actors: \n" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Актëры:"
+          }
+        }
+      }
+    },
+    "Country: \n" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Страна:"
+          }
+        }
+      }
+    },
+    "Developer" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Разработчик"
+          }
+        }
+      }
+    },
+    "Duration: " : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Длительность:"
+          }
+        }
+      }
+    },
+    "Favorites" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Избранное"
+          }
+        }
+      }
+    },
+    "General" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Общие"
+          }
+        }
+      }
+    },
+    "Genre: \n" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Жанр:"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык"
+          }
+        }
+      }
+    },
+    "Makey Artyom" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Макей Артём"
+          }
+        }
+      }
+    },
+    "Rating imdb: " : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рейтинг imdb:"
+          }
+        }
+      }
+    },
+    "Rating kinopoisk: " : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Рейтинг kinopoisk:"
+          }
+        }
+      }
+    },
+    "Russian🔎" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Русский🔎"
+          }
+        }
+      }
+    },
+    "Start show: " : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт показа:"
+          }
+        }
+      }
+    },
+    "The Lists: \n" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Список"
+          }
+        }
+      }
+    },
+    "Theme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тема"
+          }
+        }
+      }
+    },
+    "Version" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Версия"
+          }
+        }
+      }
+    },
+    "Website" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Веб-сайт"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

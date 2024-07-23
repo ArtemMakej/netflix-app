@@ -70,14 +70,22 @@ final class SeriesCardView: UIView {
         loadImageSeriesCard(imageURL: imageUrl)
         seriesTitleLabel.text = model.title
         seriesDescriptionLabel.text = model.description
-        formatLabelForBoldText(label: seriesDurationLabel, boldText: "Длительность: ", normalText: model.duration)
-        formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: "Старт показа: ", normalText: model.presented_at_date)
-        formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: "Рейтинг imdb: ", normalText: model.rating.imbd)
-        formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
-        formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  \n", normalText: model.actors.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
-        formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
+        let durationTitleLabel = LocalizedStrings.durationTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesDurationLabel, boldText: durationTitleLabel, normalText: model.duration)
+        let startShowTitleLabel = LocalizedStrings.startShowTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: startShowTitleLabel, normalText: model.presented_at_date)
+        let ratingimdbTitleLabel = LocalizedStrings.ratingimdbTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: ratingimdbTitleLabel, normalText: model.rating.imbd)
+        let ratingkinopoiskTitleLabel = LocalizedStrings.ratingkinopoiskTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: ratingkinopoiskTitleLabel, normalText: model.rating.kinopoisk)
+        let actorsTitleLabel = LocalizedStrings.actorsTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesActorsLabel, boldText: actorsTitleLabel, normalText: model.actors.joined(separator: ", "))
+        let countryTitleLabel = LocalizedStrings.countryTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesCountryLabel, boldText: countryTitleLabel, normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
+        let listsTitleLabel = LocalizedStrings.theListsTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesInListsLabel, boldText: listsTitleLabel, normalText: model.in_lists.joined(separator: ", "))
+        let genreTitleLabel = LocalizedStrings.genreTitleLabel.localizeString
+        formatLabelForBoldText(label: seriesGenreLabel, boldText: genreTitleLabel, normalText: model.genre.joined(separator: ", "))
     }
     
     private func emojiFlag(countryList: [String]) -> [String] {
