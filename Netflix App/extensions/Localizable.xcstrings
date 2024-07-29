@@ -17,7 +17,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Актëры: \\n"
+            "value" : "Актëры: \n"
           }
         }
       }
@@ -27,7 +27,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Страна:  \\n"
+            "value" : "Страна: \n"
           }
         }
       }
@@ -48,7 +48,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Длительность:"
+            "value" : "Длительность:  "
           }
         }
       }
@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Жанр: \\n"
+            "value" : "Жанр: \n"
           }
         }
       }
@@ -112,7 +112,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Рейтинг imdb:"
+            "value" : "Рейтинг imdb:  "
           }
         }
       }
@@ -122,7 +122,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Рейтинг kinopoisk:"
+            "value" : "Рейтинг kinopoisk:  "
           }
         }
       }
@@ -142,7 +142,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Старт показа:"
+            "value" : "Старт показа:  "
           }
         }
       }
@@ -152,7 +152,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Список: \\n"
+            "value" : "Список: \n"
           }
         }
       }
