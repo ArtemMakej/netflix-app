@@ -11,6 +11,7 @@ final class SeriesCardView: UIView {
     // MARK: - Properties
     var likeAndDislikeButtonTap: (() -> Void)?
     var playButtonTap: (() -> Void)?
+    
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
     private let seriesFullImageView = UIImageView()
@@ -35,11 +36,8 @@ final class SeriesCardView: UIView {
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
-    private let blurView: UIVisualEffectView = {
-        let view  = UIVisualEffectView()
-        view.clipsToBounds = true
-        return view
-    }()
+    private let blurView = UIVisualEffectView()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -232,8 +230,9 @@ final class SeriesCardView: UIView {
         seriesLikeAndDislikeButton.tintColor = UIColor.Dynamic.imageColor.color
         let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
+        let buttonCenterXOffset = (likeandDislikeImage?.size.width ?? .zero) / 2 + 5
         seriesLikeAndDislikeButton.snp.makeConstraints { maker in
-            maker.left.equalTo(self.safeAreaLayoutGuide.snp.left).inset(144)
+            maker.centerX.equalToSuperview().offset(-buttonCenterXOffset)
             maker.top.equalTo(seriesFullImageView.safeAreaLayoutGuide.snp.bottom).inset(-15)
         }
         
@@ -243,7 +242,7 @@ final class SeriesCardView: UIView {
         seriesPlayButton.setImage(playImage, for: .normal)
         seriesPlayButton.addTarget(self, action: #selector(playButton), for: .touchUpInside)
         seriesPlayButton.snp.makeConstraints { maker in
-            maker.left.equalTo(seriesLikeAndDislikeButton.snp.right).inset(-30)
+            maker.centerX.equalToSuperview().offset(buttonCenterXOffset)
             maker.top.equalTo(seriesLikeAndDislikeButton)
             maker.size.equalTo(seriesLikeAndDislikeButton)
         }
