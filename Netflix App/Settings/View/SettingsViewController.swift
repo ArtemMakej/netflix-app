@@ -179,25 +179,25 @@ private extension SettingsViewController {
         
         generalTitleStackView.axis = .horizontal
         generalTitleStackView.addArrangedSubview(generalTitleLabel)
-        generalTitleLabel.text = LocalizedStrings.generalTitleLabel.localizeString
+        generalTitleLabel.text = Loc.generalTitleLabel
         generalTitleLabel.font = Font.avenir(weight: .bold, size: 17)
         
         languageInfoStackView.axis = .horizontal
         languageInfoStackView.spacing = 20
         languageInfoStackView.distribution = .fill
         languageInfoStackView.addArrangedSubview(languageInfoLabel)
-        languageInfoLabel.text = LocalizedStrings.languageInfoLabel.localizeString
+        languageInfoLabel.text = Loc.languageInfoLabel
         languageInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         languageInfoStackView.addArrangedSubview(languageNameLabel)
-        languageNameLabel.text = LocalizedStrings.languageNameLabel.localizeString
+        languageNameLabel.text = Loc.languageNameLabel
         languageNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         themeScreenStackView.axis = .horizontal
         themeScreenStackView.distribution = .fill
         themeScreenStackView.addArrangedSubview(themesScreenLabel)
         themeScreenStackView.addArrangedSubview(themeChangerView)
-        themesScreenLabel.text = LocalizedStrings.themesScreenLabel.localizeString
+        themesScreenLabel.text = Loc.themesScreenLabel
         themesScreenLabel.font = Font.avenir(weight: .regular, size: 14)
         themeChangerView.snp.makeConstraints { maker in
             maker.width.equalTo(226)
@@ -227,17 +227,17 @@ private extension SettingsViewController {
         
         appTitleStackView.axis = .horizontal
         appTitleStackView.addArrangedSubview(aboutAppLabel)
-        aboutAppLabel.text = LocalizedStrings.aboutAppLabel.localizeString
+        aboutAppLabel.text = Loc.aboutAppLabel
         aboutAppLabel.font = Font.avenir(weight: .bold, size: 17)
         
         developerInfoStackView.axis = .horizontal
         developerInfoStackView.spacing = 20
         developerInfoStackView.addArrangedSubview(developerInfoLabel)
-        developerInfoLabel.text = LocalizedStrings.developerInfoLabel.localizeString
+        developerInfoLabel.text = Loc.developerInfoLabel
         developerInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         developerInfoStackView.addArrangedSubview(developerFullNameLabel)
-        developerFullNameLabel.text = LocalizedStrings.developerFullNameLabel.localizeString
+        developerFullNameLabel.text = Loc.developerFullNameLabel
         developerFullNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         emailInfoStackView.axis = .horizontal
@@ -257,7 +257,7 @@ private extension SettingsViewController {
         websiteInfoStackView.spacing = 20
         websiteInfoStackView.axis = .horizontal
         websiteInfoStackView.addArrangedSubview(websiteInfoLabel)
-        websiteInfoLabel.text = LocalizedStrings.websiteInfoLabel.localizeString
+        websiteInfoLabel.text = Loc.websiteInfoLabel
         websiteInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
@@ -271,7 +271,7 @@ private extension SettingsViewController {
         versionAppStackView.axis = .horizontal
         versionAppStackView.spacing = 20
         versionAppStackView.addArrangedSubview(versionAppLabel)
-        versionAppLabel.text = LocalizedStrings.versionAppLabel.localizeString
+        versionAppLabel.text = Loc.versionAppLabel
         versionAppLabel.font = Font.avenir(weight: .regular, size: 14)
         versionAppStackView.addArrangedSubview(numberVersionLabel)
         
@@ -299,14 +299,11 @@ private extension SettingsViewController {
 }
 
 extension SettingsViewController: UINavigationControllerDelegate & UIImagePickerControllerDelegate {
-   
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true)
-        
         guard let image = info[.editedImage] as? UIImage else {
             print("No image found")
             return
         }
-        createAvatarButton.setImage(image, for: .normal)
     }
 }

@@ -11,7 +11,7 @@
 	<key>NSCameraUsageDescription</key>
 	<string>Allow to use camera for avatar</string>
 	<key>CFBundleShortVersionString</key>
-	<string>78.28.36</string>
+	<string>1.0.0</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

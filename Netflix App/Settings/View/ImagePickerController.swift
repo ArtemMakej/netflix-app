@@ -8,7 +8,6 @@
 import UIKit
 
 class ImagePickerController {
-    
     private lazy var pickerViewController = UIImagePickerController()
     
     init() {

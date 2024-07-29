@@ -70,21 +70,21 @@ final class SeriesCardView: UIView {
         loadImageSeriesCard(imageURL: imageUrl)
         seriesTitleLabel.text = model.title
         seriesDescriptionLabel.text = model.description
-        let durationTitleLabel = LocalizedStrings.durationTitleLabel.localizeString
+        let durationTitleLabel = Loc.durationTitleLabel
         formatLabelForBoldText(label: seriesDurationLabel, boldText: durationTitleLabel, normalText: model.duration)
-        let startShowTitleLabel = LocalizedStrings.startShowTitleLabel.localizeString
+        let startShowTitleLabel = Loc.startShowTitleLabel
         formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: startShowTitleLabel, normalText: model.presented_at_date)
-        let ratingimdbTitleLabel = LocalizedStrings.ratingimdbTitleLabel.localizeString
+        let ratingimdbTitleLabel = Loc.ratingimdbTitleLabel
         formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: ratingimdbTitleLabel, normalText: model.rating.imbd)
-        let ratingkinopoiskTitleLabel = LocalizedStrings.ratingkinopoiskTitleLabel.localizeString
+        let ratingkinopoiskTitleLabel = Loc.ratingkinopoiskTitleLabel
         formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: ratingkinopoiskTitleLabel, normalText: model.rating.kinopoisk)
-        let actorsTitleLabel = LocalizedStrings.actorsTitleLabel.localizeString
+        let actorsTitleLabel = Loc.actorsTitleLabel
         formatLabelForBoldText(label: seriesActorsLabel, boldText: actorsTitleLabel, normalText: model.actors.joined(separator: ", "))
-        let countryTitleLabel = LocalizedStrings.countryTitleLabel.localizeString
+        let countryTitleLabel = Loc.countryTitleLabel
         formatLabelForBoldText(label: seriesCountryLabel, boldText: countryTitleLabel, normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
-        let listsTitleLabel = LocalizedStrings.theListsTitleLabel.localizeString
+        let listsTitleLabel = Loc.theListsTitleLabel
         formatLabelForBoldText(label: seriesInListsLabel, boldText: listsTitleLabel, normalText: model.in_lists.joined(separator: ", "))
-        let genreTitleLabel = LocalizedStrings.genreTitleLabel.localizeString
+        let genreTitleLabel = Loc.genreTitleLabel
         formatLabelForBoldText(label: seriesGenreLabel, boldText: genreTitleLabel, normalText: model.genre.joined(separator: ", "))
     }
     
@@ -228,7 +228,7 @@ final class SeriesCardView: UIView {
         }
         
         seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
-        seriesLikeAndDislikeButton.clipsToBounds = true
+        seriesLikeAndDislikeButton.clipsToBounds = false
         seriesLikeAndDislikeButton.tintColor = UIColor.Dynamic.imageColor.color
         let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
@@ -237,7 +237,7 @@ final class SeriesCardView: UIView {
             maker.top.equalTo(seriesFullImageView.safeAreaLayoutGuide.snp.bottom).inset(-15)
         }
         
-        seriesPlayButton.clipsToBounds = true
+        seriesPlayButton.clipsToBounds = false
         seriesPlayButton.tintColor = UIColor.Dynamic.imageColor.color
         let playImage = UIImage(named: "play")?.withRenderingMode(.alwaysTemplate)
         seriesPlayButton.setImage(playImage, for: .normal)

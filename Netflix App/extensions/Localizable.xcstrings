@@ -17,7 +17,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Актëры:"
+            "value" : "Актëры: \\n"
           }
         }
       }
@@ -27,7 +27,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Страна:"
+            "value" : "Страна:  \\n"
           }
         }
       }
@@ -80,7 +80,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Жанр:"
+            "value" : "Жанр: \\n"
           }
         }
       }
@@ -152,7 +152,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Список"
+            "value" : "Список: \\n"
           }
         }
       }
