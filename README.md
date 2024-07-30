@@ -32,6 +32,6 @@ The Netflix app supports [`Localization`](https://developer.apple.com/localizati
 
 
 <p float="left">
-  <image src="Images/SwitchTheme.gif" width="275"/>
-  <image src="Images/ThemeDark.png" width="275"/>
+  <image src="Images/SwitchGif.gif" width="275"/>
+  <image src="Images/ThemeDarks.png" width="275"/>
 </p>
