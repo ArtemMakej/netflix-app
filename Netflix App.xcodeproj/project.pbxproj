@@ -139,7 +139,7 @@
 		ACCE919C2AE1BE2D00ED44B5 /* Avenir Next.ttc */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Avenir Next.ttc"; sourceTree = "<group>"; };
 		ACCE919E2AE1C15C00ED44B5 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " NetflixShort.swift"; sourceTree = "<group>"; };
-		ACED2DBD2C0BA783009FF593 /* NetflixTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixTabBarViewController.swift; sourceTree = "<group>"; };
+		ACED2DBD2C0BA783009FF593 /* NetflixTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetflixTabBarViewController.swift; path = "Netflix App/NetflixTabBarViewController.swift"; sourceTree = "<group>"; };
 		DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App_Netflix_AppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
