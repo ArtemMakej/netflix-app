@@ -8,13 +8,14 @@
 import UIKit
 
 protocol ILikesView: AnyObject {
+    // MARK: - ILikesView
     func reloadData()
     func showEmptyLike(indexPath: IndexPath)
     func showFilledLike(indexPath: IndexPath)
 }
 
 final class LikesViewController: UIViewController {
-    
+    // MARK: - Properties
     private let presenter: ILikesPresenter
     private let scrollView = UIScrollView()
     private let likeContentView = UIView()
@@ -36,7 +37,7 @@ final class LikesViewController: UIViewController {
         traitCollectionDidChange(nil)
         updateLikeCounter(.init(name: .likePressed, object: nil))
     }
-    //1
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
@@ -50,18 +51,7 @@ final class LikesViewController: UIViewController {
             GradientBackgroundLikes.setupViewLikesViewController(for: likesView, gradientLayer: gradientLayer, theme: .light)
         }
     }
-    
-    private func setupNavigationItem() {
-        let navigationTitleColor = UIColor.Dynamic.imageColor.color
-        let titleFont = Font.avenir(weight: .bold, size: 17)
-        
-        navigationController?.navigationBar.titleTextAttributes = [
-            .foregroundColor: navigationTitleColor,
-            .font: titleFont
-        ]
-        navigationItem.title = "FAVORITES"
-    }
-    
+    // MARK: - Init
     init(presenter: ILikesPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -87,6 +77,16 @@ final class LikesViewController: UIViewController {
         scrollView.snp.makeConstraints { maker in
             maker.edges.equalToSuperview()
         }
+    }
+    
+    private func setupNavigationItem() {
+        let navigationTitleColor = UIColor.Dynamic.imageColor.color
+        let titleFont = Font.avenir(weight: .bold, size: 17)
+        navigationController?.navigationBar.titleTextAttributes = [
+            .foregroundColor: navigationTitleColor,
+            .font: titleFont
+        ]
+        navigationItem.title = "FAVORITES"
     }
     
     private func setUpViews() {
@@ -127,13 +127,13 @@ final class LikesViewController: UIViewController {
             maker.height.equalTo(393)
         }
         
-        likesView.setNeedsLayout() // метод, запрашивает отрисовку
-        likesView.layoutIfNeeded() // метод, который требует отрисовать вьюшку
+        likesView.setNeedsLayout()
+        likesView.layoutIfNeeded()
         favoritesLabel.clipsToBounds = true
         favoritesLabel.numberOfLines = 0
         favoritesLabel.textAlignment = .left
         favoritesLabel.font = Font.avenir(weight: .bold, size: 42)
-        favoritesLabel.text = "Избранное"
+        favoritesLabel.text = Loc.favoritesLabel
         favoritesLabel.textColor = .white
         favoritesLabel.snp.makeConstraints { maker in
             maker.bottom.equalTo(favoritesImageView.snp.bottom)
@@ -168,9 +168,8 @@ extension LikesViewController: ILikesView {
     func reloadData() {
         collectionLikesView.reloadData()
     }
-    // indexPath чтобы понять какая  ячейка будет закрашена
+    
     func showFilledLike(indexPath: IndexPath) {
-        //dequeueReusableCell - через функцию можем достать ячейку
         let cell = collectionLikesView.cellForItem(at: indexPath) as? LikesCell
         cell?.tapLikesButton(filled: true)
     }
@@ -185,7 +184,7 @@ extension Notification.Name {
     static let likePressed = Notification.Name("LikePressed")
 }
 
-extension LikesViewController: UICollectionViewDelegateFlowLayout{
+extension LikesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (150/393) * collectionView.frame.width
         return CGSize(width: width, height: width)

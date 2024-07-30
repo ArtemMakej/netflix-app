@@ -7,7 +7,7 @@
 
 import UIKit
 import SafariServices
-
+// MARK: - ISeriesCardView
 protocol ISeriesCardView: AnyObject {
     func updateView(with tvShowModel: NetflixFull)
     func showSafariViewController(url: String)
@@ -16,7 +16,8 @@ protocol ISeriesCardView: AnyObject {
 }
 
 final class SeriesCardViewController: UIViewController {
-    
+    // MARK: - Properties
+    public let presenter: ISeriesCardPresenter
     private lazy var screenView = SeriesCardView(frame: view.frame)
     
     override func viewDidLoad() {
@@ -35,9 +36,7 @@ final class SeriesCardViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
     }
-    
-    public let presenter: ISeriesCardPresenter
-    
+    // MARK: - Init
     init(presenter: ISeriesCardPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -60,6 +59,7 @@ final class SeriesCardViewController: UIViewController {
 }
 
 extension SeriesCardViewController: ISeriesCardView {
+    
     func showFilledLike() {
         screenView.setLikeButton(filled: true)
     }
@@ -77,8 +77,6 @@ extension SeriesCardViewController: ISeriesCardView {
         let safariViewController = SFSafariViewController(url: url)
         let config = SFSafariViewController.Configuration()
         config.entersReaderIfAvailable = true
-        // она показывает модально след viewcontroller
         present(safariViewController, animated: true)
     }
 }
-

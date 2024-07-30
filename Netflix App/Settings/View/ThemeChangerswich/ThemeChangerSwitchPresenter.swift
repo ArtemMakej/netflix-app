@@ -12,17 +12,17 @@ enum HorizontalPosition {
     case right
 }
 
+// MARK: - IThemeChangerSwitchPresenter
 protocol IThemeChangerSwitchPresenter {
-    
     func switchMovedTo(position: HorizontalPosition)
     func viewLayotSubviews()
 }
 
 final class ThemeChangerSwitchPresenter: IThemeChangerSwitchPresenter {
-    
+    // MARK: - Properties
     weak var view: IThemeChangerSwitchView?
     private let interfaceStyleOverrider: InterfaceStyleOverrider
-    
+    // MARK: - Init
     init(interfaceStyleOverrider: InterfaceStyleOverrider) {
         self.interfaceStyleOverrider = interfaceStyleOverrider
     }
@@ -30,7 +30,7 @@ final class ThemeChangerSwitchPresenter: IThemeChangerSwitchPresenter {
     func switchMovedTo(position: HorizontalPosition) {
         interfaceStyleOverrider.change(theme: position == .left ? .light : .dark)
     }
-
+    
     func viewLayotSubviews() {
         let currentTheme = interfaceStyleOverrider.currentTheme()
         let position: HorizontalPosition = currentTheme == .light ? .left : .right

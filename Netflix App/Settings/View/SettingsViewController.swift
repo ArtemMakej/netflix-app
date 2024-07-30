@@ -9,6 +9,7 @@ import UIKit
 import SafariServices
 import MessageUI
 
+// MARK: - ISettingsView
 protocol ISettingsView: AnyObject {
     func setupNavigationItem()
     func setupView(email: String, website: String)
@@ -17,21 +18,14 @@ protocol ISettingsView: AnyObject {
 }
 
 final class SettingsViewController: UIViewController {
-    
     // MARK: - Properties
-    
+    private let versionApp = "CFBundleShortVersionString"
+    private let imagePickerController = ImagePickerController()
     private let generalStackCoverView = UIView()
     private let aboutStackCoverView = UIView()
-    
     private let settingContentView = UIView()
     private let avatarImageView = UIImageView()
     private let createAvatarButton = UIButton()
-    private lazy var generalStackView = UIStackView(arrangedSubviews: [
-        generalTitleStackView,
-        languageInfoStackView,
-        themeScreenStackView
-    ])
-    
     private let generalTitleStackView = UIStackView()
     private let generalTitleLabel = UILabel()
     private let languageInfoStackView = UIStackView()
@@ -40,14 +34,6 @@ final class SettingsViewController: UIViewController {
     private let themeScreenStackView = UIStackView()
     private let themesScreenLabel = UILabel()
     private let themeChangerView = ThemeChangerView()
-    private lazy var aboutAppStackView = UIStackView(arrangedSubviews: [
-        appTitleStackView,
-        developerInfoStackView,
-        emailInfoStackView,
-        websiteInfoStackView,
-        versionAppStackView
-    ])
-    
     private let appTitleStackView = UIStackView()
     private let aboutAppLabel = UILabel()
     private let developerInfoStackView = UIStackView()
@@ -63,12 +49,23 @@ final class SettingsViewController: UIViewController {
     private let versionAppLabel = UILabel()
     private let numberVersionLabel = UILabel()
     private let presenter: ISettingsPresenter
+    private lazy var aboutAppStackView = UIStackView(arrangedSubviews: [
+        appTitleStackView,
+        developerInfoStackView,
+        emailInfoStackView,
+        websiteInfoStackView,
+        versionAppStackView
+    ])
+    private lazy var generalStackView = UIStackView(arrangedSubviews: [
+        generalTitleStackView,
+        languageInfoStackView,
+        themeScreenStackView
+    ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
     }
-    
     // MARK: - Init
     init(presenter: ISettingsPresenter) {
         self.presenter = presenter
@@ -81,6 +78,7 @@ final class SettingsViewController: UIViewController {
 }
 
 extension SettingsViewController: ISettingsView {
+    
     func setupNavigationItem() {
         let navigationTitleColor = UIColor.Dynamic.imageColor.color
         let titleFont = Font.avenir(weight: .bold, size: 17)
@@ -119,7 +117,8 @@ extension SettingsViewController: ISettingsView {
     }
 }
 
-extension SettingsViewController {
+private extension SettingsViewController {
+    
     func configure() {
         view.addSubview(settingContentView)
         settingContentView.clipsToBounds = true
@@ -132,6 +131,7 @@ extension SettingsViewController {
         settingContentView.addSubview(createAvatarButton)
         createAvatarButton.clipsToBounds = true
         createAvatarButton.contentMode = .scaleAspectFill
+        createAvatarButton.layer.cornerRadius = 50
         let createAvatar = UIImage(named: "createAvatar")
         createAvatarButton.setImage(createAvatar, for: .normal)
         createAvatarButton.snp.makeConstraints { maker in
@@ -139,6 +139,7 @@ extension SettingsViewController {
             maker.top.equalTo(settingContentView).inset(50)
             maker.height.width.equalTo(100)
         }
+        createAvatarButton.addTarget(self, action: #selector(tappedAvatarButton), for: .touchUpInside)
         
         settingContentView.addSubview(avatarImageView)
         avatarImageView.clipsToBounds = true
@@ -159,7 +160,6 @@ private extension SettingsViewController {
     func сonfigurationGeneralStackView() {
         view.addSubview(generalStackCoverView)
         view.addSubview(generalStackView)
-        
         generalStackView.spacing = 16
         generalStackView.axis = .vertical
         generalStackView.distribution = .fill
@@ -179,25 +179,25 @@ private extension SettingsViewController {
         
         generalTitleStackView.axis = .horizontal
         generalTitleStackView.addArrangedSubview(generalTitleLabel)
-        generalTitleLabel.text = "Общие"
+        generalTitleLabel.text = Loc.generalTitleLabel
         generalTitleLabel.font = Font.avenir(weight: .bold, size: 17)
         
         languageInfoStackView.axis = .horizontal
         languageInfoStackView.spacing = 20
         languageInfoStackView.distribution = .fill
         languageInfoStackView.addArrangedSubview(languageInfoLabel)
-        languageInfoLabel.text = "Язык"
+        languageInfoLabel.text = Loc.languageInfoLabel
         languageInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         languageInfoStackView.addArrangedSubview(languageNameLabel)
-        languageNameLabel.text = "Русский🔎"
+        languageNameLabel.text = Loc.languageNameLabel
         languageNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         themeScreenStackView.axis = .horizontal
         themeScreenStackView.distribution = .fill
         themeScreenStackView.addArrangedSubview(themesScreenLabel)
         themeScreenStackView.addArrangedSubview(themeChangerView)
-        themesScreenLabel.text = "Тема"
+        themesScreenLabel.text = Loc.themesScreenLabel
         themesScreenLabel.font = Font.avenir(weight: .regular, size: 14)
         themeChangerView.snp.makeConstraints { maker in
             maker.width.equalTo(226)
@@ -210,7 +210,6 @@ private extension SettingsViewController {
         view.addSubview(aboutAppStackView)
         aboutStackCoverView.layer.cornerRadius = 20
         aboutStackCoverView.backgroundColor = UIColor.Dynamic.stackViewBackgroundColor.color
-        
         aboutAppStackView.spacing = 16
         aboutAppStackView.distribution = .fill
         aboutAppStackView.layer.cornerRadius = 20
@@ -225,19 +224,20 @@ private extension SettingsViewController {
             maker.top.equalTo(aboutStackCoverView).offset(16)
             maker.left.right.equalTo(aboutStackCoverView).inset(16)
         }
+        
         appTitleStackView.axis = .horizontal
         appTitleStackView.addArrangedSubview(aboutAppLabel)
-        aboutAppLabel.text = "О приложении"
+        aboutAppLabel.text = Loc.aboutAppLabel
         aboutAppLabel.font = Font.avenir(weight: .bold, size: 17)
         
         developerInfoStackView.axis = .horizontal
         developerInfoStackView.spacing = 20
         developerInfoStackView.addArrangedSubview(developerInfoLabel)
-        developerInfoLabel.text = "Разработчик"
+        developerInfoLabel.text = Loc.developerInfoLabel
         developerInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         developerInfoStackView.addArrangedSubview(developerFullNameLabel)
-        developerFullNameLabel.text = "Макей Артём"
+        developerFullNameLabel.text = Loc.developerFullNameLabel
         developerFullNameLabel.font = Font.avenir(weight: .regular, size: 14)
         
         emailInfoStackView.axis = .horizontal
@@ -257,7 +257,7 @@ private extension SettingsViewController {
         websiteInfoStackView.spacing = 20
         websiteInfoStackView.axis = .horizontal
         websiteInfoStackView.addArrangedSubview(websiteInfoLabel)
-        websiteInfoLabel.text = "Website"
+        websiteInfoLabel.text = Loc.websiteInfoLabel
         websiteInfoLabel.font = Font.avenir(weight: .regular, size: 14)
         
         websiteInfoStackView.addArrangedSubview(linkToWebsiteLabel)
@@ -271,11 +271,11 @@ private extension SettingsViewController {
         versionAppStackView.axis = .horizontal
         versionAppStackView.spacing = 20
         versionAppStackView.addArrangedSubview(versionAppLabel)
-        versionAppLabel.text = "Version"
+        versionAppLabel.text = Loc.versionAppLabel
         versionAppLabel.font = Font.avenir(weight: .regular, size: 14)
         versionAppStackView.addArrangedSubview(numberVersionLabel)
         
-        numberVersionLabel.text = "1.0.0"
+        numberVersionLabel.text = getVersion()
         numberVersionLabel.font = Font.avenir(weight: .regular, size: 14)
     }
     
@@ -285,5 +285,25 @@ private extension SettingsViewController {
     
     @objc func tappedLinkToWebsite() {
         presenter.didTapLinkToWebSite()
+    }
+    
+    @objc func tappedAvatarButton() {
+        present(imagePickerController.getViewController(delegate: self), animated: true)
+    }
+    
+    func getVersion() -> String {
+        let dictionary = Bundle.main.infoDictionary!
+        let version = dictionary[versionApp] as! String
+        return "\(version)"
+    }
+}
+
+extension SettingsViewController: UINavigationControllerDelegate & UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        guard let image = info[.editedImage] as? UIImage else {
+            print("No image found")
+            return
+        }
     }
 }

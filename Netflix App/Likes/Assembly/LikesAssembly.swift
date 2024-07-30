@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+// MARK: - ILikesAssembly
 protocol ILikesAssembly {
     func assemble() -> UIViewController
 }
@@ -19,4 +19,3 @@ final class LikesAssembly: ILikesAssembly {
         return viewcontroller
     }
 }
-

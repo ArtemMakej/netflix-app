@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// MARK: - ILikesPresenter
 protocol ILikesPresenter {
     func viewDidLoad()
     func viewWillAppear()
@@ -16,20 +16,15 @@ protocol ILikesPresenter {
 }
 
 final class LikesPresenter: ILikesPresenter {
-    
+    // MARK: - Properties
     weak var view: ILikesView?
-    ///вычисляемое свойставо меняется каждый раз когда к нему обращаться,
-    /// cells трансформирует лайки в массив [LikesScreenCell]
     private var cells: [LikesScreenCell] {
-        
         LikedTvShowsService.shared.likedTvShows().map { model in
             return LikesScreenCell.likeCell(model)
         }
     }
     
-    func viewDidLoad() {
-    }
-    
+    func viewDidLoad() {}
     func viewWillAppear() {
         view?.reloadData()
     }
@@ -41,7 +36,7 @@ final class LikesPresenter: ILikesPresenter {
                 LikedTvShowsService.shared.removeLike(tvShow: model)
                 view?.showEmptyLike(indexPath: atIndexPath)
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: { [weak self] in
-                        self?.view?.reloadData()
+                    self?.view?.reloadData()
                 })
             } else {
                 LikedTvShowsService.shared.addLike(tvShow: model)
@@ -57,5 +52,4 @@ final class LikesPresenter: ILikesPresenter {
     func cell(for indexPath: IndexPath) -> LikesScreenCell {
         cells[indexPath.item]
     }
-    
 }

@@ -7,22 +7,20 @@
 
 import SnapKit
 import UIKit
-
+// MARK: - IMainView
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
+    func updateNetflixCell(imageData: Data, indexPath: IndexPath)
 }
 
 final class MainViewController: UIViewController {
     
     // MARK: - Properties
-    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
     private var lastContentHeight: CGFloat = 0 as CGFloat
-    
-    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +29,7 @@ final class MainViewController: UIViewController {
         setupNavigationItem()
         setupViews()
     }
-    
+    // MARK: - Init
     init(presenter: IMainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
@@ -96,15 +94,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 withReuseIdentifier: NetflixCell.id,
                 for: indexPath) as? NetflixCell else { fatalError("no such cell") }
             cell.configure(model: model)
+            presenter.didConfigureCell(indexPath)
             return cell
         }
-    }
-    
-    private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
-        let seriesCardAssembly = SeriesCardAssembly()
-        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
-        
-        navigationController?.pushViewController(seriesCardViewController, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -112,6 +104,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
             return
         }
         showSeriesCard(for: model)
+    }
+    
+    private func showSeriesCard(for netflixShortModel: NetflixShortModel) {
+        let seriesCardAssembly = SeriesCardAssembly()
+        let seriesCardViewController = seriesCardAssembly.assemble(id: netflixShortModel.id, netflixShortModel: netflixShortModel)
+        navigationController?.pushViewController(seriesCardViewController, animated: true)
     }
 }
 
@@ -122,6 +120,12 @@ extension MainViewController: IMainView {
     
     func stopRefreshControl() {
         refreshControl.endRefreshing()
+    }
+    
+    func updateNetflixCell(imageData: Data, indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? NetflixCell
+        let image = UIImage(data: imageData)
+        cell?.set(image: image)
     }
 }
 

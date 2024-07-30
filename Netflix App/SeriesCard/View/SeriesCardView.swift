@@ -8,9 +8,10 @@
 import UIKit
 
 final class SeriesCardView: UIView {
+    // MARK: - Properties
     var likeAndDislikeButtonTap: (() -> Void)?
-    // создаем чтобы его можно использовать вне класса
     var playButtonTap: (() -> Void)?
+    
     private let scrollView = UIScrollView()
     private let customContentView = UIView()
     private let seriesFullImageView = UIImageView()
@@ -35,12 +36,9 @@ final class SeriesCardView: UIView {
     private let seriesGenreLabel = UILabel()
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
-    private let blurView: UIVisualEffectView = {
-        let view  = UIVisualEffectView()
-        view.clipsToBounds = true
-        return view
-    }()
+    private let blurView = UIVisualEffectView()
     
+    // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupScrollView()
@@ -70,32 +68,31 @@ final class SeriesCardView: UIView {
         loadImageSeriesCard(imageURL: imageUrl)
         seriesTitleLabel.text = model.title
         seriesDescriptionLabel.text = model.description
-        formatLabelForBoldText(label: seriesDurationLabel, boldText: "Длительность: ", normalText: model.duration)
-        formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: "Старт показа: ", normalText: model.presented_at_date)
-        formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: "Рейтинг imdb: ", normalText: model.rating.imbd)
-        formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: "Рейтинг kinopoisk: ", normalText: model.rating.kinopoisk)
-        formatLabelForBoldText(label: seriesActorsLabel, boldText: "Актеры:  \n", normalText: model.actors.joined(separator: ", "))
-        formatLabelForBoldText(label: seriesCountryLabel, boldText: "Страна: \n", normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
-        
-        formatLabelForBoldText(label: seriesInListsLabel, boldText: "В списках: \n", normalText: model.in_lists.joined(separator: ", "))
-        //        let separetedGenge = model.genre.joined(separator: ", ")
-        //        seriesGenreLabel.text = separetedGenge
-        //        seriesGenreLabel.text = "Жанр: \(model.genre.joined(separator: ", "))"
-        formatLabelForBoldText(label: seriesGenreLabel, boldText: "Жанр: \n", normalText: model.genre.joined(separator: ", "))
+        let durationTitleLabel = Loc.durationTitleLabel
+        formatLabelForBoldText(label: seriesDurationLabel, boldText: durationTitleLabel, normalText: model.duration)
+        let startShowTitleLabel = Loc.startShowTitleLabel
+        formatLabelForBoldText(label: seriesPresentedAtDateLabel, boldText: startShowTitleLabel, normalText: model.presented_at_date)
+        let ratingimdbTitleLabel = Loc.ratingimdbTitleLabel
+        formatLabelForBoldText(label: seriesRatingImdbLabel, boldText: ratingimdbTitleLabel, normalText: model.rating.imbd)
+        let ratingkinopoiskTitleLabel = Loc.ratingkinopoiskTitleLabel
+        formatLabelForBoldText(label: seriesRatingKinopoiskLabel, boldText: ratingkinopoiskTitleLabel, normalText: model.rating.kinopoisk)
+        let actorsTitleLabel = Loc.actorsTitleLabel
+        formatLabelForBoldText(label: seriesActorsLabel, boldText: actorsTitleLabel, normalText: model.actors.joined(separator: ", "))
+        let countryTitleLabel = Loc.countryTitleLabel
+        formatLabelForBoldText(label: seriesCountryLabel, boldText: countryTitleLabel, normalText: emojiFlag(countryList: model.country).joined(separator: ", "))
+        let listsTitleLabel = Loc.theListsTitleLabel
+        formatLabelForBoldText(label: seriesInListsLabel, boldText: listsTitleLabel, normalText: model.in_lists.joined(separator: ", "))
+        let genreTitleLabel = Loc.genreTitleLabel
+        formatLabelForBoldText(label: seriesGenreLabel, boldText: genreTitleLabel, normalText: model.genre.joined(separator: ", "))
     }
     
     private func emojiFlag(countryList: [String]) -> [String] {
-        
         guard !countryList.isEmpty else { return [] }
-        
         var flagEmojis = [String]()
         
         for country in countryList {
-            
             var flagEmoji = ""
-            
             switch country.lowercased() {
-                
             case "США".lowercased():
                 flagEmoji = "🇺🇸"
             case "Франция".lowercased():
@@ -133,8 +130,10 @@ final class SeriesCardView: UIView {
             default:
                 flagEmoji = "❓"
             }
+            
             flagEmojis.append(country + " " + flagEmoji)
         }
+        
         return flagEmojis
     }
     
@@ -227,22 +226,23 @@ final class SeriesCardView: UIView {
         }
         
         seriesLikeAndDislikeButton.addTarget(self, action: #selector(likeAndDislikeButtonTapped), for: .touchUpInside)
-        seriesLikeAndDislikeButton.clipsToBounds = true
+        seriesLikeAndDislikeButton.clipsToBounds = false
         seriesLikeAndDislikeButton.tintColor = UIColor.Dynamic.imageColor.color
         let likeandDislikeImage = UIImage(named: "likeEmpty")?.withRenderingMode(.alwaysTemplate)
         seriesLikeAndDislikeButton.setImage(likeandDislikeImage, for: .normal)
+        let buttonCenterXOffset = (likeandDislikeImage?.size.width ?? .zero) / 2 + 5
         seriesLikeAndDislikeButton.snp.makeConstraints { maker in
-            maker.left.equalTo(self.safeAreaLayoutGuide.snp.left).inset(144)
+            maker.centerX.equalToSuperview().offset(-buttonCenterXOffset)
             maker.top.equalTo(seriesFullImageView.safeAreaLayoutGuide.snp.bottom).inset(-15)
         }
         
-        seriesPlayButton.clipsToBounds = true
+        seriesPlayButton.clipsToBounds = false
         seriesPlayButton.tintColor = UIColor.Dynamic.imageColor.color
         let playImage = UIImage(named: "play")?.withRenderingMode(.alwaysTemplate)
         seriesPlayButton.setImage(playImage, for: .normal)
         seriesPlayButton.addTarget(self, action: #selector(playButton), for: .touchUpInside)
         seriesPlayButton.snp.makeConstraints { maker in
-            maker.left.equalTo(seriesLikeAndDislikeButton.snp.right).inset(-30)
+            maker.centerX.equalToSuperview().offset(buttonCenterXOffset)
             maker.top.equalTo(seriesLikeAndDislikeButton)
             maker.size.equalTo(seriesLikeAndDislikeButton)
         }
@@ -411,13 +411,13 @@ final class SeriesCardView: UIView {
     }
     
     @objc func playButton() {
-        // опциональный клоужер - ставим вопрос
         playButtonTap?()
         print("Play")
     }
 }
 
 extension SeriesCardView {
+    
     func loadImageSeriesCard(imageURL: String?) {
         guard let imageURL = imageURL else { return }
         guard let url = URL(string: imageURL) else { return }

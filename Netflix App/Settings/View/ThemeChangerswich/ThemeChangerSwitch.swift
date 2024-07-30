@@ -6,23 +6,30 @@
 //
 
 import UIKit
-
+    // MARK: - IThemeChangerSwitchView
 protocol IThemeChangerSwitchView: AnyObject {
     func set(position: HorizontalPosition)
 }
 
 final class ThemeChangerSwitch: UIView, IThemeChangerSwitchView {
-    
+    // MARK: - Properties
     private let presenter: IThemeChangerSwitchPresenter
     private let redView = UIView()
     private let blueView = UIView()
     private let sliderImageView = UIImageView()
     private static let sliderInset: CGFloat = 1.5
     private let panGestureRecognizer = UIPanGestureRecognizer()
-    private var position: HorizontalPosition = .left
     private let snapsToSides = true
     private let feedbackGenerator = UIImpactFeedbackGenerator(style: .soft)
+    private var position: HorizontalPosition = .left
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        redView.frame = self.bounds
+        blueView.frame = self.bounds
+        presenter.viewLayotSubviews()
+    }
+    // MARK: - Init
     init(presenter: IThemeChangerSwitchPresenter) {
         self.presenter = presenter
         super.init(frame: .zero)
@@ -32,13 +39,6 @@ final class ThemeChangerSwitch: UIView, IThemeChangerSwitchView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        redView.frame = self.bounds
-        blueView.frame = self.bounds
-        presenter.viewLayotSubviews()
     }
     
     func set(position: HorizontalPosition) {
@@ -77,11 +77,6 @@ extension ThemeChangerSwitch {
         sliderImageView.addGestureRecognizer(panGestureRecognizer)
     }
     
-    @objc func handlePanGestureRecognizer(sender: UIPanGestureRecognizer) {
-        let location = panGestureRecognizer.location(in: self)
-        updateSliderPosition(location: location)
-    }
-    
     private func updateSliderPosition(location: CGPoint) {
         var location = location
         location.x = location.x - (sliderImageView.frame.width / 2)
@@ -91,22 +86,25 @@ extension ThemeChangerSwitch {
         if location.x < leftLimitX || location.x > rightLimitX {
             return
         }
-        
         let centerX = (self.frame.width / 2) - (sliderImageView.frame.width / 2)
-        // print(location.x, centerX)
         sliderImageView.frame.origin.x = location.x
         updateSwitchBackground(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX)
         updateSwitchForChangeTheme(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX, centerSliderX: centerX)
         snapToSide(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX, centerSliderX: centerX)
     }
+    
+    @objc func handlePanGestureRecognizer(sender: UIPanGestureRecognizer) {
+        let location = panGestureRecognizer.location(in: self)
+        updateSliderPosition(location: location)
+    }
 }
 
 extension ThemeChangerSwitch {
+    
     private func updateSwitchBackground(location: CGPoint, leftLimitX: CGFloat, rightLimitX: CGFloat) {
         let widthMovingSlider = rightLimitX - leftLimitX
         let movingPercentange = location.x / widthMovingSlider
         self.blueView.alpha = 1 - movingPercentange
-        //print(movingPercentange)
     }
     
     private func snapToSide(location: CGPoint, leftLimitX: CGFloat, rightLimitX: CGFloat, centerSliderX: CGFloat) {
@@ -127,10 +125,5 @@ extension ThemeChangerSwitch {
         guard self.position != newPosition else { return }
         self.position = newPosition
         presenter.switchMovedTo(position: newPosition)
-        //        if location.x > centerSliderX {
-        //            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .dark
-        //        } else {
-        //            UIApplication.shared.keyWindow?.overrideUserInterfaceStyle = .light
-        //        }
     }
 }
