@@ -83,9 +83,12 @@ extension ThemeChangerSwitch {
         let leftLimitX = Self.sliderInset
         let rightLimitX = self.frame.width - sliderImageView.frame.width - Self.sliderInset
         print(location.x)
-        if location.x < leftLimitX || location.x > rightLimitX {
-            return
+        if location.x < leftLimitX {
+            location.x = leftLimitX
+        } else if location.x > rightLimitX {
+            location.x = rightLimitX
         }
+        
         let centerX = (self.frame.width / 2) - (sliderImageView.frame.width / 2)
         sliderImageView.frame.origin.x = location.x
         updateSwitchBackground(location: location, leftLimitX: leftLimitX, rightLimitX: rightLimitX)
@@ -95,6 +98,10 @@ extension ThemeChangerSwitch {
     
     @objc func handlePanGestureRecognizer(sender: UIPanGestureRecognizer) {
         let location = panGestureRecognizer.location(in: self)
+        let velocityX = abs(sender.velocity(in: self).x)
+        if (0...100).contains(velocityX) {
+            feedbackGenerator.impactOccurred(intensity: velocityX / 100)
+        }
         updateSliderPosition(location: location)
     }
 }
