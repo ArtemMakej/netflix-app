@@ -27,4 +27,6 @@ enum Loc {
     static let countryTitleLabel = NSLocalizedString("Country: \n", comment: "")
     static let theListsTitleLabel = NSLocalizedString("The Lists: \n", comment: "")
     static let genreTitleLabel = NSLocalizedString("Genre: \n", comment: "")
+    static let notLoadedLabel = NSLocalizedString("Not loaded", comment: "")
+    static let tryAgainButton = NSLocalizedString("Try again", comment: "")
 }

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		25A7303FA106B9D81193BCD8 /* Pods_Netflix_App_Netflix_AppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD58969C408D730580559EBC /* Pods_Netflix_App_Netflix_AppUITests.framework */; };
+		2C01BEF92C615E99004611FC /* StubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01BEF82C615E99004611FC /* StubView.swift */; };
+		2C01BEFB2C61628B004611FC /* MainScreenStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01BEFA2C61628B004611FC /* MainScreenStub.swift */; };
 		2C1242732C235D4B00F806C7 /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1242722C235D4B00F806C7 /* NetworkClient.swift */; };
 		2C1244152C23759800F806C7 /* NetflixService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1244142C23759800F806C7 /* NetflixService.swift */; };
 		2C1244192C2375C200F806C7 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1244182C2375C200F806C7 /* Request.swift */; };
@@ -80,6 +82,8 @@
 
 /* Begin PBXFileReference section */
 		195D4919C23F8A76C4B20236 /* Pods_Netflix_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Netflix_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C01BEF82C615E99004611FC /* StubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StubView.swift; sourceTree = "<group>"; };
+		2C01BEFA2C61628B004611FC /* MainScreenStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenStub.swift; sourceTree = "<group>"; };
 		2C1242722C235D4B00F806C7 /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		2C1244142C23759800F806C7 /* NetflixService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetflixService.swift; sourceTree = "<group>"; };
 		2C1244182C2375C200F806C7 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
@@ -243,6 +247,7 @@
 			children = (
 				ACE0F5A32AF54D9900BEE9F7 /*  NetflixShort.swift */,
 				AC4FE4C52AD71B7800010085 /* MainScreenCell.swift */,
+				2C01BEFA2C61628B004611FC /* MainScreenStub.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			children = (
 				AC4FE4C72AD73BC500010085 /* NetflixCell.swift */,
 				ACC8FB642ACC6C16008E34F0 /* MainViewController.swift */,
+				2C01BEF82C615E99004611FC /* StubView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -762,6 +768,7 @@
 				ACC8FB322ACC5F00008E34F0 /* AppDelegate.swift in Sources */,
 				AC510E292B0FD8090044E8E6 /* SeriesCardPresenter.swift in Sources */,
 				ACC8FB742ACEED09008E34F0 /* LikesViewController.swift in Sources */,
+				2C01BEF92C615E99004611FC /* StubView.swift in Sources */,
 				AC510E272B0FD7F60044E8E6 /* SeriesCardViewController.swift in Sources */,
 				AC510E242B0FD7860044E8E6 /* SeriesCardAssembly.swift in Sources */,
 				AC510E2B2B1507E70044E8E6 /* GradientBackground.swift in Sources */,
@@ -775,6 +782,7 @@
 				ACAAFE622B7BC69500D9E4A9 /* LikesCell.swift in Sources */,
 				ACA83B6B2BBF33AE0021C473 /* ThemeChangerSwitch.swift in Sources */,
 				ACAAFE642B7CE57C00D9E4A9 /* LikesScreenCell.swift in Sources */,
+				2C01BEFB2C61628B004611FC /* MainScreenStub.swift in Sources */,
 				ACC8FB702ACDA693008E34F0 /* SettingsPresenter.swift in Sources */,
 				ACA83B672BBEEBC80021C473 /* ThemeChangerView.swift in Sources */,
 				2C1244192C2375C200F806C7 /* Request.swift in Sources */,
@@ -974,9 +982,10 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = S597543FQ7;
+				DEVELOPMENT_TEAM = WW6B78U563;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix App/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use camera for avatar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -985,8 +994,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "artem.makej-bk.ru.Netflix-App";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iglushko.netflixapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1005,6 +1014,7 @@
 				DEVELOPMENT_TEAM = S597543FQ7;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Netflix App/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use camera for avatar";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

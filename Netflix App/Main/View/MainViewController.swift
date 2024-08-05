@@ -7,17 +7,24 @@
 
 import SnapKit
 import UIKit
+
 // MARK: - IMainView
+
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
     func updateNetflixCell(imageData: Data, indexPath: IndexPath)
+    func updateNetflixCellWithImageStub(indexPath: IndexPath)
+    func show(stub: MainScreenStub)
+    func removeStub()
 }
 
 final class MainViewController: UIViewController {
     
     // MARK: - Properties
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    private lazy var stubView = StubView()
+    
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
     private var lastContentHeight: CGFloat = 0 as CGFloat
@@ -40,7 +47,7 @@ final class MainViewController: UIViewController {
     }
     
     private func setupNavigationItem() {
-        let navigationTitleColor = UIColor.Dynamic.imageColor.color
+        let navigationTitleColor = UIColor.Dynamic.accent.color
         let titleFont = UIFont.systemFont(ofSize: 17, weight: .semibold)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,
@@ -71,6 +78,14 @@ final class MainViewController: UIViewController {
             maker.left.right.equalToSuperview()
             maker.top.equalTo(view.snp.topMargin)
             maker.bottom.equalTo(view.snp.bottomMargin)
+        }
+    }
+    
+    private func setupStubView() {
+        view.addSubview(stubView)
+        stubView.snp.makeConstraints { maker in
+            maker.left.right.equalToSuperview().inset(30)
+            maker.center.equalToSuperview()
         }
     }
 }
@@ -127,6 +142,26 @@ extension MainViewController: IMainView {
         let image = UIImage(data: imageData)
         cell?.set(image: image)
     }
+    
+    func updateNetflixCellWithImageStub(indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as? NetflixCell
+        let image = UIImage(named: "show-stub")
+        assert(image != nil, "The image is empty")
+        cell?.set(image: image)
+    }
+    
+    func show(stub: MainScreenStub) {
+        if stubView.superview == nil {
+            setupStubView()
+        }
+        
+        stubView.isHidden = false
+        stubView.configure(stubData: stub.getStubViewData())
+    }
+    
+    func removeStub() {
+        stubView.isHidden = true
+    }
 }
 
 extension MainViewController: UICollectionViewDelegateFlowLayout {
@@ -149,6 +184,21 @@ extension MainViewController: UIScrollViewDelegate {
             guard lastContentHeight != scrollView.contentSize.height else { return }
             lastContentHeight = contentHeight
             self.presenter.userDidScrollToPageEnd()
+        }
+    }
+}
+
+private extension MainScreenStub {
+    
+    func getStubViewData() -> StubData {
+        switch self {
+        case let .noTvShows(action):
+            return StubData(
+                image: UIImage(named: "astronout"),
+                text: Loc.notLoadedLabel,
+                buttonText: Loc.tryAgainButton,
+                onButtonTap: action
+            )
         }
     }
 }

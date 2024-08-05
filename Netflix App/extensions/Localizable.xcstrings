@@ -107,6 +107,17 @@
         }
       }
     },
+    "Not loaded" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не загрузилось"
+          }
+        }
+      }
+    },
     "Rating imdb: " : {
       "localizations" : {
         "ru" : {
@@ -137,7 +148,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Русский🔎"
           }
         }
@@ -170,6 +181,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Тема"
+          }
+        }
+      }
+    },
+    "Try again" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
           }
         }
       }

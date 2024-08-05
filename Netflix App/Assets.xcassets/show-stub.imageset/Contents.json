@@ -1,0 +1,22 @@
+{
+  "images" : [
+    {
+      "filename" : "show_stub.jpeg",
+      "idiom" : "universal"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "f6974e017d3f6196c4cbe284ee3eaf4e.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

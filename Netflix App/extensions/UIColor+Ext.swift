@@ -12,10 +12,11 @@ extension UIColor {
     struct Dynamic {
         let light: UIColor
         let dark: UIColor
-        var color: UIColor {
-            UIColor.dynamicColor(dynamic: self)
-        }
+        
+        var color: UIColor { UIColor.dynamicColor(dynamic: self) }
+        
         // MARK: - Static
+        
         static let appBackground = Dynamic(
             light: .white,
             dark: UIColor(red: 24/255, green: 29/255, blue: 37/255, alpha: 1)
@@ -80,7 +81,7 @@ extension UIColor {
             )
         )
         
-        static let imageColor = Dynamic(
+        static let accent = Dynamic(
             light: UIColor(
                 red: 0/255,
                 green: 122/255,
@@ -98,7 +99,9 @@ extension UIColor {
 }
 
 extension UIColor {
+    
     // MARK: - Static
+    
     static func dynamicColor(dynamic: Dynamic) -> UIColor {
         if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {

@@ -95,7 +95,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesNameImageView.clipsToBounds = true
         let nameImage = UIImage(named: "nameSeries")?.withRenderingMode(.alwaysTemplate)
         seriesNameImageView.image = nameImage
-        seriesNameImageView.tintColor = UIColor.Dynamic.imageColor.color
+        seriesNameImageView.tintColor = UIColor.Dynamic.accent.color
         seriesNameImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesImageView).offset(42)
@@ -106,7 +106,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesDateImageView.clipsToBounds = true
         let dateImage = UIImage(named: "SeriesDate")?.withRenderingMode(.alwaysTemplate)
         seriesDateImageView.image = dateImage
-        seriesDateImageView.tintColor = UIColor.Dynamic.imageColor.color
+        seriesDateImageView.tintColor = UIColor.Dynamic.accent.color
         seriesDateImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesNameImageView.snp.bottom).offset(8)
@@ -117,7 +117,7 @@ final class NetflixCell: UICollectionViewCell {
         seriesGenreImageView.clipsToBounds = true
         let genreImage = UIImage(named: "SeriesGenre")?.withRenderingMode(.alwaysTemplate)
         seriesGenreImageView.image = genreImage
-        seriesGenreImageView.tintColor = UIColor.Dynamic.imageColor.color
+        seriesGenreImageView.tintColor = UIColor.Dynamic.accent.color
         seriesGenreImageView.snp.makeConstraints { maker in
             maker.left.equalTo(seriesImageView.snp.right).offset(16)
             maker.top.equalTo(seriesDateImageView.snp.bottom).offset(8)

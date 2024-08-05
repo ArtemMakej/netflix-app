@@ -80,7 +80,7 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: ISettingsView {
     
     func setupNavigationItem() {
-        let navigationTitleColor = UIColor.Dynamic.imageColor.color
+        let navigationTitleColor = UIColor.Dynamic.accent.color
         let titleFont = Font.avenir(weight: .bold, size: 17)
         navigationController?.navigationBar.titleTextAttributes = [
             .foregroundColor: navigationTitleColor,

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 // MARK: - IMainPresenter
+
 protocol IMainPresenter {
     func viewDidLoad()
     func numberOfCells() -> Int
@@ -17,15 +19,22 @@ protocol IMainPresenter {
 }
 
 final class MainPresenter: IMainPresenter {
+    
     // MARK: - Properties
+    
     weak var view: IMainView?
+    
+    private let mainQueue: DispatchQueue
+    
     private let netflixService: INetflixService
     private var cells: [MainScreenCell] = []
     private var pageNumber = 1
     private var canMakeNewRequest = true
-    // MARK: - Init
-    init(netflixService: INetflixService) {
+    
+    
+    init(netflixService: INetflixService, mainQueue: DispatchQueue) {
         self.netflixService = netflixService
+        self.mainQueue = mainQueue
     }
     
     func viewDidLoad() {
@@ -69,7 +78,9 @@ final class MainPresenter: IMainPresenter {
                         self?.view?.updateNetflixCell(imageData: data, indexPath: indexPath)
                     }
                 } catch {
-                    print("🔥 Error: ", error)
+                    await MainActor.run { [weak self] in
+                        self?.view?.updateNetflixCellWithImageStub(indexPath: indexPath)
+                    }
                 }
             }
         }
@@ -81,12 +92,20 @@ final class MainPresenter: IMainPresenter {
                 let models = try await netflixService.getNetflix(page: page)
                 let mappedModels = models.map { MainScreenCell.tvShow(model: $0) }
                 self.cells.append(contentsOf: mappedModels)
-                DispatchQueue.main.async { [weak self] in
+                mainQueue.async { [weak self] in
+                    self?.view?.removeStub()
                     self?.view?.reloadData()
                     completion?(true)
                 }
             } catch {
-                print("🔥 Error: ", error)
+                if cells.isEmpty {
+                    mainQueue.async { [weak self] in
+                        self?.view?.show(stub: .noTvShows(action: { [weak self] in
+                            guard let self else { return }
+                            loadNetflixTvShows(page: page, completion: completion)
+                        }))
+                    }
+                }
             }
         }
     }
