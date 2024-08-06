@@ -18,7 +18,7 @@ struct GradientBackgroundLikes {
         switch theme {
         case .light:
             gradientLayer.colors = [
-                UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1).cgColor,
+                UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 0.9).cgColor,
                 UIColor(red: 255/255, green: 103/255, blue: 95/255, alpha: 0).cgColor
             ]
             gradientLayer.locations = [0.0, 1.0]

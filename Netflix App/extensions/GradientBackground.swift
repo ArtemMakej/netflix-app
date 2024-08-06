@@ -13,8 +13,9 @@ struct GradientBackground {
         switch theme {
         case .light:
             gradientLayer.colors = [
-                UIColor(red: 63/255, green: 155/255, blue: 254/255, alpha: 0.2).cgColor,
-                UIColor(red: 83/255, green: 238/255, blue: 39/255, alpha: 0.4).cgColor,
+                UIColor(red: 100/255, green: 149/255, blue: 237/255, alpha: 0.2).cgColor,
+                UIColor(red: 100/255, green: 149/255, blue: 237/255, alpha: 0.1).cgColor,
+                UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1).cgColor
             ]
             gradientLayer.locations = [0.0, 1.0]
             gradientLayer.frame = view.bounds
