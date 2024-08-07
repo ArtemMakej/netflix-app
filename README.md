@@ -5,7 +5,7 @@
 ## [![Static Badge](https://img.shields.io/badge/language-%20Swift%205-h)]() [![Static Badge](https://img.shields.io/badge/platform%20-%20iOS%2016.1-%20h)]() [![Static Badge](https://img.shields.io/badge/CocoaPods-%20compatible-h)]() [![Static Badge](https://img.shields.io/badge/license%20-%20MIT-%20h)]()
 
 <p float="left">
-  <img src="Images/mainScreen.png" width="275"/>
+  <img src="Images/mainScreenNew.png" width="275"/>
   <img src="Images/Gif.gif" width="275"/>
 </p>
 
