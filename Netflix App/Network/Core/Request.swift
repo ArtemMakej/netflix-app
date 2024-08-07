@@ -5,7 +5,9 @@
 //  Created by Artem Mackei on 19.06.2024.
 //
 import Foundation
+
 // MARK: - IRequest
+
 protocol IRequest {
     func toUrlRequest() -> URLRequest
 }
@@ -16,7 +18,9 @@ enum HTTPMethod: String {
 }
 
 struct Request: IRequest {
+    
     // MARK: - Properties
+    
     var url: URL
     let method: HTTPMethod
     let headers: [String: String]

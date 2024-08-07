@@ -8,7 +8,9 @@
 import UIKit
 
 struct GradientBackground {
+    
     // MARK: - Static
+    
     static func setup(for view: UIView, gradientLayer: CAGradientLayer, theme: InterfaceTheme) {
         switch theme {
         case .light:

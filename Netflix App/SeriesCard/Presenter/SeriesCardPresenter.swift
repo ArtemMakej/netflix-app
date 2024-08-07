@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 // MARK: - ISeriesCardPresenter
+
 protocol ISeriesCardPresenter {
     func viewDidLoad()
     func viewWillAppear()
@@ -15,13 +17,15 @@ protocol ISeriesCardPresenter {
 }
 
 final class SeriesCardPresenter: ISeriesCardPresenter {
+    
     // MARK: - Properties
+    
     weak var view: ISeriesCardView?
     private let netflixShortModel: NetflixShortModel
     private let id: String
     private var isLiked = false
     private var netflixFullModel: NetflixFull?
-    // MARK: - Init
+    
     init(id: String, netflixShortModel: NetflixShortModel) {
         self.id = id
         self.netflixShortModel = netflixShortModel

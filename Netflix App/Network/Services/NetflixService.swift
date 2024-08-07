@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 // MARK: - INetflixService
+
 protocol INetflixService {
     func getNetflix(page: Int) async throws -> [NetflixShortModel]
     func getNetflixFull() async throws -> NetflixFull
@@ -18,11 +20,13 @@ enum NetflixError: Error {
 }
 
 struct NetflixService: INetflixService {
+    
     // MARK: - Properties
+    
     private let networkClient: INetworkClient
     private let requestBuilder: IRequestBuilder
     private let baseUrl: URL
-    // MARK: - Init
+    
     init(networkClient: INetworkClient, requestBuilder: IRequestBuilder, baseUrl: URL) {
         self.networkClient = networkClient
         self.requestBuilder = requestBuilder

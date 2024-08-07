@@ -7,7 +7,9 @@
 
 import SnapKit
 import UIKit
+
 // MARK: - IMainView
+
 protocol IMainView: AnyObject {
     func reloadData()
     func stopRefreshControl()
@@ -17,6 +19,7 @@ protocol IMainView: AnyObject {
 final class MainViewController: UIViewController {
     
     // MARK: - Properties
+    
     private let collectionView: UICollectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     private let presenter: IMainPresenter
     private let refreshControl = UIRefreshControl()
@@ -29,7 +32,7 @@ final class MainViewController: UIViewController {
         setupNavigationItem()
         setupViews()
     }
-    // MARK: - Init
+    
     init(presenter: IMainPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 // MARK: - ILikedTvShowsService
+
 protocol ILikedTvShowsService {
     func likedTvShows() -> [NetflixFull]
     func addLike(tvShow: NetflixFull)
@@ -15,11 +17,13 @@ protocol ILikedTvShowsService {
 }
 
 final class LikedTvShowsService: ILikedTvShowsService {
+    
     // MARK: - Properties
+    
     static let shared = LikedTvShowsService()
     private static let likedTvShowsKey = "likedTvShows"
     private var shows: [NetflixFull] = []
-    // MARK: - Init
+    
     private init() {
         guard let showsObject = UserDefaults.standard.object(forKey: LikedTvShowsService.likedTvShowsKey) as? Data else { return }
         guard let showsToStorage = try? JSONDecoder().decode([NetflixFull].self, from: showsObject)

@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 // MARK: - IMainAssembly
+
 protocol IMainAssembly {
     func assemble(netflixNetworkAssembly: INetflixNetworkAssembly) -> UIViewController
 }

@@ -7,7 +7,9 @@
 
 import UIKit
 import SafariServices
+
 // MARK: - ISeriesCardView
+
 protocol ISeriesCardView: AnyObject {
     func updateView(with tvShowModel: NetflixFull)
     func showSafariViewController(url: String)
@@ -16,7 +18,9 @@ protocol ISeriesCardView: AnyObject {
 }
 
 final class SeriesCardViewController: UIViewController {
+    
     // MARK: - Properties
+    
     public let presenter: ISeriesCardPresenter
     private lazy var screenView = SeriesCardView(frame: view.frame)
     
@@ -36,7 +40,7 @@ final class SeriesCardViewController: UIViewController {
         super.viewWillAppear(animated)
         presenter.viewWillAppear()
     }
-    // MARK: - Init
+   
     init(presenter: ISeriesCardPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)

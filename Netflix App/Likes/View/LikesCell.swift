@@ -8,7 +8,9 @@
 import UIKit
 
 final class LikesCell: UICollectionViewCell {
+    
     // MARK: - Properties
+    
     static let id = "LikesCell"
     var onLikeTap: (() -> Void)?
     private let seriesLikeLabel = UILabel()
@@ -20,7 +22,7 @@ final class LikesCell: UICollectionViewCell {
         view.clipsToBounds = true
         return view
     }()
-    // MARK: - Init
+  
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()

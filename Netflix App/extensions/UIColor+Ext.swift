@@ -15,7 +15,9 @@ extension UIColor {
         var color: UIColor {
             UIColor.dynamicColor(dynamic: self)
         }
+        
         // MARK: - Static
+        
         static let appBackground = Dynamic(
             light: .white,
             dark: UIColor(red: 24/255, green: 29/255, blue: 37/255, alpha: 1)
@@ -98,7 +100,9 @@ extension UIColor {
 }
 
 extension UIColor {
+    
     // MARK: - Static
+    
     static func dynamicColor(dynamic: Dynamic) -> UIColor {
         if #available(iOS 13.0, *) {
             return UIColor(dynamicProvider: {

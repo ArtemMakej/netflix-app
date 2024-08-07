@@ -8,7 +8,9 @@
 import UIKit
 
 final class SeriesCardView: UIView {
+    
     // MARK: - Properties
+    
     var likeAndDislikeButtonTap: (() -> Void)?
     var playButtonTap: (() -> Void)?
     
@@ -37,8 +39,7 @@ final class SeriesCardView: UIView {
     private let seriesGenreImageView = UIImageView()
     private let blurSeriesImageView = UIImageView()
     private let blurView = UIVisualEffectView()
-    
-    // MARK: - Init
+   
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupScrollView()

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+
 // MARK: - ILikesPresenter
+
 protocol ILikesPresenter {
     func viewDidLoad()
     func viewWillAppear()
@@ -16,7 +18,9 @@ protocol ILikesPresenter {
 }
 
 final class LikesPresenter: ILikesPresenter {
+    
     // MARK: - Properties
+    
     weak var view: ILikesView?
     private var cells: [LikesScreenCell] {
         LikedTvShowsService.shared.likedTvShows().map { model in

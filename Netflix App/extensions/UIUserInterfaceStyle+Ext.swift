@@ -20,7 +20,9 @@ extension UIUserInterfaceStyle {
         default: return .light
         }
     }
+    
     // MARK: - Init
+    
     init(theme: InterfaceTheme) {
         switch theme {
         case .dark: 

@@ -8,14 +8,18 @@
 import UIKit
 
 protocol ILikesView: AnyObject {
+    
     // MARK: - ILikesView
+    
     func reloadData()
     func showEmptyLike(indexPath: IndexPath)
     func showFilledLike(indexPath: IndexPath)
 }
 
 final class LikesViewController: UIViewController {
+    
     // MARK: - Properties
+    
     private let presenter: ILikesPresenter
     private let scrollView = UIScrollView()
     private let likeContentView = UIView()
@@ -51,7 +55,7 @@ final class LikesViewController: UIViewController {
             GradientBackgroundLikes.setupViewLikesViewController(for: likesView, gradientLayer: gradientLayer, theme: .light)
         }
     }
-    // MARK: - Init
+    
     init(presenter: ILikesPresenter) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)

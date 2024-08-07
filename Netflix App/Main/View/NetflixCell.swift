@@ -9,6 +9,8 @@ import UIKit
 
 final class NetflixCell: UICollectionViewCell {
     
+    // MARK: - Properties
+    
     static let id = "NetflixCell"
     private let baseView = UIView()
     private let seriesNameImageView = UIImageView()

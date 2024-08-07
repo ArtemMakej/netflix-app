@@ -13,7 +13,9 @@ enum InterfaceScreenLikes {
 }
 
 struct GradientBackgroundLikes {
+    
     // MARK: - Static
+    
     static func setupViewLikesViewController(for view: UIView, gradientLayer: CAGradientLayer, theme: InterfaceScreenLikes) {
         switch theme {
         case .light:
